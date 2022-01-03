@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<title>게시판</title>
+</head>
+<body>
+	<div>
+		<form action="#" th:action="@{/login}" method="post">
+		  <div>
+		  	<span>ID</span>
+		    <input type="text" name="id" value=""/>
+		  </div>
+		  <div>
+		    <span>PWD</span>
+		    <input type="password" name="pwd" value=""/>
+		  </div>
+		  <div>
+		    <input type="submit" value="로그인" />
+		  </div>
+		  <!--<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>-->
+		</form>
+	</div>
+</body>
+</html>
