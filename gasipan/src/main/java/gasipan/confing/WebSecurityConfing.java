@@ -51,10 +51,11 @@ public class WebSecurityConfing extends WebSecurityConfigurerAdapter {
 				.and()
 			.formLogin() // 로그인 화면 설정
 				.loginPage("/loginPage")
-				.loginProcessingUrl("/login") 
+				.loginPage("/admin/loginPage")
+				.loginProcessingUrl("/login")
 				.usernameParameter("id")
 				.passwordParameter("pwd")
-				.failureUrl("/login?error") // 로그인 실패하면 가야할 경로
+				.failureUrl("/login?error") // 로그인 화면 이동에 실패하면 가야할 경로
 				// .failureHandler(null) 로그인 실패 동작 핸들링
 				.successHandler(new LoginSuccessHandler("/")) // 로그인 성공 이후의 동작 핸들링
 				.permitAll();

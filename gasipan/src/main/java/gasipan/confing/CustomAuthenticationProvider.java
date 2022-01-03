@@ -13,6 +13,7 @@ import org.springframework.stereotype.Component;
 
 import gasipan.dto.UsersDto;
 import gasipan.service.UserService;
+import gasipan.vo.AdminVo;
 import gasipan.vo.UsersVo;
 
 @Component
@@ -25,18 +26,40 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
 	public Authentication authenticate(Authentication authentication) throws AuthenticationException {
 		// 로그인 폼에서 입력한 정보를 가져온다.
 		String id = (String) authentication.getPrincipal();
+		String pwd = (String) authentication.getCredentials();
+		String authority = (String) authentication.getPrincipal();
 		
-		UsersDto userInfor = new UsersDto();
-		userInfor.setUserId(id);
+		System.out.println("id : " + id);
+		System.out.println("authority : " + authority);
 		
-		UsersVo user = userService.selectUserById(userInfor);
-		
-		if(user == null) 
+		// 사용자 로그인인지 관리자 로그인인지 확인
+		if(authority.equals("user")) {
+			UsersDto userInfor = new UsersDto();
+			userInfor.setUserId(id);
+			
+			// DB에서 조회
+			UsersVo user = userService.selectUserById(userInfor);
+			
+			if(user == null) 
+				throw new BadCredentialsException("login error");
+			if(!user.getUserPwd().equals(pwd))
+				throw new BadCredentialsException("login error");
+				
+	        ArrayList<SimpleGrantedAuthority> authorities = new ArrayList<>();
+	        authorities.add(new SimpleGrantedAuthority("USER"));
+	        return new UsernamePasswordAuthenticationToken(user, null, authorities);
+	        
+		} else if(authority.equals("admin")) {
+			
+			AdminVo admin = null;
+			
+	        ArrayList<SimpleGrantedAuthority> authorities = new ArrayList<>();
+	        authorities.add(new SimpleGrantedAuthority("ADMIN"));
+	        return new UsernamePasswordAuthenticationToken(admin, null, authorities);			
+		} else {
 			throw new BadCredentialsException("login error");
-		
-        ArrayList<SimpleGrantedAuthority> authorities = new ArrayList<>();
-        authorities.add(new SimpleGrantedAuthority("USER"));
-        return new UsernamePasswordAuthenticationToken(user, null, authorities);
+		}
+
 	}
 
 	@Override
