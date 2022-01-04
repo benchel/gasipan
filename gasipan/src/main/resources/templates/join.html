@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>회원가입</title>
+<script type="text/javascript" src="/js/jquery-ui.js"></script>
+<script type="text/javascript" src="/js/jquery-3.6.0.min.js"></script>
+<link rel="stylesheet" href="/css/common_user.css">
+</head>
+<script type="text/javascript">
+$(document).ready(function() {
+	main.run();
+});
+
+var main = {
+	run : function() {
+		this.init.setDefault();
+		this.registEvent();
+	},
+	init : {
+		setDefault : function() {
+			
+		}
+	},	
+	registEvent : function() {
+		
+	},
+	proc : {
+		
+	}
+};
+</script>
+<body>
+	<div class="contents">
+		<div class="summary">
+			<h1 class="title">회원가입</h1>
+		</div>
+		<div class="infromation-input">
+			<div class="row indent-20">
+				<label class="text-label col-10">아이디</label>
+				<input type="text" class="text-input col-20" id="userId" name="userId" value="">
+				<span id="id-validate" class="validate-text">최대 20자까지 입력 가능합니다.</span>
+			</div>
+			
+			<div class="row indent-20">
+				<label class="text-label col-10">비밀번호</label>
+				<span id="pwd-validate" class="validate-text"></span>
+				<input type="password" class="text-input col-20" id="userPwd" name="userPwd" value="">
+			</div>
+			
+			<div class="row indent-20">
+				<label class="text-label col-10">성명</label>
+				<input type="text" class="text-input col-20" id="userName" name="userName" value="">
+			</div>
+			
+			<div class="row indent-20">
+				<label class="text-label col-10">Email</label>
+				<input type="email" class="text-input col-20" id="userEmail" name="userEmail" value="">
+			</div>
+			
+			<div class="row indent-20">
+				<label class="text-label col-10">주소</label>
+				<input type="text" class="text-input col-20" id="userAddr1" name="userAddr1" value="">
+				<input type="text" class="text-input col-10" id="userAddr2" name="userAddr2" value="">
+				<span class="col-10">
+					<button class="btn-search">우편번호 검색</button>
+				</span>
+			</div>
+			
+			<div class="row">
+				<span class="text-label col-10 right">
+					<button class="btn-regist">제출</button>
+				</span>
+			</div>
+		</div>
+		<!-- //.infromation-input -->
+	</div>
+</body>
+</html>
