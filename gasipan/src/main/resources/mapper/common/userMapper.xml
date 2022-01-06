@@ -19,7 +19,8 @@
 			user_pwd, 
 			user_name, 
 			user_email, 
-			user_addr, 
+			user_addr,
+			authority,
 			reg_date, 
 			modify_date
 		) VALUES (#{userNum},
@@ -27,7 +28,8 @@
 			#{userPwd}, 
 			#{userName}, 
 			#{userEmail}, 
-			#{userAddr}, 
+			#{userAddr},
+			"USER",
 			SYSDATE(), 
 			SYSDATE()
 		)
