@@ -8,4 +8,5 @@ import gasipan.vo.UsersVo;
 @Mapper
 public interface UserDao {
 	public UsersVo selectUserById(UsersDto dto);
+	public int insertUserInfor(UsersDto dto); 
 }

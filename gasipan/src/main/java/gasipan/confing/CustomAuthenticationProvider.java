@@ -9,24 +9,31 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Component;
 
 import gasipan.dto.UsersDto;
 import gasipan.service.UserService;
 import gasipan.vo.AdminVo;
 import gasipan.vo.UsersVo;
+import lombok.extern.slf4j.Slf4j;
 
 @Component
+@Slf4j
 public class CustomAuthenticationProvider implements AuthenticationProvider {
 
 	@Autowired
-	UserService userService; 
+	UserService userService;
 	
 	@Override
 	public Authentication authenticate(Authentication authentication) throws AuthenticationException {
+		
+		
 		// 로그인 폼에서 입력한 정보를 가져온다.
 		String id = (String) authentication.getPrincipal();
 		String pwd = (String) authentication.getCredentials();
+		pwd = BCrypt.hashpw(pwd, BCrypt.gensalt());
+		
 		String authority = (String) authentication.getPrincipal();
 		
 		System.out.println("id : " + id);
@@ -44,7 +51,7 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
 				throw new BadCredentialsException("login error");
 			if(!user.getUserPwd().equals(pwd))
 				throw new BadCredentialsException("login error");
-				
+			
 	        ArrayList<SimpleGrantedAuthority> authorities = new ArrayList<>();
 	        authorities.add(new SimpleGrantedAuthority("USER"));
 	        return new UsernamePasswordAuthenticationToken(user, null, authorities);

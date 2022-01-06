@@ -1,17 +1,33 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
 <title>회원가입</title>
+<script type="text/javascript" src="/js/jquery.js"></script>
 <script type="text/javascript" src="/js/jquery-ui.js"></script>
 <script type="text/javascript" src="/js/jquery-3.6.0.min.js"></script>
 <link rel="stylesheet" href="/css/common_user.css">
+<link rel="shortcut icon" href="#">
 </head>
 <script type="text/javascript">
+
+// CSRF ( Cross Site Request Forgery ) 방지 토큰
+var _csrf = '';
+var _csrf_header = '';
+
+// use thymeleaf in a js
+_csrf = '[[${_csrf.token}]]';
+_csrf_parameterName = '[[${_csrf.parameterName}]]';
+
 $(document).ready(function() {
-	main.run();
+
+	if ("object" === typeof window["main"]) {
+		main.run();
+	}
 });
 
+</script>
+<script type="text/javascript">
 var main = {
 	run : function() {
 		this.init.setDefault();
@@ -23,10 +39,49 @@ var main = {
 		}
 	},	
 	registEvent : function() {
+		$('#btnPost').click(function() {
+			
+		});
 		
+		$('#btnRegist').click(function() {
+			main.proc.regist();
+		});
+	},
+	validate : {
+		password : function() {
+			
+		},
+		id : function() {
+			
+		}
 	},
 	proc : {
-		
+		regist : function() {
+			var param = $('#form').serializeArray();
+			
+			console.log(param);
+			
+			var url = '/join';
+			
+			$.ajax({
+				url : url,
+				type : 'POST',
+				dataType : 'json',
+				contentType : 'application/x-www-form-urlencoded',
+				data : param,
+				success : function(res) {
+					if(res.message) {
+						alert('회원가입 성공');
+					} else {
+						alert('회원가입 실패');
+					}
+				},
+				error : function(xhr, status, error) {
+					console.log(error);
+				}
+			});
+			
+		}	
 	}
 };
 </script>
@@ -36,42 +91,44 @@ var main = {
 			<h1 class="title">회원가입</h1>
 		</div>
 		<div class="infromation-input">
-			<div class="row indent-20">
-				<label class="text-label col-10">아이디</label>
-				<input type="text" class="text-input col-20" id="userId" name="userId" value="">
-				<span id="id-validate" class="validate-text">최대 20자까지 입력 가능합니다.</span>
-			</div>
-			
-			<div class="row indent-20">
-				<label class="text-label col-10">비밀번호</label>
-				<span id="pwd-validate" class="validate-text"></span>
-				<input type="password" class="text-input col-20" id="userPwd" name="userPwd" value="">
-			</div>
-			
-			<div class="row indent-20">
-				<label class="text-label col-10">성명</label>
-				<input type="text" class="text-input col-20" id="userName" name="userName" value="">
-			</div>
-			
-			<div class="row indent-20">
-				<label class="text-label col-10">Email</label>
-				<input type="email" class="text-input col-20" id="userEmail" name="userEmail" value="">
-			</div>
-			
-			<div class="row indent-20">
-				<label class="text-label col-10">주소</label>
-				<input type="text" class="text-input col-20" id="userAddr1" name="userAddr1" value="">
-				<input type="text" class="text-input col-10" id="userAddr2" name="userAddr2" value="">
-				<span class="col-10">
-					<button class="btn-search">우편번호 검색</button>
-				</span>
-			</div>
-			
-			<div class="row">
-				<span class="text-label col-10 right">
-					<button class="btn-regist">제출</button>
-				</span>
-			</div>
+			<form id="form" action="#" method="post" onsubmit="return false;">
+				<div class="row indent-20">
+					<label class="text-label col-10">아이디</label>
+					<input type="text" class="text-input col-20" id="userId" name="userId" value="">
+					<span id="id-validate" class="validate-text">최대 20자까지 입력 가능합니다.</span>
+				</div>
+				
+				<div class="row indent-20">
+					<label class="text-label col-10">비밀번호</label>
+					<span id="pwd-validate" class="validate-text"></span>
+					<input type="password" class="text-input col-20" id="userPwd" name="userPwd">
+				</div>
+				
+				<div class="row indent-20">
+					<label class="text-label col-10">성명</label>
+					<input type="text" class="text-input col-20" id="userName" name="userName">
+				</div>
+				
+				<div class="row indent-20">
+					<label class="text-label col-10">Email</label>
+					<input type="email" class="text-input col-20" id="userEmail" name="userEmail" value="">
+				</div>
+				
+				<div class="row indent-20">
+					<label class="text-label col-10"><span></span>주소</label>
+					<input type="text" class="text-input col-20" id="userAddr1" name="userAddr1" value="">
+					<input type="text" class="text-input col-10" id="userAddr2" name="userAddr2" value="">
+					<span class="col-10">
+						<button id="btnPost" class="btn-search">우편번호 검색</button>
+					</span>
+				</div>
+				<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+				<div class="row">
+					<span class="text-label col-10 right">
+						<button id="btnRegist" class="btn-regist">제출</button>
+					</span>
+				</div>
+			</form>
 		</div>
 		<!-- //.infromation-input -->
 	</div>

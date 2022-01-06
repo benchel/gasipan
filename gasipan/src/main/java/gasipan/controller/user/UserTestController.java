@@ -17,4 +17,5 @@ public class UserTestController {
 	public String myPage() {
 		return "/user/myPage";
 	}
+
 }

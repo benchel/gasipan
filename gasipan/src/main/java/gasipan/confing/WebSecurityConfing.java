@@ -1,11 +1,5 @@
 package gasipan.confing;
 
-import java.io.IOException;
-
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -23,18 +17,6 @@ public class WebSecurityConfing extends WebSecurityConfigurerAdapter {
 
 	@Autowired
 	private CustomAuthenticationProvider customAuthenticationProvider;
-	 
-	/**
-	 * PasswordEncoder interface 패스워드 단방향 암호화 지원
-	 * 암호화 알고리즘을 선택할 수 있다.
-	 * encoders.put("pbkdf2", new Pbkdf2PasswordEncoder());
-	 * encoders.put("scrypt", new SCryptPasswordEncoder());
-	 * @return
-	 */
-	@Bean
-	public PasswordEncoder passwordEncoder() {
-		return PasswordEncoderFactories.createDelegatingPasswordEncoder();
-	}
 	
 	/**
 	 * 인증(authentication)이 필요한 url과 인증이 불필요한 url을 설정
@@ -48,6 +30,7 @@ public class WebSecurityConfing extends WebSecurityConfigurerAdapter {
 		http.authorizeRequests()
 				.antMatchers("/myPage").hasAnyRole("USER") // 권한 필요
 				.antMatchers("/admin/*").hasAnyRole("ADMIN") // 권한 필요
+				.anyRequest().permitAll()
 				.and()
 			.formLogin() // 로그인 화면 설정
 				.loginPage("/loginPage")
