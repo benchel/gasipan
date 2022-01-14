@@ -8,14 +8,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/admin/*")
 public class AdminTestController {
 
+	@GetMapping("/")
+	public String view() {
+		return "/admin/index";
+	}
 	
 	@GetMapping("/loginPage")
 	public String loginView() {
 		return "/adminLogin";
 	}
-	
-	@GetMapping("/index")
-	public String view() {
-		return "/admin/index";
-	}
+
 }

@@ -7,13 +7,19 @@
 <body>
 	<div>
 		<h2>관리자 로그인</h2>
-		<form action="/logging" method="post">
-			<span>ID</span>
-			<input type="text" name="id" value="">
-			<span>PW</span>
-			<input type="password" id="pwd" name="pwd" value="">
-			<input type="hidden" name="authority" value="admin">
-			<button>로그인</button>
+		<form action="#" th:action="@{/login}" method="post">
+		  <div>
+		  	<span>ID</span>
+		    <input type="text" name="id" value=""/>
+		  </div>
+		  <div>
+		    <span>PWD</span>
+		    <input type="password" name="pwd" value=""/>
+		  </div>
+		  <div>
+		    <input type="submit" value="로그인" />
+		  </div>
+		  <!-- <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/> -->
 		</form>
 	</div>
 </body>

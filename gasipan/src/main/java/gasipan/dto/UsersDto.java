@@ -12,4 +12,5 @@ public class UsersDto {
 	private String userAddr; 
 	private String regDate;
 	private String modifyDate;
+	private String authority; 
 }

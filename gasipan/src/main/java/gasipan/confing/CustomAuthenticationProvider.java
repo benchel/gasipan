@@ -16,7 +16,6 @@ import org.springframework.stereotype.Component;
 
 import gasipan.dto.UsersDto;
 import gasipan.service.UserService;
-import gasipan.vo.AdminVo;
 import gasipan.vo.UsersVo;
 import lombok.extern.slf4j.Slf4j;
 
@@ -40,12 +39,9 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
 		
 		System.out.println("id : " + id);
 		System.out.println("pwd : " + pwd);
-
-		UsersDto userInfor = new UsersDto();
-		userInfor.setUserId(id);
 		
 		// DB에서 조회
-		UsersVo userVo = userService.selectUserById(userInfor);
+		UsersVo userVo = userService.loadUserByUsername(id);
 		
 		if(userVo == null) 
 			throw new BadCredentialsException("login error");
@@ -54,21 +50,24 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
 		
 		// 사용자 로그인인지 관리자 로그인인지 확인
 		if(userVo.getAuthority().equals("USER")) {
+			
 			// 비밀번호 일치 여부 확인
 			if(BCrypt.checkpw(userVo.getUserPwd(), pwd) )
 				throw new BadCredentialsException("login error");
 			
 	        ArrayList<SimpleGrantedAuthority> authorities = new ArrayList<>();
-	        authorities.add(new SimpleGrantedAuthority("USER"));
+	        authorities.add(new SimpleGrantedAuthority(userVo.getAuthority()));
 	        return new UsernamePasswordAuthenticationToken(userVo, null, authorities);
 	        
 		} else if(userVo.getAuthority().equals("ADMIN")) {
 			
-			AdminVo admin = null;
+			// 비밀번호 일치 여부 확인
+			if(BCrypt.checkpw(userVo.getUserPwd(), pwd) )
+				throw new BadCredentialsException("login error");
 			
 	        ArrayList<SimpleGrantedAuthority> authorities = new ArrayList<>();
-	        authorities.add(new SimpleGrantedAuthority("ADMIN"));
-	        return new UsernamePasswordAuthenticationToken(admin, null, authorities);			
+	        authorities.add(new SimpleGrantedAuthority(userVo.getAuthority()));
+	        return new UsernamePasswordAuthenticationToken(userVo, null, authorities);			
 		} else {
 			throw new BadCredentialsException("login error");
 		}

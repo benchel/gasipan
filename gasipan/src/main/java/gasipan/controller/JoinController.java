@@ -1,7 +1,5 @@
 package gasipan.controller;
 
-import org.springframework.context.support.GenericApplicationContext;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -44,8 +42,10 @@ public class JoinController {
 		
 		try {
 			userService.join(dto);
+			// 가입 성공
 			userVo.setMessage("1");
 		} catch (Exception e) {
+			// 가입 실패
 			userVo.setMessage("0");
 			log.info(e.getMessage());
 		}
