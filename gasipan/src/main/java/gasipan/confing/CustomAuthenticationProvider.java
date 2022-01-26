@@ -21,6 +21,7 @@ import lombok.extern.slf4j.Slf4j;
 
 /**
  * 인증과정 설정
+ * @author benchel
  */
 @Component
 @Slf4j

@@ -2,9 +2,9 @@ package gasipan.confing;
 
 import org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler;
 
-public class LoginSuccessHandler extends SavedRequestAwareAuthenticationSuccessHandler {
+public class AdminLoginSuccessHandler extends SavedRequestAwareAuthenticationSuccessHandler {
 	
-    public LoginSuccessHandler(String defaultTargetUrl) {
+    public AdminLoginSuccessHandler(String defaultTargetUrl) {
         setDefaultTargetUrl(defaultTargetUrl);
     }
 }
