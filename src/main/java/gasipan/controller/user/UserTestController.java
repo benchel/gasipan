@@ -5,17 +5,22 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/*")
+@RequestMapping("/user/*")
 public class UserTestController {
 
-	@GetMapping("/index")
+	@GetMapping("/")
 	public String view() {
-		return "/user/index";
+		return "user/index";
+	}
+
+	@GetMapping("/loginPage")
+	public String loginView() {
+		return "userLogin";
 	}
 	
 	@GetMapping("/myPage")
 	public String myPage() {
-		return "/user/myPage";
+		return "user/myPage";
 	}
-
+	
 }

@@ -10,12 +10,12 @@ public class AdminTestController {
 
 	@GetMapping("/")
 	public String view() {
-		return "/admin/index";
+		return "admin/index";
 	}
 	
 	@GetMapping("/loginPage")
 	public String loginView() {
-		return "/adminLogin";
+		return "adminLogin";
 	}
 
 }

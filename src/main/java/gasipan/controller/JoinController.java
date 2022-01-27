@@ -27,7 +27,7 @@ public class JoinController {
 	 */
 	@GetMapping("/joinView")
 	public String joinView() {
-		return "/join";
+		return "join";
 	}
 	
 	/**

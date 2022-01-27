@@ -8,8 +8,6 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.crypto.factory.PasswordEncoderFactories;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @EnableWebSecurity
@@ -24,7 +22,7 @@ public class WebSecurityConfing {
 		
 		@Bean
 		public UserLoginSuccessHandler userLoginSuccessHandler() {
-			return new UserLoginSuccessHandler();
+			return new UserLoginSuccessHandler("/");
 		}
 		
 		/**
@@ -37,17 +35,18 @@ public class WebSecurityConfing {
 			// http.authenticationProvider(null); 인증 성공, 인증 실패, 결정할 수 없음. 이 세 가지 시나리오에 대한 동작 설정
 			
 			http.requestMatchers()
-					.antMatchers("/myPage")
+					.antMatchers("/user/*")
 				.and()
 					.authorizeRequests()
+					.antMatchers("/", "/joinView", "/user/loginPage").permitAll()
 					.anyRequest().hasAnyRole("USER") // 권한 필요
 					.and()
 				.formLogin() // 로그인 화면 설정
-					.loginPage("/loginPage")
+					.loginPage("/user/loginPage")
 					.usernameParameter("id")
 					.passwordParameter("pwd")				
-					.loginProcessingUrl("/login")
-					.successHandler(userLoginSuccessHandler()) // 로그인 성공 이후의 동작 핸들링
+					.loginProcessingUrl("/user/login")
+					.successHandler(new UserLoginSuccessHandler()) // 로그인 성공 이후의 동작 핸들링
 					.failureUrl("/loginPage")// 로그인 화면 이동에 실패하면 가야할 경로
 					.and()
 				.logout()
@@ -69,10 +68,12 @@ public class WebSecurityConfing {
 		@Autowired
 		private CustomAuthenticationProvider customAuthenticationProvider;
 		
+		
 		@Bean
 		public AdminLoginSuccessHandler adminLoginSuccessHandler() {
 			return new AdminLoginSuccessHandler();
 		}
+		 
 		
 		/**
 		 * 인증(authentication)이 필요한 url과 인증이 불필요한 url을 설정
@@ -88,22 +89,21 @@ public class WebSecurityConfing {
 				.and()
 					.authorizeRequests()
 					.antMatchers("/admin/loginPage").permitAll()
-				.and()
-					.authorizeRequests()
-					.anyRequest().hasAnyRole("ADMIN")
+					.anyRequest().hasAuthority("ADMIN")
+					//.anyRequest().access("hasRole('ROLE_ADMIN')")
 				.and()
 				.formLogin()
 					.loginPage("/admin/loginPage")
 					.usernameParameter("id")
 					.passwordParameter("pwd")				
-					.loginProcessingUrl("/login")
-					.successHandler(adminLoginSuccessHandler()) 
+					.loginProcessingUrl("/admin/login")
+					.successHandler(new AdminLoginSuccessHandler()) 
 					.failureUrl("/admin/loginPage")
 					//	.failureHandler(null) 로그인 실패 동작 핸들링
 					.and()	
 				.logout()
-					.permitAll()
 					.logoutRequestMatcher(new AntPathRequestMatcher("/admin/logout"))
+					.invalidateHttpSession(true)
 					.deleteCookies("JSESSIONID");
 		}
 		
