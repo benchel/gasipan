@@ -30,7 +30,7 @@ import lombok.extern.slf4j.Slf4j;
 @NoArgsConstructor
 @Slf4j
 public class UserLoginSuccessHandler implements AuthenticationSuccessHandler {
-	
+
 	/**
 	 * 사용자가 인증에 성공했을 때 호출한다.
 	 * @param 성공적인 인증을 일으킨 요청 

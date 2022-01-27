@@ -36,10 +36,11 @@ public class WebSecurityConfing {
 			
 			// http.authenticationProvider(null); 인증 성공, 인증 실패, 결정할 수 없음. 이 세 가지 시나리오에 대한 동작 설정
 			
-			http.authorizeRequests()
-			 		.antMatchers("/").permitAll()
-					.antMatchers("/myPage").hasAnyRole("USER") // 권한 필요
-					.anyRequest().authenticated()
+			http.requestMatchers()
+					.antMatchers("/myPage")
+				.and()
+					.authorizeRequests()
+					.anyRequest().hasAnyRole("USER") // 권한 필요
 					.and()
 				.formLogin() // 로그인 화면 설정
 					.loginPage("/loginPage")
@@ -48,7 +49,7 @@ public class WebSecurityConfing {
 					.loginProcessingUrl("/login")
 					.successHandler(userLoginSuccessHandler()) // 로그인 성공 이후의 동작 핸들링
 					.failureUrl("/loginPage")// 로그인 화면 이동에 실패하면 가야할 경로
-					.and()	
+					.and()
 				.logout()
 					.permitAll()
 					.logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
@@ -82,10 +83,15 @@ public class WebSecurityConfing {
 			
 			// http.authenticationProvider(null); 인증 성공, 인증 실패, 결정할 수 없음. 이 세 가지 시나리오에 대한 동작 설정
 			
-			http.authorizeRequests()
-					.antMatchers("/admin/*").hasAnyRole("ADMIN")
-					.anyRequest().authenticated()
-					.and()
+			http.requestMatchers()
+					.antMatchers("/admin/*")
+				.and()
+					.authorizeRequests()
+					.antMatchers("/admin/loginPage").permitAll()
+				.and()
+					.authorizeRequests()
+					.anyRequest().hasAnyRole("ADMIN")
+				.and()
 				.formLogin()
 					.loginPage("/admin/loginPage")
 					.usernameParameter("id")
