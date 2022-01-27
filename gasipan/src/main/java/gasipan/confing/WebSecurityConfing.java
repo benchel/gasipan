@@ -24,7 +24,7 @@ public class WebSecurityConfing {
 		
 		@Bean
 		public UserLoginSuccessHandler userLoginSuccessHandler() {
-			return new UserLoginSuccessHandler("/");
+			return new UserLoginSuccessHandler();
 		}
 		
 		/**
@@ -70,7 +70,7 @@ public class WebSecurityConfing {
 		
 		@Bean
 		public AdminLoginSuccessHandler adminLoginSuccessHandler() {
-			return new AdminLoginSuccessHandler("/admin/");
+			return new AdminLoginSuccessHandler();
 		}
 		
 		/**
