@@ -40,8 +40,9 @@ public class WebSecurityConfing {
 					.antMatchers("/user/*")
 					.and()
 				.authorizeRequests()
-					.antMatchers("/", "/joinView", "/user/loginPage").permitAll()
-					.anyRequest().hasAnyRole("USER") // 권한 필요
+					.antMatchers("/user/myPage").authenticated()
+					.antMatchers("/user/myPage").hasAnyRole("USER") // 권한 필요
+					.anyRequest().permitAll()
 					.and()
 				.formLogin() // 로그인 화면 설정
 					.loginPage("/user/loginPage")
@@ -49,7 +50,7 @@ public class WebSecurityConfing {
 					.passwordParameter("pwd")				
 					.loginProcessingUrl("/user/login")
 					.successHandler(userLoginSuccessHandler()) // 로그인 성공 이후의 동작 핸들링
-					.failureUrl("/loginPage")// 로그인 화면 이동에 실패하면 가야할 경로
+					.failureUrl("/user/loginPage")// 로그인 화면 이동에 실패하면 가야할 경로
 					.and()
 				.logout()
 					.permitAll()
@@ -91,7 +92,8 @@ public class WebSecurityConfing {
 				.and()
 					.authorizeRequests()
 					.antMatchers("/admin/loginPage").permitAll()
-					.anyRequest().hasAuthority("ADMIN")
+					.antMatchers("/admin/*").authenticated()
+					.antMatchers("/admin/*").hasAuthority("ADMIN")
 					//.anyRequest().access("hasRole('ROLE_ADMIN')")
 				.and()
 				.formLogin()
