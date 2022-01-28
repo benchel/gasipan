@@ -30,8 +30,8 @@ import org.springframework.web.context.request.ServletRequestAttributes;
  * 구현은 원하는 모든 작업을 수행할 수 있지만 일반적인 동작으로는 다음 목적지로 네비게이션을 조정하는 것이 있다. (리다이렉션 또는 포워드 사용)
  * 
  *  예를 들면, 사용자가 로그인 폼을 제출하여 로그인된 후에 애플리케이션은 결정해야한다.
- *  나중에 리다이렉트되는 위치 ({@link AbstractAuthenticationProcessingFilter} 또는 subclasses를 본다.)
- *  필요한 경우 다른 로직도 포함한다.
+ * 나중에 리다이렉트되는 위치 ({@link AbstractAuthenticationProcessingFilter} 또는 subclasses를 본다.)
+ * 필요한 경우 다른 로직도 포함한다.
  */
 public class AdminLoginSuccessHandler implements AuthenticationSuccessHandler {
 

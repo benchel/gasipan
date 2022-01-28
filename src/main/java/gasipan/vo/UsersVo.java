@@ -55,6 +55,10 @@ public class UsersVo implements UserDetails {
 	public String getUserId() {
 		return this.userId;
 	}
+	
+	public String getAuthority() {
+		return this.authority;
+	}
 
 	/**
 	 * 사용자의 계정이 만료되었는지 아닌지를 알린다. 유효 기간이 만료된 계정은 계정이 진정한 것인지 입증할 수 없다.

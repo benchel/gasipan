@@ -10,6 +10,8 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
+import gasipan.service.UserService;
+
 @EnableWebSecurity
 public class WebSecurityConfing { 
 
@@ -36,8 +38,8 @@ public class WebSecurityConfing {
 			
 			http.requestMatchers()
 					.antMatchers("/user/*")
-				.and()
-					.authorizeRequests()
+					.and()
+				.authorizeRequests()
 					.antMatchers("/", "/joinView", "/user/loginPage").permitAll()
 					.anyRequest().hasAnyRole("USER") // 권한 필요
 					.and()
@@ -46,7 +48,7 @@ public class WebSecurityConfing {
 					.usernameParameter("id")
 					.passwordParameter("pwd")				
 					.loginProcessingUrl("/user/login")
-					.successHandler(new UserLoginSuccessHandler()) // 로그인 성공 이후의 동작 핸들링
+					.successHandler(userLoginSuccessHandler()) // 로그인 성공 이후의 동작 핸들링
 					.failureUrl("/loginPage")// 로그인 화면 이동에 실패하면 가야할 경로
 					.and()
 				.logout()
