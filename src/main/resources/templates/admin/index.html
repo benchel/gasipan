@@ -6,7 +6,12 @@
 </head>
 <body>
 	<div>
-		<span>관리자</span>
+		<!-- 로그인 여부 -->
+		<a th:if="${#strings.isEmpty(admin)}" th:href="@{/admin/loginPage}">로그인</a>
+		<a th:unless="${#strings.isEmpty(admin)}" th:href="@{/admin/logout}">로그아웃</a>	
+	</div>
+	<div>
+		<span>관리자 : [[${admin.userId}]]</span>
 	</div>
 </body>
 </html>
