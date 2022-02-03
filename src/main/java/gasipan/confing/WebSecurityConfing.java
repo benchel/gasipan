@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
+import org.springframework.security.access.AccessDecisionManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -27,6 +28,11 @@ public class WebSecurityConfing {
 			return new UserLoginSuccessHandler("/");
 		}
 		
+		@Bean
+		public UserAccessDeniedHandlerImp userAccessDeniedHandlerImp() {
+			return new UserAccessDeniedHandlerImp();
+		}
+		
 		/**
 		 * 인증(authentication)이 필요한 url과 인증이 불필요한 url을 설정
 		 * 권한이 필요한 url 설정
@@ -44,6 +50,9 @@ public class WebSecurityConfing {
 					.antMatchers("/user/myPage").hasAnyRole("USER") // 권한 필요
 					.anyRequest().permitAll()
 					.and()
+				.exceptionHandling()
+					.accessDeniedHandler(new UserAccessDeniedHandlerImp()) // 권한이 없는 사용자의 접근이 있을 때의 동작 핸들링
+					.and()					
 				.formLogin() // 로그인 화면 설정
 					.loginPage("/user/loginPage")
 					.usernameParameter("id")
@@ -76,7 +85,11 @@ public class WebSecurityConfing {
 		public AdminLoginSuccessHandler adminLoginSuccessHandler() {
 			return new AdminLoginSuccessHandler();
 		}
-		 
+
+		@Bean
+		public AdminAccessDeniedHandlerImp accessDeniedHandler() {
+			return new AdminAccessDeniedHandlerImp();
+		}
 		
 		/**
 		 * 인증(authentication)이 필요한 url과 인증이 불필요한 url을 설정
@@ -89,13 +102,16 @@ public class WebSecurityConfing {
 			
 			http.requestMatchers()
 					.antMatchers("/admin/*")
-				.and()
-					.authorizeRequests()
+					.and()
+				.authorizeRequests()
 					.antMatchers("/admin/loginPage").permitAll()
 					.antMatchers("/admin/*").authenticated()
 					.antMatchers("/admin/*").hasAuthority("ADMIN")
 					//.anyRequest().access("hasRole('ROLE_ADMIN')")
-				.and()
+					.and()
+				.exceptionHandling()
+					.accessDeniedHandler(new AdminAccessDeniedHandlerImp())  // 권한이 없는 사용자의 접근 핸들링
+					.and()
 				.formLogin()
 					.loginPage("/admin/loginPage")
 					.usernameParameter("id")
