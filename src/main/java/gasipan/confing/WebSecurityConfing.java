@@ -110,7 +110,7 @@ public class WebSecurityConfing {
 					//.anyRequest().access("hasRole('ROLE_ADMIN')")
 					.and()
 				.exceptionHandling()
-					.accessDeniedHandler(new AdminAccessDeniedHandlerImp())  // 권한이 없는 사용자의 접근 핸들링
+					.accessDeniedHandler(new AdminAccessDeniedHandlerImp()) // 권한이 없는 사용자의 접근 핸들링
 					.and()
 				.formLogin()
 					.loginPage("/admin/loginPage")
