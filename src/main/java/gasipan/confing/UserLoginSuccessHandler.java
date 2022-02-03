@@ -34,14 +34,10 @@ import lombok.extern.slf4j.Slf4j;
  * 동일한 URL 발생으로 리다이렉트되었을 때 해당 요청이 재구성되도록 허용한다.
  */
 @Slf4j
-public class UserLoginSuccessHandler extends SavedRequestAwareAuthenticationSuccessHandler {
+public class UserLoginSuccessHandler implements AuthenticationSuccessHandler {
 	
 	@Autowired
 	private UserService userServices; 
-	
-	public UserLoginSuccessHandler(String defaultTargetUrl) {
-		setDefaultTargetUrl(defaultTargetUrl);
-	}
 	
 	@Override
 	public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
@@ -49,7 +45,7 @@ public class UserLoginSuccessHandler extends SavedRequestAwareAuthenticationSucc
 
 		// 현재 세션 가져오기
 		HttpSession session = request.getSession();
-		
+
 		// 세션 검사
 		if(session != null) {
 			// 기존의 값들을 지운다.
@@ -57,7 +53,7 @@ public class UserLoginSuccessHandler extends SavedRequestAwareAuthenticationSucc
 		}
 		
 		String userId = ((UsersVo) authentication.getPrincipal()).getUserId();
-		System.out.println("Login Id : " + userId);
+		String authority = ((UsersVo) authentication.getPrincipal()).getAuthority();
 		
 		UsersVo userVo = userServices.loadUserByUsername(userId);
 		
@@ -67,10 +63,15 @@ public class UserLoginSuccessHandler extends SavedRequestAwareAuthenticationSucc
 			System.out.println("UserLoginSuccessHandler error : " + e.getMessage());
 		}
 		
-		String targetUrl = getDefaultTargetUrl();
+		String targetUrl = "";
+		
+		RedirectStrategy redirectStrategy = new DefaultRedirectStrategy();
 		RequestCache requestCache = new HttpSessionRequestCache();
 		SavedRequest savedRequest = requestCache.getRequest(request, response);
 		
-		getRedirectStrategy().sendRedirect(request, response, targetUrl);
+		// 로그인 요청이 있었던 페이지를 기록했다면 해당 페이지의 url로 이동한다. 없는 경우 기본값으로 지정한 url로 이동
+		if(savedRequest != null)
+			targetUrl = savedRequest.getRedirectUrl();
+		redirectStrategy.sendRedirect(request, response, targetUrl);
 	}
 }

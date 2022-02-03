@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
 <meta charset="utf-8">
 <title>게시판</title>
@@ -8,9 +8,8 @@
 	<div>
 		<h1>메인 화면</h1>
 		<span> [[${appleColor}]]</span>
-		
-		<a href="/user/loginPage">로그인</a>
-		<a href="/logout">로그아웃</a>
+		<a th:href="@{/user/loginPage}">로그인</a>
+		<a th:href="@{/logout}">로그아웃</a>
 	</div>
 </body>
 </html>

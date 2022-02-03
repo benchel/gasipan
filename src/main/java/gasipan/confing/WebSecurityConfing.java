@@ -25,7 +25,7 @@ public class WebSecurityConfing {
 		
 		@Bean
 		public UserLoginSuccessHandler userLoginSuccessHandler() {
-			return new UserLoginSuccessHandler("/");
+			return new UserLoginSuccessHandler();
 		}
 		
 		@Bean
@@ -47,12 +47,12 @@ public class WebSecurityConfing {
 					.and()
 				.authorizeRequests()
 					.antMatchers("/user/myPage").authenticated()
-					.antMatchers("/user/myPage").hasAnyRole("USER") // 권한 필요
+					.antMatchers("/user/myPage").hasAuthority("USER") // 권한 필요
 					.anyRequest().permitAll()
 					.and()
 				.exceptionHandling()
 					.accessDeniedHandler(new UserAccessDeniedHandlerImp()) // 권한이 없는 사용자의 접근이 있을 때의 동작 핸들링
-					.and()					
+					.and()
 				.formLogin() // 로그인 화면 설정
 					.loginPage("/user/loginPage")
 					.usernameParameter("id")
@@ -64,6 +64,7 @@ public class WebSecurityConfing {
 				.logout()
 					.permitAll()
 					.logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+					.invalidateHttpSession(true)
 					.deleteCookies("JSESSIONID");
 		}
 		
@@ -107,7 +108,6 @@ public class WebSecurityConfing {
 					.antMatchers("/admin/loginPage").permitAll()
 					.antMatchers("/admin/*").authenticated()
 					.antMatchers("/admin/*").hasAuthority("ADMIN")
-					//.anyRequest().access("hasRole('ROLE_ADMIN')")
 					.and()
 				.exceptionHandling()
 					.accessDeniedHandler(new AdminAccessDeniedHandlerImp()) // 권한이 없는 사용자의 접근 핸들링

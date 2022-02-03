@@ -38,8 +38,8 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
 		String pwd = (String) authentication.getCredentials();
 		pwd = BCrypt.hashpw(pwd, BCrypt.gensalt());
 		
-		System.out.println("id : " + id);
-		System.out.println("pwd : " + pwd);
+		//System.out.println("id : " + id);
+		//System.out.println("pwd : " + pwd);
 		
 		// DB에서 조회
 		UsersVo userVo = userService.loadUserByUsername(id);
@@ -47,7 +47,7 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
 		if(userVo == null) 
 			throw new BadCredentialsException("login error");
 		
-		System.out.println("Authority : " + userVo.getAuthority());
+		//System.out.println("Authority : " + userVo.getAuthority());
 		
 		// 사용자 로그인인지 관리자 로그인인지 확인
 		if(userVo.getAuthority().equals("USER")) {
