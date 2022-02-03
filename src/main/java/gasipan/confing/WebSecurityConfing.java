@@ -63,7 +63,8 @@ public class WebSecurityConfing {
 					.and()
 				.logout()
 					.permitAll()
-					.logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+					.logoutRequestMatcher(new AntPathRequestMatcher("/user/logout"))
+					.logoutSuccessUrl("/user/loginPage")
 					.invalidateHttpSession(true)
 					.deleteCookies("JSESSIONID");
 		}
@@ -123,6 +124,7 @@ public class WebSecurityConfing {
 					.and()	
 				.logout()
 					.logoutRequestMatcher(new AntPathRequestMatcher("/admin/logout"))
+					.logoutSuccessUrl("/admin/loginPage")
 					.invalidateHttpSession(true)
 					.deleteCookies("JSESSIONID");
 		}

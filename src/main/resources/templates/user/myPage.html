@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="utf-8">
 <title>게시판</title>
@@ -7,7 +7,7 @@
 <body>
 	<div>
 		<span>사용자</span>
-		<span>사용자의 마이페이지 입니다.</span>
+		<span>[[${ssUser.userId}]]의 마이페이지입니다.</span>
 	</div>
 </body>
 </html>

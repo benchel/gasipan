@@ -26,11 +26,6 @@ public class AdminAccessDeniedHandlerImp implements AccessDeniedHandler {
 	public void handle(HttpServletRequest request, HttpServletResponse response,
 			AccessDeniedException accessDeniedException) throws IOException, ServletException {
 		
-		// 요청이 있었던 url 
-		String url = request.getRequestURL().substring(0);
-		
-		log.info("request URL in AccessDeniedHandler : " + url);
-		
 		// 리다이렉트
 		RedirectStrategy redirectStrategy = new DefaultRedirectStrategy();
 		// 권한이 없는 사용자의 접근이 있을때 사용자가 가야할 경로 지정
