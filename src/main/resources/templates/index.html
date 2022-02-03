@@ -7,9 +7,8 @@
 <body>
 	<div>
 		<h1>메인 화면</h1>
-		<span> [[${appleColor}]]</span>
-		<a th:href="@{/user/loginPage}">로그인</a>
-		<a th:href="@{/logout}">로그아웃</a>
+		<a th:if="${not #strings.isEmpty(ssUser.userId)}" th:href="@{/logout}">[[${ssUser.userId}]]</a>
+		<a th:unless="${not #strings.isEmpty(ssUser.userId)}" th:href="@{/user/loginPage}">로그인</a>
 	</div>
 </body>
 </html>
