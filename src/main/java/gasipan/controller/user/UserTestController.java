@@ -30,7 +30,7 @@ public class UserTestController {
 
 	@GetMapping("/loginPage")
 	public String loginView() {
-		return "userLogin";
+		return "user/userLogin";
 	}
 	
 	@GetMapping("/myPage")

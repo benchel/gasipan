@@ -40,7 +40,7 @@ public class AdminTestController {
 	
 	@GetMapping("/loginPage")
 	public String loginView() {
-		return "adminLogin";
+		return "admin/adminLogin";
 	}
 
 }
