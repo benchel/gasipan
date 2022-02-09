@@ -2,24 +2,57 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>게시판</title>
+	<script type="text/javascript" src="/js/jquery.js"></script>
+	<script type="text/javascript" src="/js/jquery-ui.js"></script>
+	<script type="text/javascript" src="/js/jquery-3.6.0.min.js"></script>
+	<link rel="stylesheet" href="/css/common_user.css">
+	<link rel="shortcut icon" href="#">
+	<title>게시판</title>
 </head>
 <body>
-	<div>
-		<form action="#" th:action="@{/user/login}" method="post">
-		  <div>
-		  	<span>ID</span>
-		    <input type="text" name="id" value=""/>
-		  </div>
-		  <div>
-		    <span>PWD</span>
-		    <input type="password" name="pwd" value=""/>
-		  </div>
-		  <div>
-		    <input type="submit" value="로그인" />
-		  </div>
-		  <!-- <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/> -->
-		</form>
+	<div id="wrap">
+        <!-- header -->
+        <section class="conts-header">
+            <div class="logo-section">
+                <span class="logo-text-sm"><b>logo</b></span>
+            </div> 
+        </section>
+        <!-- // header -->       
+        <section class="conts">
+            <div class="login-section">
+                <form class="login-form" action="#" th:action="@{/user/login}" method="post">
+                    <div class="form-row">
+                        <div class="row-shadow">
+                            <label class="lb-text color-7575a3">아이디</label>
+                            <input type="text" class="input-col" name="id" value=""/>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="row-shadow">
+                            <label class="lb-text color-7575a3">비밀번호</label>
+                            <input type="password" class="input-col" name="pwd" value=""/>
+                        </div>
+                    </div>
+                    <div class="form-footer">
+                        <div class="form-row">
+                        <input type="submit" class="btn-success bg-grayPurple" value="로그인" />
+                        </div>
+                    </div>
+                    <!-- <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/> -->
+                </form>
+                <div class="form-row txt-center mg-top-10">
+                    <span class="color-4700b3 ft-sz-18">
+                        <b>
+                        <a href="#" class="txt-decor-ln-none color-5c00e6">아이디 /</a> 
+                        <a class="txt-decor-ln-none color-5c00e6" href="#">비밀번호</a>
+                        </b>찾기
+                    </span>
+                </div>
+                <div class="form-row txt-center mg-top-10">
+                    <span class="color-4700b3 ft-sz-18">회원가입</span>
+                </div>
+            </div>
+        </section>
 	</div>
 </body>
 </html>
