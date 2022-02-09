@@ -46,11 +46,6 @@ public class AdminLoginSuccessHandler implements AuthenticationSuccessHandler {
 	public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
 			Authentication authentication) throws IOException, ServletException {
 		
-		// 현재 세션 가져오기
-		// 세션 검사 
-		// 널이면 다시 세팅
-		// 사용자단의 값들이 세션에 속성으로 들어가있으면 지우고 다시 세팅
-		
 		// 리다이렉트
 		RedirectStrategy redirectStrategy = new DefaultRedirectStrategy();
 		// 로그인 이후 가야할 목적지 지정
