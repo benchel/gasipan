@@ -150,3 +150,7 @@
 .color-7575a3{color: #7575a3;}
 .color-666699{color: #666699;}
 .bg-grayPurple{background-color: #8585ad; color: #fff;}
+
+.dn{display: none;}
+
+.alert-text{float:left; width: 100%; text-align: center; margin-bottom: 3%;}

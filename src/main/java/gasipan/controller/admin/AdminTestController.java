@@ -2,12 +2,14 @@ package gasipan.controller.admin;
 
 import javax.servlet.http.HttpSession;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import gasipan.constant.GasipanConstructer;
+import gasipan.dto.UserDTO;
 import gasipan.service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -37,7 +39,9 @@ public class AdminTestController {
 	}
 	
 	@GetMapping("/loginPage")
-	public String loginView() {
+	public String loginView(@Param("error") String error, ModelMap modelMap) {
+		modelMap.addAttribute("error", error);
+		
 		return "admin/adminLogin";
 	}
 

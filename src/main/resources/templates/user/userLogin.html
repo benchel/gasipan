@@ -9,6 +9,43 @@
 	<link rel="shortcut icon" href="#">
 	<title>게시판</title>
 </head>
+<script type="text/javascript">
+$(document).ready(function() {
+	initPage();
+	registEvent();
+	setDefault();
+});
+
+// 기본값 세팅
+const initPage = function() {
+	
+	const queryParam = new URLSearchParams(location.search);
+	
+	for(const param of queryParam) {
+		console.log(param['1']);
+		if(param['1'] != '' && typeof param['1'] != 'undefined') {
+			if(param['1']) {
+				$('span[class^="alert-text"]').removeClass('dn'); 
+				$('span[class^="alert-text"]').css('color', 'red');
+				$('span[class^="alert-text"]').text('아이디 또는 비밀번호를 확인해주세요.');
+			}
+		}
+	}
+	
+
+	
+};
+
+// 기본값 세팅
+const setDefault = function() {
+	
+};
+
+// 이벤트 등록
+const registEvent = function() {
+
+};
+</script>
 <body>
 	<div id="wrap">
         <!-- header -->
@@ -34,8 +71,11 @@
                         </div>
                     </div>
                     <div class="form-footer">
+                    	<div class="form-row">
+                    		<span class="alert-text dn"></span>
+                    	</div>
                         <div class="form-row">
-                        <input type="submit" class="btn-success bg-grayPurple" value="로그인" />
+                        	<input type="submit" class="btn-success bg-grayPurple" value="로그인" />
                         </div>
                     </div>
                     <!-- <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/> -->
@@ -43,8 +83,8 @@
                 <div class="form-row txt-center mg-top-10">
                     <span class="color-4700b3 ft-sz-18">
                         <b>
-                        <a href="#" class="txt-decor-ln-none color-5c00e6">아이디 /</a> 
-                        <a class="txt-decor-ln-none color-5c00e6" href="#">비밀번호</a>
+	                        <a href="#" class="txt-decor-ln-none color-5c00e6">아이디 /</a> 
+	                        <a class="txt-decor-ln-none color-5c00e6" href="#">비밀번호</a>
                         </b>찾기
                     </span>
                 </div>

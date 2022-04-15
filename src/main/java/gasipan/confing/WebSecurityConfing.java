@@ -16,6 +16,7 @@ import gasipan.bean.AdminLoginSuccessHandler;
 import gasipan.bean.GasipanPasswordEncoder;
 import gasipan.bean.SiteAuthenticationProvider;
 import gasipan.bean.UserAccessDeniedHandlerImp;
+import gasipan.bean.UserFailureHandler;
 import gasipan.bean.UserLoginSuccessHandler;
 
 @EnableWebSecurity
@@ -38,6 +39,11 @@ public class WebSecurityConfing {
 			return new UserAccessDeniedHandlerImp();
 		}
 		
+		
+		public UserFailureHandler userFailureHandler() {
+			return new UserFailureHandler();
+		}
+		 
 		@Bean
 		public GasipanPasswordEncoder sitePasswordEncoder() {
 			return new GasipanPasswordEncoder();
@@ -69,7 +75,8 @@ public class WebSecurityConfing {
 					.passwordParameter("pwd")				
 					.loginProcessingUrl("/user/login")
 					.successHandler(userLoginSuccessHandler()) // 로그인 성공 이후의 동작 핸들링
-					.failureUrl("/user/loginPage")// 로그인 화면 이동에 실패하면 가야할 경로
+					.failureHandler(userFailureHandler())
+					//.failureUrl("/user/loginPage")// 로그인 화면 이동에 실패하면 가야할 경로
 					.and()
 				.logout()
 					.permitAll()
@@ -81,7 +88,6 @@ public class WebSecurityConfing {
 		
 		@Override
 	    protected void configure(AuthenticationManagerBuilder authentication) throws Exception {
-			authentication.userDetailsService(userDetailsServiceBean());
 	    	authentication.authenticationProvider(siteAuthenticationProvider);
 	    }
 		
@@ -129,8 +135,7 @@ public class WebSecurityConfing {
 					.passwordParameter("pwd")				
 					.loginProcessingUrl("/admin/login")
 					.successHandler(new AdminLoginSuccessHandler()) 
-					.failureUrl("/admin/loginPage")
-					//	.failureHandler(null) 로그인 실패 동작 핸들링
+					.failureUrl("/admin/loginPage") // 로그인 실패 동작 핸들링
 					.and()	
 				.logout()
 					.logoutRequestMatcher(new AntPathRequestMatcher("/admin/logout"))

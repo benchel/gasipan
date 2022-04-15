@@ -46,8 +46,7 @@ public class SiteAuthenticationProvider implements AuthenticationProvider {
 			
 			// 비밀번호 일치 여부 확인
 			if(!sitePasswordEncoder.matches(pwd, user.getPassword())) {
-				user.setErrorCode("error_1");
-				throw new BadCredentialsException("a discrepancy between id and pwd");			
+				throw new BadCredentialsException("a discrepancy between id and pwd");
 			}
 
 			ArrayList<SimpleGrantedAuthority> authorities = new ArrayList<>();
@@ -55,7 +54,6 @@ public class SiteAuthenticationProvider implements AuthenticationProvider {
 			return new UsernamePasswordAuthenticationToken(user, pwd, authorities);
 			
 		} catch (NullPointerException e) {
-			log.error(e.getMessage());
 			throw new BadCredentialsException("not exist user");
 		}
 		

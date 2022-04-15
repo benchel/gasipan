@@ -9,10 +9,12 @@ import gasipan.dto.UserDTO;
 import gasipan.repository.UserDao;
 import gasipan.vo.UserVO;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 
 @RequiredArgsConstructor
 @Service
+@Slf4j
 public class UserDetailsServiceImp implements UserDetailsService {
 	
 	@Autowired

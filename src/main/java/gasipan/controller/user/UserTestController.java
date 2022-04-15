@@ -2,6 +2,7 @@ package gasipan.controller.user;
 
 import javax.servlet.http.HttpSession;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -29,7 +30,8 @@ public class UserTestController {
 	}
 
 	@GetMapping("/loginPage")
-	public String loginView() {
+	public String loginView() throws Exception {
+		
 		return "user/userLogin";
 	}
 	
