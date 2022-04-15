@@ -1,4 +1,4 @@
-package gasipan.confing;
+package gasipan.bean;
 
 import java.io.IOException;
 
@@ -19,9 +19,10 @@ import org.springframework.security.web.savedrequest.HttpSessionRequestCache;
 import org.springframework.security.web.savedrequest.RequestCache;
 import org.springframework.security.web.savedrequest.SavedRequest;
 
-import gasipan.dto.UsersDto;
+import gasipan.confing.SessionManager;
+import gasipan.dto.UserDTO;
 import gasipan.service.UserService;
-import gasipan.vo.UsersVo;
+import gasipan.vo.UserVO;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
@@ -52,10 +53,10 @@ public class UserLoginSuccessHandler implements AuthenticationSuccessHandler {
 			SessionManager.removeSeesionInfo(session);
 		}
 		
-		String userId = ((UsersVo) authentication.getPrincipal()).getUserId();
-		String authority = ((UsersVo) authentication.getPrincipal()).getAuthority();
+		String userId = ((UserVO) authentication.getPrincipal()).getUserId();
+		String authority = ((UserVO) authentication.getPrincipal()).getAuthority();
 		
-		UsersVo userVo = userServices.loadUserByUsername(userId);
+		UserVO userVo = userServices.selectUserById(userId);
 		
 		try {
 			SessionManager.setSeesionInfo(session, userVo);

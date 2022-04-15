@@ -15,11 +15,12 @@ import lombok.Data;
  * Authentication 은 UserDetails 구현체만 가능.
  */
 @Data
-public class UsersVo implements UserDetails {
+public class UserVO implements UserDetails {
 
 	// 직렬화 ID (Serializable ID)
 	// 해당 객체의 버전을 명시하는 데 사용
 	private static final long serialVersionUID = 1L;
+	private static final String authority = "USER";
 	
 	private String userNum;
 	private String userId;
@@ -28,8 +29,9 @@ public class UsersVo implements UserDetails {
 	private String userEmail; 
 	private String userAddr; 
 	private String regDate;
-	private String authority;
 	private String modifyDate;
+	
+	private String errorCode;
 	
 	/**
 	 * Returns the authorities granted to the user. Cannot return <code>null</code>.

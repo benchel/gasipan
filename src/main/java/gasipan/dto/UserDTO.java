@@ -3,7 +3,7 @@ package gasipan.dto;
 import lombok.Data;
 
 @Data
-public class UsersDto {
+public class UserDTO {
 	private String userNum;
 	private String userId;
 	private String userPwd; 

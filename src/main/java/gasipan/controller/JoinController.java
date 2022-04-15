@@ -6,10 +6,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import gasipan.dto.UsersDto;
+import gasipan.dto.UserDTO;
 import gasipan.service.UserService;
 import gasipan.vo.GenericVo;
-import gasipan.vo.UsersVo;
+import gasipan.vo.UserVO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
@@ -36,9 +36,9 @@ public class JoinController {
 	 */
 	@PostMapping("/join")
 	@ResponseBody
-	public GenericVo<UsersVo> join(UsersDto dto) {
+	public GenericVo<UserVO> join(UserDTO dto) {
 		
-		GenericVo<UsersVo> userVo = new GenericVo<>();
+		GenericVo<UserVO> userVo = new GenericVo<>();
 		
 		try {
 			userService.join(dto);

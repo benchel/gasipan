@@ -1,4 +1,4 @@
-package gasipan.confing;
+package gasipan.bean;
 
 import java.io.IOException;
 import java.util.Collection;

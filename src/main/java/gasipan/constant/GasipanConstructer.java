@@ -1,4 +1,4 @@
-package gasipan.bean;
+package gasipan.constant;
 
 public class GasipanConstructer {
 	public static final String SESSION_USER_ID = "ssUserId";

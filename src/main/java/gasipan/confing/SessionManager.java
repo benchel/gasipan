@@ -5,8 +5,8 @@ import javax.servlet.http.HttpSession;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
-import gasipan.bean.GasipanConstructer;
-import gasipan.vo.UsersVo;
+import gasipan.constant.GasipanConstructer;
+import gasipan.vo.UserVO;
 
 public class SessionManager {
 
@@ -19,7 +19,7 @@ public class SessionManager {
 	    return attr.getRequest().getSession(true);		
 	}
 	
-	public static void setSeesionInfo(HttpSession session, UsersVo vo) throws Exception {
+	public static void setSeesionInfo(HttpSession session, UserVO vo) throws Exception {
 		if (null == vo) {
 			throw new Exception("Not defined login ID.");
 		}		

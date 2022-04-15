@@ -5,22 +5,21 @@
       
 <mapper namespace="gasipan.repository.UserDao">
 
-	<select id="selectUserById" parameterType="gasipan.dto.UsersDto" resultType="gasipan.vo.UsersVo">
-		select * from users where user_id = #{userId}
+	<select id="selectUserById" parameterType="gasipan.dto.UserDTO" resultType="gasipan.vo.UserVO">
+		select * from user where user_id = #{userId}
 	</select>
 	
-	<insert id="insertUserInfor" parameterType="gasipan.dto.UsersDto">
+	<insert id="insertUserInfor" parameterType="gasipan.dto.UserDTO">
 		<selectKey order="BEFORE" keyProperty="userNum" resultType="String">
-			SELECT IFNULL(max(user_num) + 1, 1) as user_num FROM users
+			SELECT IFNULL(max(user_num) + 1, 1) as user_num FROM user
 		</selectKey>
-		insert into users(
+		insert into user(
 			user_num, 
 			user_id, 
 			user_pwd, 
 			user_name, 
 			user_email, 
 			user_addr,
-			authority,
 			reg_date, 
 			modify_date
 		) VALUES (#{userNum},
@@ -29,7 +28,6 @@
 			#{userName}, 
 			#{userEmail}, 
 			#{userAddr},
-			"USER",
 			SYSDATE(), 
 			SYSDATE()
 		)

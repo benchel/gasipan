@@ -2,11 +2,11 @@ package gasipan.repository;
 
 import org.apache.ibatis.annotations.Mapper;
 
-import gasipan.dto.UsersDto;
-import gasipan.vo.UsersVo;
+import gasipan.dto.UserDTO;
+import gasipan.vo.UserVO;
 
 @Mapper
 public interface UserDao {
-	public UsersVo selectUserById(UsersDto dto);
-	public int insertUserInfor(UsersDto dto); 
+	public UserVO selectUserById(UserDTO dto);
+	public int insertUserInfor(UserDTO dto); 
 }

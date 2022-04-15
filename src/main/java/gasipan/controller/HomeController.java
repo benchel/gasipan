@@ -7,9 +7,9 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import gasipan.bean.GasipanConstructer;
+import gasipan.constant.GasipanConstructer;
 import gasipan.service.UserService;
-import gasipan.vo.UsersVo;
+import gasipan.vo.UserVO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
@@ -26,7 +26,7 @@ public class HomeController {
 	public String index(ModelMap modelMap) {
 		
 		String SESSION_USER_ID = (String) session.getAttribute(GasipanConstructer.SESSION_USER_ID);
-		UsersVo user = userService.loadUserByUsername(SESSION_USER_ID);
+		UserVO user = userService.selectUserById(SESSION_USER_ID);
 		
 		try {
 			modelMap.addAttribute("ssUser", user);
