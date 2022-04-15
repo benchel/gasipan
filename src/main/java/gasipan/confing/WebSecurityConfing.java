@@ -4,14 +4,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
-import org.springframework.security.access.AccessDecisionManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
-import gasipan.service.UserService;
+import gasipan.bean.AdminAccessDeniedHandlerImp;
+import gasipan.bean.AdminAuthenticationProvider;
+import gasipan.bean.AdminLoginSuccessHandler;
+import gasipan.bean.GasipanPasswordEncoder;
+import gasipan.bean.SiteAuthenticationProvider;
+import gasipan.bean.UserAccessDeniedHandlerImp;
+import gasipan.bean.UserLoginSuccessHandler;
 
 @EnableWebSecurity
 public class WebSecurityConfing { 
@@ -21,7 +26,7 @@ public class WebSecurityConfing {
 	public static class UserWebSecurityConfing extends WebSecurityConfigurerAdapter {
 		
 		@Autowired
-		private CustomAuthenticationProvider customAuthenticationProvider;
+		private SiteAuthenticationProvider siteAuthenticationProvider;
 		
 		@Bean
 		public UserLoginSuccessHandler userLoginSuccessHandler() {
@@ -31,6 +36,11 @@ public class WebSecurityConfing {
 		@Bean
 		public UserAccessDeniedHandlerImp userAccessDeniedHandlerImp() {
 			return new UserAccessDeniedHandlerImp();
+		}
+		
+		@Bean
+		public GasipanPasswordEncoder sitePasswordEncoder() {
+			return new GasipanPasswordEncoder();
 		}
 		
 		/**
@@ -70,8 +80,9 @@ public class WebSecurityConfing {
 		}
 		
 		@Override
-	    protected void configure(AuthenticationManagerBuilder authentication) {
-	    	authentication.authenticationProvider(customAuthenticationProvider);
+	    protected void configure(AuthenticationManagerBuilder authentication) throws Exception {
+			authentication.userDetailsService(userDetailsServiceBean());
+	    	authentication.authenticationProvider(siteAuthenticationProvider);
 	    }
 		
 	}
@@ -80,8 +91,7 @@ public class WebSecurityConfing {
 	public static class AdminWebSecurityConfing extends WebSecurityConfigurerAdapter {
 	
 		@Autowired
-		private CustomAuthenticationProvider customAuthenticationProvider;
-		
+		private AdminAuthenticationProvider adminAuthenticationProvider;
 		
 		@Bean
 		public AdminLoginSuccessHandler adminLoginSuccessHandler() {
@@ -131,7 +141,7 @@ public class WebSecurityConfing {
 		
 		@Override
 	    protected void configure(AuthenticationManagerBuilder authentication) {
-	    	authentication.authenticationProvider(customAuthenticationProvider);
+	    	authentication.authenticationProvider(adminAuthenticationProvider);
 	    }
 		
 	}
