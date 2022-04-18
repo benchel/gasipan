@@ -1,17 +1,19 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
-<meta charset="utf-8">
-<title>게시판</title>
+	<meta charset="utf-8">
+	<link rel="shortcut icon" href="#">
+	<link href="../css/admin.css" rel="stylesheet">
+	<script type="text/javascript" src="../js/jquery.js"></script>
+	<title>게시판</title>
 </head>
 <body>
-	<div>
-		<!-- 로그인 여부 -->
-		<a th:if="${#strings.isEmpty(admin)}" th:href="@{/admin/loginPage}">로그인</a>
-		<a th:unless="${#strings.isEmpty(admin)}" th:href="@{/admin/logout}">로그아웃</a>	
-	</div>
-	<div>
-		<span>관리자 페이지</span>
+	<div id="wrap">
+		<div th:replace="/include/admin_header"></div>
+		<section class="conts">
+			<div th:replace="/include/admin_menu"></div>
+            <div class="cont-body"></div>			
+		</section>
 	</div>
 </body>
 </html>

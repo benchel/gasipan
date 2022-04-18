@@ -1,0 +1,41 @@
+*{margin: 0; padding: 0;}
+
+#wrap {float: left; display: block; width: 100%; height: 900px;}
+
+/* header */
+.admin-header{float: left; width: 100%; height: 20%;}
+
+.logo-area{float:left; width: 10%; height: 100%;}
+.logo{display: block; font-size: 40pt; text-align: center; padding: 20%;}
+
+.profile{float: right; width: 6%; height: 100%; margin-top: 1%;}
+.prof-logut{float: left; width: 100%; height: 100%;}
+.prof-img{float: left;}
+.prof-link{
+    float: left; width: 70%; margin-top: 5%; margin-left: 10%; 
+    text-decoration: none; text-align: center; color: black;}
+.prof-login{float: left; width: 100%; height: 100%; display: none;}
+
+
+/* contents */
+.conts{float: left; width: 100%; height: 80%;}
+
+/* side menu */
+.menu-group{
+    float: left; width: 10%; height: 100%;
+    background-color: #efefefef;}
+
+.menu-list{
+    float: left;
+    width: 100%;
+    font-size: 14pt;
+    text-align: center;
+}
+.menu-list li {
+    padding: 5px;
+}
+
+.cont-body{
+    float: left; width: 90%; height: 100%;
+}
+

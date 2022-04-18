@@ -45,7 +45,7 @@ public class AdminTestController {
 	public String loginView(@Param("error") String error, ModelMap modelMap) {
 		modelMap.addAttribute("error", error);
 		
-		return "admin/adminLogin";
+		return "admin/admin-login";
 	}
 
 }
