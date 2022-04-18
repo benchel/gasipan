@@ -9,8 +9,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import gasipan.constant.GasipanConstructer;
+import gasipan.dto.AdminDTO;
 import gasipan.dto.UserDTO;
+import gasipan.service.AdminService;
 import gasipan.service.UserService;
+import gasipan.vo.AdminVO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
@@ -21,16 +24,16 @@ import lombok.extern.slf4j.Slf4j;
 public class AdminTestController {
 
 	private final HttpSession session;
-	private final UserService userService;
+	private final AdminService adminService;
 	
 	@GetMapping("/")
 	public String view(ModelMap modelMap) {
 		
 		try {
-			String SESSION_USER_ID = (String) session.getAttribute(GasipanConstructer.SESSION_USER_ID);
-			//UserVO user = userService.loadUserByUsername(SESSION_USER_ID);
+			String SESSION_ADMIN_ID = (String) session.getAttribute(GasipanConstructer.SESSION_ADMIN_ID);
+			AdminVO admin = adminService.selectAdminById(SESSION_ADMIN_ID);
 			
-			//modelMap.addAttribute("admin", user);
+			modelMap.addAttribute("admin", admin);
 		} catch (Exception e) {
 			log.error(e.getMessage(), e);
 		}

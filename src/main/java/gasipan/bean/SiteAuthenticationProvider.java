@@ -22,9 +22,7 @@ import lombok.extern.slf4j.Slf4j;
 public class SiteAuthenticationProvider implements AuthenticationProvider {
 	
 	private GasipanPasswordEncoder sitePasswordEncoder;
-
-	@Autowired
-	private final UserDetailsServiceImp userDetailsServiceImp;
+	private UserDetailsServiceImp userDetailsServiceImp;
 	
 	public SiteAuthenticationProvider(UserDetailsServiceImp userDetailsServiceImp) {
 		this.userDetailsServiceImp = userDetailsServiceImp;

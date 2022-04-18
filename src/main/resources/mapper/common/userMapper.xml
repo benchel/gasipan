@@ -6,14 +6,14 @@
 <mapper namespace="gasipan.repository.UserDao">
 
 	<select id="selectUserById" parameterType="gasipan.dto.UserDTO" resultType="gasipan.vo.UserVO">
-		select * from user where user_id = #{userId}
+		select * from user_tbl where user_id = #{userId}
 	</select>
 	
 	<insert id="insertUserInfor" parameterType="gasipan.dto.UserDTO">
 		<selectKey order="BEFORE" keyProperty="userNum" resultType="String">
-			SELECT IFNULL(max(user_num) + 1, 1) as user_num FROM user
+			SELECT IFNULL(max(user_num) + 1, 1) as user_num FROM user_tbl
 		</selectKey>
-		insert into user(
+		insert into user_tbl(
 			user_num, 
 			user_id, 
 			user_pwd, 

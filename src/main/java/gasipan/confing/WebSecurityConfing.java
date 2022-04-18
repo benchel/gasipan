@@ -18,6 +18,7 @@ import gasipan.bean.SiteAuthenticationProvider;
 import gasipan.bean.UserAccessDeniedHandlerImp;
 import gasipan.bean.UserFailureHandler;
 import gasipan.bean.UserLoginSuccessHandler;
+import gasipan.service.AdminService;
 
 @EnableWebSecurity
 public class WebSecurityConfing { 
@@ -39,7 +40,7 @@ public class WebSecurityConfing {
 			return new UserAccessDeniedHandlerImp();
 		}
 		
-		
+		@Bean
 		public UserFailureHandler userFailureHandler() {
 			return new UserFailureHandler();
 		}
@@ -55,8 +56,6 @@ public class WebSecurityConfing {
 		 */
 		@Override
 		protected void configure(HttpSecurity http) throws Exception {
-			
-			// http.authenticationProvider(null); 인증 성공, 인증 실패, 결정할 수 없음. 이 세 가지 시나리오에 대한 동작 설정
 			
 			http.requestMatchers()
 					.antMatchers("/user/*")
@@ -76,7 +75,6 @@ public class WebSecurityConfing {
 					.loginProcessingUrl("/user/login")
 					.successHandler(userLoginSuccessHandler()) // 로그인 성공 이후의 동작 핸들링
 					.failureHandler(userFailureHandler())
-					//.failureUrl("/user/loginPage")// 로그인 화면 이동에 실패하면 가야할 경로
 					.and()
 				.logout()
 					.permitAll()
@@ -97,17 +95,25 @@ public class WebSecurityConfing {
 	public static class AdminWebSecurityConfing extends WebSecurityConfigurerAdapter {
 	
 		@Autowired
+		private AdminService adminService;
+		
+		@Autowired
 		private AdminAuthenticationProvider adminAuthenticationProvider;
 		
 		@Bean
 		public AdminLoginSuccessHandler adminLoginSuccessHandler() {
-			return new AdminLoginSuccessHandler();
+			return new AdminLoginSuccessHandler(adminService);
 		}
 
 		@Bean
 		public AdminAccessDeniedHandlerImp accessDeniedHandler() {
 			return new AdminAccessDeniedHandlerImp();
 		}
+		
+		@Bean
+		public GasipanPasswordEncoder adminPasswordEncoder() {
+			return new GasipanPasswordEncoder();
+		}		
 		
 		/**
 		 * 인증(authentication)이 필요한 url과 인증이 불필요한 url을 설정
@@ -134,7 +140,7 @@ public class WebSecurityConfing {
 					.usernameParameter("id")
 					.passwordParameter("pwd")				
 					.loginProcessingUrl("/admin/login")
-					.successHandler(new AdminLoginSuccessHandler()) 
+					.successHandler(new AdminLoginSuccessHandler(adminService)) 
 					.failureUrl("/admin/loginPage") // 로그인 실패 동작 핸들링
 					.and()	
 				.logout()

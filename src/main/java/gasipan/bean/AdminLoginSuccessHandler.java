@@ -1,7 +1,6 @@
 package gasipan.bean;
 
 import java.io.IOException;
-import java.util.Collection;
 
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
@@ -9,8 +8,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.web.DefaultRedirectStrategy;
 import org.springframework.security.web.RedirectStrategy;
 import org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter;
@@ -18,8 +17,14 @@ import org.springframework.security.web.authentication.AuthenticationSuccessHand
 import org.springframework.security.web.savedrequest.HttpSessionRequestCache;
 import org.springframework.security.web.savedrequest.RequestCache;
 import org.springframework.security.web.savedrequest.SavedRequest;
-import org.springframework.web.context.request.RequestContextHolder;
-import org.springframework.web.context.request.ServletRequestAttributes;
+
+import gasipan.confing.SessionManager;
+import gasipan.repository.AdminDao;
+import gasipan.service.AdminDetailsServiceImp;
+import gasipan.service.AdminService;
+import gasipan.vo.AdminVO;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 
 /**
@@ -33,8 +38,15 @@ import org.springframework.web.context.request.ServletRequestAttributes;
  * 나중에 리다이렉트되는 위치 ({@link AbstractAuthenticationProcessingFilter} 또는 subclasses를 본다.)
  * 필요한 경우 다른 로직도 포함한다.
  */
+@Slf4j
 public class AdminLoginSuccessHandler implements AuthenticationSuccessHandler {
-
+	
+	private AdminService adminService;
+	
+	public AdminLoginSuccessHandler(AdminService adminService) {
+		this.adminService = adminService;
+	}
+	
 	/**
 	 * 사용자가 인증에 성공했을 때 호출한다.
 	 * @param 성공적인 인증을 일으킨 요청 
@@ -46,16 +58,42 @@ public class AdminLoginSuccessHandler implements AuthenticationSuccessHandler {
 	public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
 			Authentication authentication) throws IOException, ServletException {
 		
+		// 현재 세션 가져오기
+		HttpSession session = request.getSession();
+
+		// 세션 검사
+		if(session != null) {
+			// 기존의 값들을 지운다.
+			SessionManager.removeSeesionInfoByAdmin(session);
+			SessionManager.removeSeesionInfo(session);
+		}
+		
+		String adminId = ((AdminVO) authentication.getPrincipal()).getAdminId();
+		String authority = ((AdminVO) authentication.getPrincipal()).getAuthority();
+		
+		AdminVO adminVO = new AdminVO();
+
 		// 리다이렉트
 		RedirectStrategy redirectStrategy = new DefaultRedirectStrategy();
 		// 로그인 이후 가야할 목적지 지정
 		String targetUrl = "/admin/";
-		// 해당 목적지를 바탕으로 요청과 응답 다시 설정 
-		RequestCache requestCache = new HttpSessionRequestCache();
-		SavedRequest savedRequest = requestCache.getRequest(request, response);
-		if(savedRequest != null) {
-			targetUrl = savedRequest.getRedirectUrl();
+		
+		try {
+			adminVO = adminService.selectAdminById(adminId);
+			SessionManager.setSeesionInfoByAdmin(session, adminVO);
+			
+			// 해당 목적지를 바탕으로 요청과 응답 다시 설정 
+			RequestCache requestCache = new HttpSessionRequestCache();
+			SavedRequest savedRequest = requestCache.getRequest(request, response);
+			if(savedRequest != null) {
+				targetUrl = savedRequest.getRedirectUrl();
+			}
+			
+		} catch (Exception e) {
+			targetUrl = "/admin/loginPage";
+			System.out.println("UserLoginSuccessHandler error : " + e.getMessage());
 		}
+		
 		redirectStrategy.sendRedirect(request, response, targetUrl);
 	}
 	

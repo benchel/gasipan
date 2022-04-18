@@ -2,7 +2,6 @@ package gasipan.bean;
 
 import java.io.IOException;
 
-import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -12,18 +11,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.DefaultRedirectStrategy;
 import org.springframework.security.web.RedirectStrategy;
-import org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
-import org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler;
 import org.springframework.security.web.savedrequest.HttpSessionRequestCache;
 import org.springframework.security.web.savedrequest.RequestCache;
 import org.springframework.security.web.savedrequest.SavedRequest;
 
 import gasipan.confing.SessionManager;
-import gasipan.dto.UserDTO;
 import gasipan.service.UserService;
 import gasipan.vo.UserVO;
-import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 
@@ -50,6 +45,7 @@ public class UserLoginSuccessHandler implements AuthenticationSuccessHandler {
 		// 세션 검사
 		if(session != null) {
 			// 기존의 값들을 지운다.
+			SessionManager.removeSeesionInfoByAdmin(session);
 			SessionManager.removeSeesionInfo(session);
 		}
 		
