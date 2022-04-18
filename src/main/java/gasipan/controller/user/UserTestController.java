@@ -6,9 +6,15 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import gasipan.constant.GasipanConstructer;
+import gasipan.dto.PostRequestDTO;
 import gasipan.service.UserService;
 import gasipan.vo.UserVO;
 import lombok.RequiredArgsConstructor;
@@ -63,6 +69,9 @@ public class UserTestController {
 		return "user/myPage";
 	}
 
+	//@JsonProperty
+	//private String OTP;
+	
 	/**
 	@PostMapping("/post")
 	public void post(@RequestBody Map<String, Object> requestData) {
@@ -72,4 +81,21 @@ public class UserTestController {
 		});
 	}
 	*/
+	
+	/**
+	@PutMapping("/put")
+	public void put(@RequestBody PostRequestDTO postRequestDTO) {
+		System.out.println(postRequestDTO.toString());
+	}
+	*/
+	
+	/**
+	@PutMapping("/put/{userId}")
+	public void put(@RequestBody PostRequestDTO postRequestDTO, @PathVariable String userId) {
+		System.out.println(postRequestDTO.toString());
+	}
+	*/
+	
+	/* public void delete() {} */
+	
 }
