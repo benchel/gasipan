@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<th:block th:fragment="header">
+	<section class="conts-header">
+	    <div class="logo">
+	        <span class="logo-text">logo</span>
+	    </div>
+	    <div class="menu-area">
+	        <div class="loginYn">
+	            <span class="loginYn-text">
+	            	<a th:if="${#strings.isEmpty(ssUser)}" th:href="@{/user/loginPage}">로그인</a>
+	            	<a th:unless="${#strings.isEmpty(ssUser)}" th:href="@{/user/logout}">로그아웃</a>
+	            </span>
+	            <span class="join-text">
+	            	<a th:if="${#strings.isEmpty(ssUser)}" th:href="@{/joinView}">회원가입</a>
+	            </span>
+	        </div>
+	        <nav class="menus">
+	            <ul class="top-menu">
+	                <li><span class="top-menu-text">menu1</span>
+	                    <ul class="sub-menu">
+	                        <li>sub-menu1</li>
+	                        <li>sub-menu2</li>
+	                        <li>sub-menu3</li>
+	                    </ul>
+	                </li>
+	                <li><span class="top-menu-text">menu2</span>
+	                    <ul class="sub-menu">
+	                        <li>sub-menu1</li>
+	                        <li>sub-menu2</li>
+	                        <li>sub-menu3</li>
+	                    </ul>
+	                </li>
+	                <li><span class="top-menu-text">menu3</span></li>
+	                <li><span class="top-menu-text">menu4</span></li>
+	                <li><span class="top-menu-text">menu5</span></li>
+	            </ul>
+	        </nav>
+	    </div>  
+	</section>
+</th:block>
+</html>
