@@ -1,10 +1,25 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+	<!-- meta -->
+	<meta charset="UTF-8">
+	
+	<!-- css -->
+	<link href="../css/admin.css" rel="stylesheet">
+	
+	<!-- script -->
+	<script type="text/javascript" src="../js/jquery.js"></script>
+	
+	<title>게시판 [관리자]</title>
 </head>
 <body>
-
+	<div id="wrap">
+		<div th:replace="/fragment/admin_header"></div>
+		<section class="conts">
+			<div th:replace="/fragment/admin_menu"></div>
+            <th:block class="cont-body"></th:block>			
+		</section>
+	</div>
 </body>
 </html>

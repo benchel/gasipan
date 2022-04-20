@@ -1,19 +1,13 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html xmlns:th="http://www.thymeleaf.org" 
+	  xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorate="~{layout/admin_main_layout}">
 <head>
-	<meta charset="utf-8">
-	<link rel="shortcut icon" href="#">
-	<link href="../css/admin.css" rel="stylesheet">
-	<script type="text/javascript" src="../js/jquery.js"></script>
-	<title>게시판</title>
+
+
 </head>
-<body>
-	<div id="wrap">
-		<div th:replace="/include/admin_header"></div>
-		<section class="conts">
-			<div th:replace="/include/admin_menu"></div>
-            <div class="cont-body"></div>			
-		</section>
-	</div>
-</body>
+<th:block layout:fragment="content">
+	<div class="cont-body"></div>
+</th:block>
 </html>
