@@ -58,7 +58,7 @@ public class WebSecurityConfing {
 		protected void configure(HttpSecurity http) throws Exception {
 			
 			http.requestMatchers()
-					.antMatchers("/user/*")
+					.antMatchers("/user/*", "/notice/*", "/freedom/*")
 					.and()
 				.authorizeRequests()
 					.antMatchers("/user/myPage").authenticated()
