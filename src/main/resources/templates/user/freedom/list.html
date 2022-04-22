@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorate="~{./layout/basic_layout}">
+<head>
+
+
+
+
+</head>
+<th:block layout:fragment="content">
+        <div class="conts">
+            <div class="location-guide">
+                <ul class="lg-ul">
+                    <li>
+                        <span> ▶ HOME</span>
+                    </li>              
+                    <li>
+                        <span> ▶ 게시판</span>
+                    </li>
+                    <li>
+                        <span> ▶ 자유게시판</span>
+                    </li>
+                </ul>
+            </div>
+            <div class="cont-body">
+                <div class="sch-area">
+                	<div class="sch-row">
+	                    <label class="sch-lab mg-lf20">제목</label>
+	                    <input type="text" class="sch-word" value="">
+	                    <label class="sch-lab mg-lf10">작성자</label>
+	                    <input type="text" class="sch-word" value="">
+                    </div>
+                    <div class="sch-btn-area">
+                    	<button type="button" class="btn-search mg-lf50">검색</button>
+                    	<button type="button" class="btn-down">다운로드</button>
+                    </div>
+                </div>
+                <div class="data-area">
+                    <table class="data-tbl mg-top2">
+                        <colgroup>
+                            <col style="width: 5%;">
+                            <col style="width: 45%;">
+                            <col style="width: 10%;">
+                            <col style="width: 10%;">
+                            <col style="width: 10%;">
+                        </colgroup>                           
+                        <thead>
+                            <tr>
+                                <th>번호</th>
+                                <th>제목</th>
+                                <th>작성자</th>
+                                <th>등록일</th>
+                                <th>수정일</th>
+                            </tr>
+                        </thead>                       
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>제 목</td>
+                                <td>작성자1</td>
+                                <td>2022.04.21</td>
+                                <td>2022.04.21</td>
+                            </tr>
+                            <tr>
+                                <td>1</td>
+                                <td>제 목</td>
+                                <td>작성자1</td>
+                                <td>2022.04.21</td>
+                                <td>2022.04.21</td>
+                            </tr>
+                            <tr>
+                                <td>1</td>
+                                <td>제 목</td>
+                                <td>작성자1</td>
+                                <td>2022.04.21</td>
+                                <td>2022.04.21</td>
+                            </tr>
+                            <tr>
+                                <td>1</td>
+                                <td>제 목</td>
+                                <td>작성자1</td>
+                                <td>2022.04.21</td>
+                                <td>2022.04.21</td>
+                            </tr>
+                            <tr>
+                                <td>1</td>
+                                <td>제 목</td>
+                                <td>작성자1</td>
+                                <td>2022.04.21</td>
+                                <td>2022.04.21</td>
+                            </tr>
+                            <tr>
+                                <td>1</td>
+                                <td>제 목</td>
+                                <td>작성자1</td>
+                                <td>2022.04.21</td>
+                                <td>2022.04.21</td>
+                            </tr>
+                            <tr>
+                                <td>1</td>
+                                <td>제 목</td>
+                                <td>작성자1</td>
+                                <td>2022.04.21</td>
+                                <td>2022.04.21</td>
+                            </tr>
+                            <tr>
+                                <td>1</td>
+                                <td>제 목</td>
+                                <td>작성자1</td>
+                                <td>2022.04.21</td>
+                                <td>2022.04.21</td>
+                            </tr>
+                            <tr>
+                                <td>1</td>
+                                <td>제 목</td>
+                                <td>작성자1</td>
+                                <td>2022.04.21</td>
+                                <td>2022.04.21</td>
+                            </tr>
+                            <tr>
+                                <td>1</td>
+                                <td>제 목</td>
+                                <td>작성자1</td>
+                                <td>2022.04.21</td>
+                                <td>2022.04.21</td>
+                            </tr>
+                            <tr>
+                                <td>1</td>
+                                <td>제 목</td>
+                                <td>작성자1</td>
+                                <td>2022.04.21</td>
+                                <td>2022.04.21</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>                
+            </div>
+            <div class="data-btn-area mg-top2">
+            	<button type="button" class="btn-write mg-rg10">글쓰기</button>
+            </div>
+            <div class="pagenation-area">
+            	<ul class="numbers-of-page">
+            		<li class="page-num">◁</li>
+            		<li class="page-num">1</li>
+            		<li class="page-num">2</li>
+            		<li class="page-num">3</li>
+            		<li class="page-num">4</li>
+            		<li class="page-num">5</li>
+            		<li class="page-num">6</li>
+            		<li class="page-num">7</li>
+            		<li class="page-num">8</li>
+            		<li class="page-num">9</li>
+            		<li class="page-num">10</li>
+            		<li class="page-num">▷</li>
+            	</ul>
+            </div>   
+        </div>
+</th:block>
+</html>

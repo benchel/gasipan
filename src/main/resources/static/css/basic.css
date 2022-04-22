@@ -24,7 +24,7 @@
 .bgcolor-ccddbb{background-color: #ccddbb;}
 
 
-.location-guide{float:left; width : 80%; padding-left : 13%; padding-right: 17%; margin-top : 3%; font-size : 14pt;}
+.location-guide{float:left; width : 80%; margin-left : 13%; margin-right: 17%; margin-top : 3%; font-size : 14pt;}
 .lg-ul li{float: left; width: 10%; list-style: none; text-align: center;}
 
 .cont-body{float:left; width: 100%;}
@@ -37,10 +37,21 @@ border: solid #ddeecc 3px; border-radius: 5px;}
 .sch-lab{float: left; margin-right: 1%; font-size: 12pt; padding: 1%; color: #99aa88;}
 .sch-word{float: left; height: 28%; margin: 0.5%; border: solid 1px #99aa88;}
 
-.btn-area{float: left; width: 100%; height: 100%;}
+.sch-btn-area{float: left; width: 100%; height: 100%;}
 .btn-search{width: 5%; height: 15%; font-size: 12pt; background-color: #ccddbb; border: solid #bbccaa 1px; color: #aabb88;}
 .btn-down{width: 5%; height: 15%; font-size: 12pt; background-color: #ccddbb; border: solid #bbccaa 1px; color: #aabb88;}
 
-.data-area{float: left; width: 100%;}
-
 .data-tbl{float: left; width: 80%; margin-left: 13%; margin-right: 17%; text-align: center;}
+
+.data-btn-area{float: left; width: 100%;}
+.btn-write{float: right; width: 3%; height: 28px; font-size: 11pt; background-color: #99aa88; border: solid #ccddbb 1px; color: #ccddbb;}
+
+
+/* paging */
+.pagenation-area{float: left; width: 100%; height: 100px;}
+.numbers-of-page{float: left; width: 80%; list-style: none; margin-left:36%;}
+
+.page-num:first-child{float: left; width: 3%; height: 30px; text-align: center; color : #99aa88; border-left: solid #99aa88 1px;}
+.page-num{float: left; width: 3%; height: 30px; text-align: center; color : #99aa88; 
+padding-top: 0.5%; padding-bottom: 0.5%; border-top: solid #99aa88 1px; border-bottom: solid #99aa88 1px; border-right: solid #99aa88 1px;}
+.page-num:hover {background-color: #99aa88; color: #ccddbb;}
