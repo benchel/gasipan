@@ -1,0 +1,46 @@
+@charset "UTF-8";
+
+.conts{border: solid #ccc 1px; float: left; width: 100%;}
+
+.f-left{float: left;}
+
+.w100{width: 100%;}
+.wd80{width: 80%;}
+.w10{width: 10%;}
+
+.mg-lf10{margin-left: 10%;}
+.mg-rg10{margin-right: 10%;}
+
+.mg-lf20{margin-left: 20%;}
+.mg-lf30{margin-left: 30%;}
+.mg-lf50{margin-left: 42%;}
+
+.mg-top1{margin-top: 1%;}
+.mg-top2{margin-top: 2%;}
+
+.mg-top10{margin-top: 10%;}
+
+.bgcolor-gray{background-color: #efefefef;}
+.bgcolor-ccddbb{background-color: #ccddbb;}
+
+
+.location-guide{float:left; width : 80%; padding-left : 13%; padding-right: 17%; margin-top : 3%; font-size : 14pt;}
+.lg-ul li{float: left; width: 10%; list-style: none; text-align: center;}
+
+.cont-body{float:left; width: 100%;}
+
+.sch-area{float: left; width: 80%; margin-top: 1%; margin-left: 13%; margin-right: 17%; height : 200px;
+border: solid #ddeecc 3px; border-radius: 5px;}
+
+.sch-row{float:left; width: 100%; height: 50%; margin-top: 2%;}
+
+.sch-lab{float: left; margin-right: 1%; font-size: 12pt; padding: 1%; color: #99aa88;}
+.sch-word{float: left; height: 28%; margin: 0.5%; border: solid 1px #99aa88;}
+
+.btn-area{float: left; width: 100%; height: 100%;}
+.btn-search{width: 5%; height: 15%; font-size: 12pt; background-color: #ccddbb; border: solid #bbccaa 1px; color: #aabb88;}
+.btn-down{width: 5%; height: 15%; font-size: 12pt; background-color: #ccddbb; border: solid #bbccaa 1px; color: #aabb88;}
+
+.data-area{float: left; width: 100%;}
+
+.data-tbl{float: left; width: 80%; margin-left: 13%; margin-right: 17%; text-align: center;}
