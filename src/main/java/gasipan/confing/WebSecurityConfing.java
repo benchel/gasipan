@@ -6,6 +6,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
@@ -26,6 +27,11 @@ public class WebSecurityConfing {
 	@Configuration
 	@Order(1)
 	public static class UserWebSecurityConfing extends WebSecurityConfigurerAdapter {
+		
+		@Override
+		public void configure(WebSecurity web) throws Exception {
+			web.ignoring().requestMatchers(new AntPathRequestMatcher("/static/**"));
+		}
 		
 		@Autowired
 		private SiteAuthenticationProvider siteAuthenticationProvider;
@@ -57,18 +63,15 @@ public class WebSecurityConfing {
 		@Override
 		protected void configure(HttpSecurity http) throws Exception {
 			
-			http.requestMatchers()
-					.antMatchers("/user/*", "/notice/*", "/freedom/*")
-					.and()
-				.authorizeRequests()
-					.antMatchers("/user/myPage").authenticated()
-					.antMatchers("/user/myPage").hasAuthority("USER") // 권한 필요
-					.anyRequest().permitAll()
+			http.authorizeRequests()
+					.antMatchers("/myPage").authenticated()
+					.antMatchers("/myPage").hasAuthority("USER") // 권한 필요
 					.and()
 				.exceptionHandling()
 					.accessDeniedHandler(new UserAccessDeniedHandlerImp()) // 권한이 없는 사용자의 접근이 있을 때의 동작 핸들링
 					.and()
 				.formLogin() // 로그인 화면 설정
+					.permitAll()
 					.loginPage("/user/loginPage")
 					.usernameParameter("id")
 					.passwordParameter("pwd")				
