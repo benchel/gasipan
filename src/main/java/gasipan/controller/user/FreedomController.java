@@ -19,4 +19,9 @@ public class FreedomController {
 		return "user/freedom/list";
 	}
 	
+	@GetMapping("/regist")
+	public String regist() {
+		return "user/freedom/regist";
+	}
+	
 }

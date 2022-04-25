@@ -5,11 +5,18 @@
 .f-left{float: left;}
 
 .w100{width: 100%;}
+.w95{width: 95%;}
 .wd80{width: 80%;}
 .w10{width: 10%;}
 
 .mg-lf10{margin-left: 10%;}
 .mg-rg10{margin-right: 10%;}
+
+.mg-rg8{margin-right: 8%;}
+.mg-rg7{margin-right: 7%;}
+.mg-rg6{margin-right: 6%;}
+.mg-rg5{margin-right: 5%;}
+.mg-rg1{margin-right: 1%;}
 
 .mg-lf20{margin-left: 20%;}
 .mg-lf30{margin-left: 30%;}
@@ -19,6 +26,9 @@
 .mg-top2{margin-top: 2%;}
 
 .mg-top10{margin-top: 10%;}
+
+.txt-center{text-align: center;}
+.txt-lf{text-align: left;}
 
 .bgcolor-gray{background-color: #efefefef;}
 .bgcolor-ccddbb{background-color: #ccddbb;}
@@ -41,11 +51,22 @@ border: solid #ddeecc 3px; border-radius: 5px;}
 .btn-search{width: 5%; height: 15%; font-size: 12pt; background-color: #ccddbb; border: solid #bbccaa 1px; color: #aabb88;}
 .btn-down{width: 5%; height: 15%; font-size: 12pt; background-color: #ccddbb; border: solid #bbccaa 1px; color: #aabb88;}
 
-.data-tbl{float: left; width: 80%; margin-left: 13%; margin-right: 17%; text-align: center;}
+.data-tbl{float: left; width: 80%; margin-left: 13%; margin-right: 17%; text-align: center; border: solid 1px #aabb88;}
+.data-tbl-body > tr{width: 100%; height: 40px;}
 
 .data-btn-area{float: left; width: 100%;}
-.btn-write{float: right; width: 3%; height: 28px; font-size: 11pt; background-color: #99aa88; border: solid #ccddbb 1px; color: #ccddbb;}
+.btn-list{float: right; width: 4%; height: 40px; font-size: 11pt; background-color: #ffffff; border: solid #ccddbb 1px; color: #ccddbb;}
+.btn-write{float: right; width: 4%; height: 40px; font-size: 11pt; background-color: #99aa88; border: solid #ccddbb 1px; color: #ccddbb;}
 
+
+.regist-input{height : 30px; padding-left: 2%; padding-right: 2%; border: solid #ccddbb 1px;}
+.regist-txtarea{width: 95%; height : 300px; padding-left: 2%; padding-right: 2%; border: solid #ccddbb 1px; resize: none;}
+
+.file-group{width: 95%;}
+.attached-file{float:left; padding-bottom : 0.5%; margin-right: 1%;}
+.attached-file > span {height : 30px;}
+.attached-file > button {padding : 5px; height : 30px; font-size: 10pt;}
+.btn-addfile{float:left; width: 5%; height : 30px; font-size: 10pt;}
 
 /* paging */
 .pagenation-area{float: left; width: 100%; height: 100px;}
