@@ -8,6 +8,86 @@
 
 
 </head>
+<th:block layout:fragment="script">
+<script type="text/javascript">
+$(document).ready(function() {
+	initPage();
+	registEvent();
+	setDefault();
+	getProductList();
+});
+
+const initPage = function() {
+	
+};
+
+const setDefault = function() {
+	
+};
+
+const registEvent = function() {
+	$('.btn-write').on('click', function(e) {
+		$(location).attr('href', 'regist');
+	});
+	
+};
+
+
+const getProductList = function() {
+	const formData = $('form[name="searchForm"]').serializeObject();
+	formData['gijun'] = $('select[name="gijun"] option:selected').val();
+	formData['pummog'] = $('input[name="pummog"]').val();
+		
+	$.ajax({
+		data : JSON.stringify(formData),
+		url : '/product/product-with-mngDiv',
+		type : 'post',
+		dataType : 'json',
+		contentType : 'application/json'
+	}).done(function (result, status, xhr) {
+		const totalCount = result.totalCount;
+		const totalPageNo = result.totalPageNo;
+		const list = result.list;
+		let html = '';
+		if (totalCount == 0) {
+			html += '<tr><td class="text-center h-200px align-middle" colspan="8">데이터가 존재하지 않습니다.</td></tr>';
+		} else {
+			$('.sub-title').text(list[0].manageDivName);
+		}
+
+		$.each(list, function(idx, el) {
+			html += '<tr>';
+			html += '	<td>' + (el.prdIdx) + '</td>';
+			html += '	<td>' + (el.bucheo) + '</td>';
+			html += '	<td>' + (el.manageDivName) + '</td>';
+			html += '	<td>' + (el.gijun) + '</td>';
+			html += '	<td><a href="#" class="viewBtn" data-prdIdx="' + (el.prdIdx) + '">' + (el.pummog) + '</a></td>';
+			html += '	<td>' + (el.sebuPummog) + '</td>';
+			html += '</tr>';
+		});
+
+		$('.el-table tbody').html(html);
+		$('.paging').html(result.pagingHtml);
+
+		pagingFunc();
+	}).fail(function (xhr, status, error) {
+		alert("데이터를 불러오는데 실패했습니다.");
+	});	
+};
+
+const pagingFunc = function() {
+	$('.pagination .page-link').off('click').on('click', function (e) {
+		e.preventDefault();
+		if ($(this).parent('li').hasClass('active') == false) {
+			$('[name="pageNo"]').val($(this).attr('data-pageNo'));
+			getProductList();
+		}
+	});
+};
+
+
+</script>
+</th:block>
 <th:block layout:fragment="content">
         <div class="conts">
             <div class="location-guide">

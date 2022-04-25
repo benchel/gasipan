@@ -10,7 +10,55 @@
 </head>
 <th:block layout:fragment="script">
 <script type="text/javascript">
+$(document).ready(function() {
+	initPage();
+	registEvent();
+	setDefault();
+});
 
+// 페이지 초기화
+const initPage = function() {
+
+};
+
+// 기본값 세팅
+const setDefault = function() {
+	/*<![CDATA[*/
+
+    var csrf_name = /*[[${_csrf.parameterName}]]*/ '${_csrf.token}';
+    var csrf_token = /*[[${_csrf.token}]]*/ '${_csrf.token}';
+
+	/*]]>*/	
+};
+
+// 이벤트 등록
+const registEvent = function() {
+	$('.btn-list').on('click', function(e) {
+		$(location).attr('href', 'list');
+	});
+	
+	$('.btn-write').on('click', function(e) {
+		regist();
+	});
+};
+
+const regist = function() {
+	let formData = $('#form').serializeArray();
+
+	$.ajax({
+		data : formData,
+		url : '/freedom/write',
+		type : 'post',
+		dataType : 'json',
+		contentType : 'application/json'
+	})
+	.done(function(result, status, xhr) {
+		alert('저장되었습니다.');
+	})
+	.fail(function(xhr, status, error) {
+		alert('저장 오류.');
+	});
+};
 </script>
 </th:block>
 <th:block layout:fragment="content">
@@ -29,6 +77,7 @@
                 </ul>
             </div>
             <div class="cont-body">
+            	<form id="form" action="#" method="post" onsubmit="return false;">
                 <div class="data-area">
                     <table class="data-tbl mg-top2">
 	                    <colgroup>
@@ -41,7 +90,7 @@
 	                        <tr>
 	                            <th colspan="1" class="bgcolor-ccddbb">제목</th>
 	                            <td colspan="3">
-	                            	<input type="text" class="regist-input w95">
+	                            	<input type="text" name="title" class="regist-input w95">
 	                            </td>	                            
 	                        </tr>
 	                        <tr>
@@ -49,7 +98,7 @@
 	                        </tr>
 	                        <tr>
 	                            <td colspan="4">
-	                            	<textarea class="regist-txtarea" rows="" cols=""></textarea>
+	                            	<textarea name="content" class="regist-txtarea" rows="" cols=""></textarea>
 	                            </td>
 	                        </tr>
 	                        <tr>
@@ -71,7 +120,9 @@
 	                        </tr>
 	                    </tbody>
                     </table>
-                </div>                
+                    <!-- <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/> -->
+                </div>
+                </form>               
             </div>
             <div class="data-btn-area mg-top2">
             	<button type="button" class="btn-write mg-rg7">등록</button>
