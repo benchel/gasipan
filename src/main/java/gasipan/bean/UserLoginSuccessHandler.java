@@ -60,7 +60,7 @@ public class UserLoginSuccessHandler implements AuthenticationSuccessHandler {
 			System.out.println("UserLoginSuccessHandler error : " + e.getMessage());
 		}
 		
-		String targetUrl = "";
+		String targetUrl = "/";
 		
 		RedirectStrategy redirectStrategy = new DefaultRedirectStrategy();
 		RequestCache requestCache = new HttpSessionRequestCache();
