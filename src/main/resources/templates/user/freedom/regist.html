@@ -23,12 +23,7 @@ const initPage = function() {
 
 // 기본값 세팅
 const setDefault = function() {
-	/*<![CDATA[*/
 
-    var csrf_name = /*[[${_csrf.parameterName}]]*/ '${_csrf.token}';
-    var csrf_token = /*[[${_csrf.token}]]*/ '${_csrf.token}';
-
-	/*]]>*/	
 };
 
 // 이벤트 등록
@@ -43,21 +38,37 @@ const registEvent = function() {
 };
 
 const regist = function() {
-	let formData = $('#form').serializeArray();
-
+	var token = $("meta[name='_csrf']").attr("content");
+	var header = $("meta[name='_csrf_header']").attr("content");
+	
+	var formData = {
+		title : $('input[name="title"]').val(),
+		content : $('textarea[name="content"]').val()
+	};
+	
+	console.log(JSON.stringify(formData));
+	
 	$.ajax({
-		data : formData,
 		url : '/freedom/write',
-		type : 'post',
+		type : 'POST',
 		dataType : 'json',
-		contentType : 'application/json'
-	})
-	.done(function(result, status, xhr) {
-		alert('저장되었습니다.');
-	})
-	.fail(function(xhr, status, error) {
-		alert('저장 오류.');
-	});
+		contentType : 'application/json',
+		data : JSON.stringify(formData),
+		beforeSend : function(xhr){
+			xhr.setRequestHeader(header, token);
+		},		
+		success : function(res) {
+			if(res.message) {
+				alert('등록 성공');
+				$(location).attr('href', 'list');
+			} else {
+				alert('등록 실패');
+			}
+		},
+		error : function(xhr, status, error) {
+			console.log(error);
+		}
+	});	
 };
 </script>
 </th:block>
@@ -77,7 +88,6 @@ const regist = function() {
                 </ul>
             </div>
             <div class="cont-body">
-            	<form id="form" action="#" method="post" onsubmit="return false;">
                 <div class="data-area">
                     <table class="data-tbl mg-top2">
 	                    <colgroup>
@@ -120,9 +130,7 @@ const regist = function() {
 	                        </tr>
 	                    </tbody>
                     </table>
-                    <!-- <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/> -->
                 </div>
-                </form>               
             </div>
             <div class="data-btn-area mg-top2">
             	<button type="button" class="btn-write mg-rg7">등록</button>

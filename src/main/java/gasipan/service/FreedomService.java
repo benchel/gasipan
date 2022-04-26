@@ -24,7 +24,7 @@ public class FreedomService {
 		Map<String, Object> rs = new HashMap<>();
 		
 		boardDAO.insertBoard(boardDTO);
-		rs.put("reust", GasipanConstructer.RESULT_SUCCESS);
+		rs.put("message", GasipanConstructer.RESULT_SUCCESS);
 		
 		return rs;
 	}

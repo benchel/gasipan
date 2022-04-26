@@ -11,26 +11,26 @@
 			SELECT count(board_idx)+1 AS board_idx FROM board 
 		</selectKey>	
 		INSERT INTO board (
-		board_idx, board_type, title, content, reg_date, modify_date,
+			board_idx, board_type, title, content, reg_date, modify_date
 		<if test="fileKey1 != null and fileKey1 != ''">
-		 file_key1,
+		 	, file_key1
 		 </if>
 		 <if test="fileKey2 != null and fileKey2 != ''">
-		 file_key2,
+		 	, file_key2
 		 </if>
 		 <if test="fileKey3 != null and fileKey3 != ''">
-		 file_key3,
+		 	, file_key3
 		 </if>
 		 ) VALUES (
-		#{boardIdx}, #{boardType}, #{title}, #{content}, #{regDate}, #{modifyDate}, 
+		#{boardIdx}, #{boardType}, #{title}, #{content}, #{regDate}, #{modifyDate}
 		<if test="fileKey1 != null and fileKey1 != ''">
-		#{fileKey1},
+			, #{fileKey1}
 		</if>
 		<if test="fileKey2 != null and fileKey2 != ''">
-		#{fileKey2},
+			, #{fileKey2},
 		</if>
 		<if test="fileKey3 != null and fileKey3 != ''">
-		#{fileKey3}
+			, #{fileKey3}
 		</if>)
 	</insert>
 	
