@@ -43,10 +43,12 @@ const regist = function() {
 	
 	var formData = {
 		title : $('input[name="title"]').val(),
-		content : $('textarea[name="content"]').val()
+		content : $('textarea[name="content"]').val(),
+		boardType : 02,
+		writer : $('td[class="ssUserId"]').text()
 	};
 	
-	console.log(JSON.stringify(formData));
+	//console.log(JSON.stringify(formData));
 	
 	$.ajax({
 		url : '/freedom/write',
@@ -124,7 +126,7 @@ const regist = function() {
 	                        </tr>
 	                        <tr>
 	                            <th class="bgcolor-ccddbb" colspan="1">작성자</th>
-	                            <td>테스트유저</td>
+	                            <td class="ssUserId" th:text="${session.ssUserId}"></td>
 	                            <th class="bgcolor-ccddbb" colspan="1">등록일</th>
 	                            <td>2022.04.22</td>
 	                        </tr>

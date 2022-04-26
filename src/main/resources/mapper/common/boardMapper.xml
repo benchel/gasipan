@@ -11,7 +11,7 @@
 			SELECT count(board_idx)+1 AS board_idx FROM board 
 		</selectKey>	
 		INSERT INTO board (
-			board_idx, board_type, title, content, reg_date, modify_date
+			board_idx, board_type, title, content, writer, reg_date, modify_date
 		<if test="fileKey1 != null and fileKey1 != ''">
 		 	, file_key1
 		 </if>
@@ -22,7 +22,7 @@
 		 	, file_key3
 		 </if>
 		 ) VALUES (
-		#{boardIdx}, #{boardType}, #{title}, #{content}, #{regDate}, #{modifyDate}
+		#{boardIdx}, #{boardType}, #{title}, #{content}, #{writer}, #{regDate}, #{modifyDate}
 		<if test="fileKey1 != null and fileKey1 != ''">
 			, #{fileKey1}
 		</if>

@@ -8,6 +8,7 @@ public class BoardVO {
 	private long boardType;
 	private String title;
 	private String content;
+	private String writer;
 	private String regDate;
 	private String modifyDate;
 	private String fileKey1;
