@@ -22,7 +22,7 @@
 		 	, file_key3
 		 </if>
 		 ) VALUES (
-		#{boardIdx}, #{boardType}, #{title}, #{content}, #{writer}, #{regDate}, #{modifyDate}
+		#{boardIdx}, #{boardType}, #{title}, #{content}, #{writer}, sysdate(), #{modifyDate}
 		<if test="fileKey1 != null and fileKey1 != ''">
 			, #{fileKey1}
 		</if>
