@@ -11,11 +11,13 @@
 <!-- css -->
 <link href="/css/index.css" rel="stylesheet" type="text/css">
 <link href="/css/basic.css" rel="stylesheet" type="text/css">
+<meta th:if="${_csrf}" name="_csrf" th:content="${_csrf.token}"/>
+<meta th:unless="${_csrf}" name="_csrf" content=""/>
+<meta th:if="${_csrf}" name="_csrf_header" th:content="${_csrf.headerName}"/>
+<meta th:unless="${_csrf}" name="_csrf_header" content=""/>
 
 <!-- script -->
 <script type="text/javascript" th:src="@{/js/jquery.js}"></script>
-<script type="text/javascript" th:src="@{/js/jquery-ui.js}"></script>
-<script type="text/javascript" th:src="@{/js/jquery-3.6.0.min.js}"></script>
 <script type="text/javascript" th:src="@{/js/menu-control.js}"></script>
 </head>
 <th:block layout:fragment="script"></th:block>
