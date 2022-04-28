@@ -25,10 +25,7 @@ import lombok.extern.slf4j.Slf4j;
 @RequestMapping("/user/*")
 @Slf4j
 public class UserTestController {
-
-	private final HttpSession session;
-	private final UserService userService;
-
+	
 	/**
 	 * main 화면
 	 * @return
@@ -47,26 +44,6 @@ public class UserTestController {
 	public String loginView() throws Exception {
 		
 		return "user/userLogin";
-	}
-	
-	/**
-	 * 마이페이지
-	 * @param modelMap
-	 * @return
-	 */
-	@GetMapping("/myPage")
-	public String myPage(ModelMap modelMap) {
-		
-		try {
-			String SESSION_USER_ID = (String) session.getAttribute(GasipanConstructer.SESSION_USER_ID);
-			UserVO user = userService.selectUserById(SESSION_USER_ID);
-			
-			modelMap.addAttribute("ssUser", user);
-		} catch (UsernameNotFoundException e) {
-			log.error(e.getMessage(), e);
-		}
-		
-		return "user/myPage";
 	}
 
 	//@JsonProperty
