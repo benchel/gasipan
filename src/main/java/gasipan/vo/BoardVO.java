@@ -3,7 +3,7 @@ package gasipan.vo;
 import lombok.Data;
 
 @Data
-public class BoardVO {
+public class BoardVO extends BasicVO {
 	private long boardIdx;
 	private long boardType;
 	private String title;

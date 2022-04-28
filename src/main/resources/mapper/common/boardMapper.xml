@@ -34,4 +34,36 @@
 		</if>)
 	</insert>
 	
+	
+	<sql id="whereBoardList">
+		WHERE 1=1
+		<if test="boardType != null and boardType != ''">
+			AND b.board_type = 02
+		</if>
+	</sql>
+	
+	<sql id="basicTable">
+		SELECT
+			board_idx,
+			board_type,
+			title,
+			content,
+			writer,
+			DATE_FORMAT(reg_date, '%y-%m-%d') AS reg_date	
+		FROM board b
+	</sql>
+	
+	<select id="selectBoardCnt" parameterType="gasipan.dto.BoardDTO"
+		resultType="long">
+		SELECT count(*) FROM board b
+		<include refid="whereBoardList"/>
+	</select>
+	
+	<select id="selectBoardList" parameterType="gasipan.dto.BoardDTO" 
+		resultType="gasipan.vo.BoardVO">
+		<include refid="basicTable"/>
+		<include refid="whereBoardList"/>
+		LIMIT #{pageSize} OFFSET #{pageOffset}
+	</select>
+	
 </mapper>
