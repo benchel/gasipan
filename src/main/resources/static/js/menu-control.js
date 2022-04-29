@@ -10,7 +10,8 @@ const menuContrl = function() {
     $('.top-menu').hover(function() {
         // slide down 
         $('.sub-menu li').slideDown();
-    }).mouseleave(function() {
+    });
+    $('.menu-area').mouseleave(function() {
 		$('.sub-menu li').slideUp();
 	});
 };
