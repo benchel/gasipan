@@ -3,7 +3,7 @@ package gasipan.dto;
 import lombok.Data;
 
 @Data
-public class BoardDTO {
+public class BoardDTO extends BasicDTO {
 	private long boardIdx;
 	private long boardType;
 	private String title;

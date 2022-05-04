@@ -4,6 +4,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,8 +28,20 @@ public class FreedomController {
 	 * @return
 	 */
 	@GetMapping("/list")
-	public String list() {
+	public String list(@ModelAttribute("boardDTO") BoardDTO boardDTO) {
 		return "user/freedom/list";
+	}
+	
+	/**
+	 * 자유게시판 목록 검색
+	 * @param boardDTO
+	 * @return
+	 * @throws Exception
+	 */
+	@PostMapping("/list-paging")
+	@ResponseBody
+	public ResponseEntity<?> getFreedomList(@RequestBody BoardDTO boardDTO) throws Exception {
+		return new ResponseEntity<>(freedomService.selectBoardListWithPaging(boardDTO), HttpStatus.OK);
 	}
 	
 	/**

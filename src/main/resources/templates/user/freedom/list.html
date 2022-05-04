@@ -10,11 +10,11 @@
 </head>
 <th:block layout:fragment="script">
 <script type="text/javascript">
-$(document).ready(function() {
+$(document).ready(function() {	
 	initPage();
 	registEvent();
 	setDefault();
-	getProductList();
+	getFreedomList();
 });
 
 const initPage = function() {
@@ -33,54 +33,52 @@ const registEvent = function() {
 };
 
 
-const getProductList = function() {
+const getFreedomList = function() {
 	const formData = $('form[name="searchForm"]').serializeObject();
-	formData['gijun'] = $('select[name="gijun"] option:selected').val();
-	formData['pummog'] = $('input[name="pummog"]').val();
-		
+	formData['boardType'] = 02;
+	
 	$.ajax({
 		data : JSON.stringify(formData),
-		url : '/product/product-with-mngDiv',
+		url : '/freedom/list-paging',
 		type : 'post',
 		dataType : 'json',
-		contentType : 'application/json'
+		contentType : 'application/json',
+		beforeSend : function(xhr){
+			xhr.setRequestHeader(header, token);
+		}		
 	}).done(function (result, status, xhr) {
 		const totalCount = result.totalCount;
 		const totalPageNo = result.totalPageNo;
 		const list = result.list;
 		let html = '';
 		if (totalCount == 0) {
-			html += '<tr><td class="text-center h-200px align-middle" colspan="8">데이터가 존재하지 않습니다.</td></tr>';
-		} else {
-			$('.sub-title').text(list[0].manageDivName);
+			html += '<tr><td class="text-center h-200px align-middle" colspan="8">등록된 내용이 없습니다.</td></tr>';
 		}
-
+		
 		$.each(list, function(idx, el) {
 			html += '<tr>';
-			html += '	<td>' + (el.prdIdx) + '</td>';
-			html += '	<td>' + (el.bucheo) + '</td>';
-			html += '	<td>' + (el.manageDivName) + '</td>';
-			html += '	<td>' + (el.gijun) + '</td>';
-			html += '	<td><a href="#" class="viewBtn" data-prdIdx="' + (el.prdIdx) + '">' + (el.pummog) + '</a></td>';
-			html += '	<td>' + (el.sebuPummog) + '</td>';
+			html += '	<td>' + (el.boardIdx) + '</td>';
+			html += '	<td><span class="viewBtn pointer" data-boardIdx="' + (el.boardIdx) + '">' + (el.title) + '</span></td>';
+			html += '	<td>' + (el.writer) + '</td>';
+			html += '	<td>' + (el.regDate) + '</td>';
 			html += '</tr>';
 		});
 
-		$('.el-table tbody').html(html);
-		$('.paging').html(result.pagingHtml);
+		$('.data-tbl tbody').html(html);
+		$('.pagenation-area').html(result.pagingHTML);
 
 		pagingFunc();
 	}).fail(function (xhr, status, error) {
-		alert("데이터를 불러오는데 실패했습니다.");
+		alert("데이터를 가지고 오는데 실패하였습니다.");
 	});	
 };
 
 const pagingFunc = function() {
-	$('.pagination .page-link').off('click').on('click', function (e) {
+	$('.numbers-of-page .page-num').off('click').on('click', function (e) {
 		e.preventDefault();
-		if ($(this).parent('li').hasClass('active') == false) {
-			$('[name="pageNo"]').val($(this).attr('data-pageNo'));
-			getProductList();
+		if ($(this).hasClass('active') == false) {
+			$('input[name="pageNo"]').val($(this).attr('data-pageNo'));
+			getFreedomList();
 		}
 	});
 };
@@ -89,152 +87,82 @@ const pagingFunc = function() {
 </script>
 </th:block>
 <th:block layout:fragment="content">
-        <div class="conts">
-            <div class="location-guide">
-                <ul class="lg-ul">
-                    <li>
-                        <span> ▶ HOME</span>
-                    </li>              
-                    <li>
-                        <span> ▶ 게시판</span>
-                    </li>
-                    <li>
-                        <span> ▶ 자유게시판</span>
-                    </li>
-                </ul>
-            </div>
-            <div class="cont-body">
-                <div class="sch-area">
-                	<div class="sch-row">
-	                    <label class="sch-lab mg-lf20">제목</label>
-	                    <input type="text" class="sch-word" value="">
-	                    <label class="sch-lab mg-lf10">작성자</label>
-	                    <input type="text" class="sch-word" value="">
-                    </div>
-                    <div class="sch-btn-area">
-                    	<button type="button" class="btn-search mg-lf50">검색</button>
-                    	<button type="button" class="btn-down">다운로드</button>
-                    </div>
-                </div>
-                <div class="data-area">
-                    <table class="data-tbl mg-top2">
-                        <colgroup>
-                            <col style="width: 5%;">
-                            <col style="width: 45%;">
-                            <col style="width: 10%;">
-                            <col style="width: 10%;">
-                            <col style="width: 10%;">
-                        </colgroup>                           
-                        <thead>
-                            <tr>
-                                <th>번호</th>
-                                <th>제목</th>
-                                <th>작성자</th>
-                                <th>등록일</th>
-                                <th>수정일</th>
-                            </tr>
-                        </thead>                       
-                        <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>제 목</td>
-                                <td>작성자1</td>
-                                <td>2022.04.21</td>
-                                <td>2022.04.21</td>
-                            </tr>
-                            <tr>
-                                <td>1</td>
-                                <td>제 목</td>
-                                <td>작성자1</td>
-                                <td>2022.04.21</td>
-                                <td>2022.04.21</td>
-                            </tr>
-                            <tr>
-                                <td>1</td>
-                                <td>제 목</td>
-                                <td>작성자1</td>
-                                <td>2022.04.21</td>
-                                <td>2022.04.21</td>
-                            </tr>
-                            <tr>
-                                <td>1</td>
-                                <td>제 목</td>
-                                <td>작성자1</td>
-                                <td>2022.04.21</td>
-                                <td>2022.04.21</td>
-                            </tr>
-                            <tr>
-                                <td>1</td>
-                                <td>제 목</td>
-                                <td>작성자1</td>
-                                <td>2022.04.21</td>
-                                <td>2022.04.21</td>
-                            </tr>
-                            <tr>
-                                <td>1</td>
-                                <td>제 목</td>
-                                <td>작성자1</td>
-                                <td>2022.04.21</td>
-                                <td>2022.04.21</td>
-                            </tr>
-                            <tr>
-                                <td>1</td>
-                                <td>제 목</td>
-                                <td>작성자1</td>
-                                <td>2022.04.21</td>
-                                <td>2022.04.21</td>
-                            </tr>
-                            <tr>
-                                <td>1</td>
-                                <td>제 목</td>
-                                <td>작성자1</td>
-                                <td>2022.04.21</td>
-                                <td>2022.04.21</td>
-                            </tr>
-                            <tr>
-                                <td>1</td>
-                                <td>제 목</td>
-                                <td>작성자1</td>
-                                <td>2022.04.21</td>
-                                <td>2022.04.21</td>
-                            </tr>
-                            <tr>
-                                <td>1</td>
-                                <td>제 목</td>
-                                <td>작성자1</td>
-                                <td>2022.04.21</td>
-                                <td>2022.04.21</td>
-                            </tr>
-                            <tr>
-                                <td>1</td>
-                                <td>제 목</td>
-                                <td>작성자1</td>
-                                <td>2022.04.21</td>
-                                <td>2022.04.21</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>                
-            </div>
-            <div class="data-btn-area mg-top2">
-            	<button type="button" class="btn-write mg-rg10">글쓰기</button>
-            </div>
-            <div class="pagenation-area">
-            	<ul class="numbers-of-page">
-            		<li class="page-num">◁</li>
-            		<li class="page-num">1</li>
-            		<li class="page-num">2</li>
-            		<li class="page-num">3</li>
-            		<li class="page-num">4</li>
-            		<li class="page-num">5</li>
-            		<li class="page-num">6</li>
-            		<li class="page-num">7</li>
-            		<li class="page-num">8</li>
-            		<li class="page-num">9</li>
-            		<li class="page-num">10</li>
-            		<li class="page-num">▷</li>
-            	</ul>
-            </div>   
+
+	<form name="searchForm">
+        <input type="hidden" name="pageNo" th:value="${boardDTO.pageNo}"/>
+        <input type="hidden" name="pageBlock" th:value="${boardDTO.pageBlock}"/>		
+	</form>
+
+    <div class="conts">
+        <div class="location-guide">
+            <ul class="lg-ul">
+                <li>
+                    <span> HOME</span>
+                </li>              
+                <li>
+                    <span> 자유게시판 </span>
+                </li>
+                <li>
+                    <span> 목록 </span>
+                </li>
+            </ul>
         </div>
+        <div class="cont-body">
+            <div class="sch-area">
+            	<div class="sch-row">
+                 <label class="sch-lab mg-lf20">제목</label>
+                 <input type="text" class="sch-word" value="">
+                 <label class="sch-lab mg-lf10">작성자</label>
+                 <input type="text" class="sch-word" value="">
+                </div>
+                <div class="sch-btn-area">
+                	<button type="button" class="btn-search mg-lf50">검색</button>
+                	<button type="button" class="btn-down">Excel</button>
+                </div>
+            </div>
+            <div class="data-area">
+                <table class="data-tbl mg-top2">
+                    <colgroup>
+                        <col style="width: 5%;">
+                        <col style="width: 45%;">
+                        <col style="width: 10%;">
+                        <col style="width: 10%;">
+                        <col style="width: 10%;">
+                    </colgroup>                           
+                    <thead>
+                        <tr>
+                            <th>번호</th>
+                            <th>제목</th>
+                            <th>작성자</th>
+                            <th>등록일</th>
+                            <th>수정일</th>
+                        </tr>
+                    </thead>                       
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>                
+        </div>
+        <div class="data-btn-area mg-top2">
+        	<button type="button" class="btn-write mg-rg10">글쓰기</button>
+        </div>
+        <div class="pagenation-area">
+        	<ul class="numbers-of-page">
+        		<li class="page-num">◁</li>
+        		<li class="page-num">1</li>
+        		<li class="page-num">2</li>
+        		<li class="page-num">3</li>
+        		<li class="page-num">4</li>
+        		<li class="page-num">5</li>
+        		<li class="page-num">6</li>
+        		<li class="page-num">7</li>
+        		<li class="page-num">8</li>
+        		<li class="page-num">9</li>
+        		<li class="page-num">10</li>
+        		<li class="page-num">▷</li>
+        	</ul>
+        </div>   
+    </div>
+    
 </th:block>
 </html>

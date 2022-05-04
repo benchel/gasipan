@@ -4,6 +4,10 @@
 <head>
 <!-- meta -->
 <meta charset="UTF-8">
+<meta th:if="${_csrf}" name="_csrf" th:content="${_csrf.token}"/>
+<meta th:unless="${_csrf}" name="_csrf" content=""/>
+<meta th:if="${_csrf}" name="_csrf_header" th:content="${_csrf.headerName}"/>
+<meta th:unless="${_csrf}" name="_csrf_header" content=""/>
 
 <!-- title -->
 <title>게시판</title>
@@ -11,15 +15,16 @@
 <!-- css -->
 <link href="/css/index.css" rel="stylesheet" type="text/css">
 <link href="/css/basic.css" rel="stylesheet" type="text/css">
-<meta th:if="${_csrf}" name="_csrf" th:content="${_csrf.token}"/>
-<meta th:unless="${_csrf}" name="_csrf" content=""/>
-<meta th:if="${_csrf}" name="_csrf_header" th:content="${_csrf.headerName}"/>
-<meta th:unless="${_csrf}" name="_csrf_header" content=""/>
 
 <!-- script -->
 <script type="text/javascript" th:src="@{/js/jquery.js}"></script>
+<script type="text/javascript" th:src="@{/js/jquery.serialize-object.min.js}"></script>
 <script type="text/javascript" th:src="@{/js/menu-control.js}"></script>
 </head>
+<script type="text/javascript">
+var token = $("meta[name='_csrf']").attr("content");
+var header = $("meta[name='_csrf_header']").attr("content");
+</script>
 <th:block layout:fragment="script"></th:block>
 <body>
 	<div id="wrap">

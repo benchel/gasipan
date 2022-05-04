@@ -16,17 +16,14 @@ $(document).ready(function() {
 	setDefault();
 });
 
-// 페이지 초기화
 const initPage = function() {
 
 };
 
-// 기본값 세팅
 const setDefault = function() {
 
 };
 
-// 이벤트 등록
 const registEvent = function() {
 	$('.btn-list').on('click', function(e) {
 		$(location).attr('href', 'list');
@@ -37,10 +34,7 @@ const registEvent = function() {
 	});
 };
 
-const regist = function() {
-	var token = $("meta[name='_csrf']").attr("content");
-	var header = $("meta[name='_csrf_header']").attr("content");
-	
+const regist = function() {	
 	var formData = {
 		title : $('input[name="title"]').val(),
 		content : $('textarea[name="content"]').val(),
@@ -77,17 +71,17 @@ const regist = function() {
 <th:block layout:fragment="content">
         <div class="conts">
             <div class="location-guide">
-                <ul class="lg-ul">
-                    <li>
-                        <span> ▶ HOME</span>
-                    </li>              
-                    <li>
-                        <span> ▶ 게시판</span>
-                    </li>
-                    <li>
-                        <span> ▶ 자유게시판</span>
-                    </li>
-                </ul>
+	            <ul class="lg-ul">
+	                <li>
+	                    <span> HOME</span>
+	                </li>              
+	                <li>
+	                    <span> 자유게시판 </span>
+	                </li>
+	                <li>
+	                    <span> 등록 </span>
+	                </li>
+	            </ul>
             </div>
             <div class="cont-body">
                 <div class="data-area">
@@ -117,10 +111,10 @@ const regist = function() {
 	                        	<th colspan="1" class="bgcolor-ccddbb">첨부파일</th>
 	                        	<td colspan="3">
 	                        		<div class="file-group">
-	                        			<span class="attached-file"><a href="#">대충파일이름</a><button type="button">삭제</button></span>
-	                        			<span class="attached-file"><a href="#">대충파일이름</a><button type="button">삭제</button></span>
-	                        			<span class="attached-file"><a href="#">대충파일이름</a><button type="button">삭제</button></span>
-	                        			<button type="button" class="btn-addfile">첨부</button>
+	                        			<span class="attached-file"><a href="#">파일1</a><button type="button">삭제</button></span>
+	                        			<span class="attached-file"><a href="#">파일2</a><button type="button">삭제</button></span>
+	                        			<span class="attached-file"><a href="#">파일3</a><button type="button">삭제</button></span>
+	                        			<button type="button" class="btn-addfile">추가</button>
 	                        		</div>
 	                        	<td>
 	                        </tr>

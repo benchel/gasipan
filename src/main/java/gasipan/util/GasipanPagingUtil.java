@@ -98,13 +98,13 @@ public class GasipanPagingUtil {
 			rs.append("	<ul class=\"numbers-of-page\">	\n");
 
 			// 이전
-			rs.append(" <li class=\"page-num\">◁</li> ");
+			rs.append(" <li class=\"page-num\" data-pageNo=\""+ beforePage +"\">◁</li> ");
 			// 이동 페이지
 			for (long i = startPage; i <= endPage; i++) {
 				if (pageNo == i) {
-					rs.append(" <li class=\"page-num\"> " + i + " </li> ");
+					rs.append(" <li class=\"page-num active\"> " + i + " </li> ");
 				} else {
-					rs.append(" <li class=\"page-num\"> " + i + " </li>");
+					rs.append(" <li class=\"page-num\" data-pageNo=\""+ i +"\"> " + i + " </li>");
 				}
 			}
 
