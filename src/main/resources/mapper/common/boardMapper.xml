@@ -38,7 +38,13 @@
 	<sql id="whereBoardList">
 		WHERE 1=1
 		<if test="boardType != null and boardType != ''">
-			AND b.board_type = 02
+			AND b.board_type = #{boardType}
+		</if>
+		<if test="title != null and title != ''">
+			AND b.title LIKE CONCAT(CONCAT('%', #{title}), '%')
+		</if>
+		<if test="writer != null and writer != ''">
+			AND b.writer LIKE CONCAT(CONCAT('%', #{writer}), '%')
 		</if>
 	</sql>
 	

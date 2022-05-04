@@ -30,12 +30,25 @@ const registEvent = function() {
 		$(location).attr('href', 'regist');
 	});
 	
+	$('.btn-search').on('click', function(e) {
+		getFreedomList();
+	});
+	
+	$('input[class="sch-word"]').on('keydown', function(e) {
+		if (e.keyCode == 13) {
+			e.preventDefault();
+			getFreedomList();
+		}
+	});
+	
 };
 
 
 const getFreedomList = function() {
 	const formData = $('form[name="searchForm"]').serializeObject();
 	formData['boardType'] = 02;
+	formData['title'] = $('input[name="title"]').val();
+	formData['writer'] = $('input[name="writer"]').val();
 	
 	$.ajax({
 		data : JSON.stringify(formData),
@@ -111,9 +124,9 @@ const pagingFunc = function() {
             <div class="sch-area">
             	<div class="sch-row">
                  <label class="sch-lab mg-lf20">제목</label>
-                 <input type="text" class="sch-word" value="">
+                 <input type="text" class="sch-word" name="title" value="">
                  <label class="sch-lab mg-lf10">작성자</label>
-                 <input type="text" class="sch-word" value="">
+                 <input type="text" class="sch-word" name="writer" value="">
                 </div>
                 <div class="sch-btn-area">
                 	<button type="button" class="btn-search mg-lf50">검색</button>
