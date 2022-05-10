@@ -65,7 +65,7 @@ public class WebSecurityConfing {
 			
 			http.authorizeRequests()
 					.antMatchers("/myPage").authenticated()
-					.antMatchers("/myPage").hasAuthority("USER") // 권한 필요
+					.antMatchers("/myPage", "/freedom/regist").hasAuthority("USER") // 권한 필요
 					.and()
 				.exceptionHandling()
 					.accessDeniedHandler(new UserAccessDeniedHandlerImp()) // 권한이 없는 사용자의 접근이 있을 때의 동작 핸들링
