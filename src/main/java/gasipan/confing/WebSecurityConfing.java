@@ -63,7 +63,10 @@ public class WebSecurityConfing {
 		@Override
 		protected void configure(HttpSecurity http) throws Exception {
 			
-			http.authorizeRequests()
+			http.requestMatchers()
+					.antMatchers("/user/*", "/freedom/*", "/myPage")
+					.and()
+				.authorizeRequests()
 					.antMatchers("/myPage").authenticated()
 					.antMatchers("/myPage", "/freedom/regist").hasAuthority("USER") // 권한 필요
 					.and()
@@ -131,7 +134,6 @@ public class WebSecurityConfing {
 					.antMatchers("/admin/*")
 					.and()
 				.authorizeRequests()
-					.antMatchers("/admin/loginPage").permitAll()
 					.antMatchers("/admin/*").authenticated()
 					.antMatchers("/admin/*").hasAuthority("ADMIN")
 					.and()
@@ -139,6 +141,7 @@ public class WebSecurityConfing {
 					.accessDeniedHandler(new AdminAccessDeniedHandlerImp()) // 권한이 없는 사용자의 접근 핸들링
 					.and()
 				.formLogin()
+					.permitAll()
 					.loginPage("/admin/loginPage")
 					.usernameParameter("id")
 					.passwordParameter("pwd")				
