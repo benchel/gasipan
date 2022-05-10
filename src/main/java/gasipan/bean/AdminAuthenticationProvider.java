@@ -39,7 +39,7 @@ public class AdminAuthenticationProvider implements AuthenticationProvider {
 		
 		try {
 			AdminVO admin = adminDetailsServiceImp.loadUserByUsername(id);
-			
+
 			// 비밀번호 일치 여부 확인
 			if(!adminPasswordEncoder.matches(pwd, admin.getPassword())) {
 				throw new BadCredentialsException("a discrepancy between id and pwd");
@@ -49,8 +49,10 @@ public class AdminAuthenticationProvider implements AuthenticationProvider {
 			authorities.add(new SimpleGrantedAuthority(admin.getAuthority()));
 			return new UsernamePasswordAuthenticationToken(admin, pwd, authorities);
 			
+		} catch (NullPointerException e) {
+			throw new BadCredentialsException("NullPointerException");
 		} catch (UsernameNotFoundException e) {
-			throw new BadCredentialsException("not exist admin");
+			throw new BadCredentialsException("not exist user");
 		}
 	}
 
