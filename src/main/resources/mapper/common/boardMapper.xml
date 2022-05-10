@@ -72,4 +72,11 @@
 		LIMIT #{pageSize} OFFSET #{pageOffset}
 	</select>
 	
+	<select id="selectBoardByIdx" parameterType="gasipan.dto.BoardDTO" 
+		resultType="gasipan.vo.BoardVO">
+		<include refid="basicTable"/>
+		WHERE b.board_type = #{boardType} 
+		AND b.board_idx = #{boardIdx}
+	</select>
+	
 </mapper>

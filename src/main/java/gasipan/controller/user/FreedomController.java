@@ -3,6 +3,7 @@ package gasipan.controller.user;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -28,7 +29,7 @@ public class FreedomController {
 	 * @return
 	 */
 	@GetMapping("/list")
-	public String list(@ModelAttribute("boardDTO") BoardDTO boardDTO) {
+	public String list(@ModelAttribute("boardDTO") BoardDTO boardDTO) throws Exception {
 		return "user/freedom/list";
 	}
 	
@@ -49,7 +50,7 @@ public class FreedomController {
 	 * @return
 	 */
 	@GetMapping("/regist")
-	public String registHTML() {
+	public String registHTML() throws Exception {
 		return "user/freedom/regist";
 	}
 	
@@ -63,6 +64,12 @@ public class FreedomController {
 	@ResponseBody
 	public ResponseEntity<?> regist(@RequestBody BoardDTO boardDTO) throws Exception {
 		return new ResponseEntity<>(freedomService.registFreedom(boardDTO), HttpStatus.OK);
+	}
+	
+	@GetMapping("/view")
+	public String view(BoardDTO boardDTO, ModelMap modelMap) throws Exception {
+		modelMap.addAttribute("freedom", freedomService.selectBoardByIdx(boardDTO));
+		return "user/freedom/view";
 	}
 	
 }

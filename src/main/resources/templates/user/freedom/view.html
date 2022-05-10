@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorate="~{./layout/basic_layout}">
+<head>
+
+
+
+
+</head>
+<th:block layout:fragment="script">
+<script type="text/javascript">
+$(document).ready(function() {
+	initPage();
+	registEvent();
+	setDefault();
+});
+
+const initPage = function() {
+
+};
+
+const setDefault = function() {
+
+};
+
+const registEvent = function() {
+	$('.btn-list').on('click', function(e) {
+		$(location).attr('href', 'list');
+	});
+};
+</script>
+</th:block>
+<th:block layout:fragment="content">
+        <div class="conts">
+            <div class="location-guide">
+	            <ul class="lg-ul">
+	                <li>
+	                    <span> HOME </span>
+	                </li>              
+	                <li>
+	                    <span> 자유게시판</span>
+	                </li>
+	                <li>
+	                    <span> 조회 </span>
+	                </li>
+	            </ul>
+            </div>
+            <div class="cont-body">
+                <div class="data-area">
+                    <table class="data-tbl mg-top2">
+	                    <colgroup>
+	                        <col width="10%;">
+	                        <col>
+	                        <col width="10%;">
+	                        <col>
+	                    </colgroup>
+	                    <tbody class="data-tbl-body">
+	                        <tr>
+	                            <th colspan="1" class="bgcolor-ccddbb">제목</th>
+	                            <td colspan="3">
+	                            	<span class="regist-input w95 flo-left" th:text="${freedom.board.title}"></span>
+	                            </td>
+	                        </tr>
+	                        <tr>
+	                            <th colspan="4" class="bgcolor-ccddbb">내용</th>
+	                        </tr>
+	                        <tr>
+	                            <td colspan="4">
+	                            	<span class="regist-txtarea w95 flo-left" th:text="${freedom.board.content}"></span>
+	                            </td>
+	                        </tr>
+	                        <tr>
+	                        	<th colspan="1" class="bgcolor-ccddbb">첨부파일</th>
+	                        	<td colspan="3">
+	                        		<div class="file-group">
+	                        			<span class="attached-file"><a href="#">파일1</a><button type="button">삭제</button></span>
+	                        			<span class="attached-file"><a href="#">파일2</a><button type="button">삭제</button></span>
+	                        			<span class="attached-file"><a href="#">파일3</a><button type="button">삭제</button></span>
+	                        			<button type="button" class="btn-addfile">추가</button>
+	                        		</div>
+	                        	<td>
+	                        </tr>
+	                        <tr>
+	                            <th class="bgcolor-ccddbb" colspan="1">작성자</th>
+	                            <td class="ssUserId" th:text="${freedom.board.writer}"></td>
+	                            <th class="bgcolor-ccddbb" colspan="1">등록일</th>
+	                            <td>2022.04.22</td>
+	                        </tr>
+	                    </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="data-btn-area mg-top2">
+            	<button type="button" class="btn-list mg-rg7">목록</button>
+            </div>
+        </div>
+</th:block>
+</html>

@@ -80,4 +80,10 @@ public class FreedomService {
 		return rs;
 	}
 	
+	@Transactional(readOnly = true)
+	public Map<String, Object> selectBoardByIdx(BoardDTO boardDTO) throws Exception {
+		Map<String, Object> rs = new HashMap<>();
+		rs.put("board", boardDAO.selectBoardByIdx(boardDTO));
+		return rs;
+	}
 }

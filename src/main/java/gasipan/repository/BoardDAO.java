@@ -12,4 +12,5 @@ public interface BoardDAO {
 	public void insertBoard(BoardDTO boardDTO) throws Exception;
 	public long selectBoardCnt(BoardDTO boardDTO) throws Exception;
 	public List<BoardVO> selectBoardList(BoardDTO boardDTO) throws Exception;
+	public BoardVO selectBoardByIdx(BoardDTO boardDTO) throws Exception;
 }
