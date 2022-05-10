@@ -39,8 +39,7 @@ const registEvent = function() {
 			e.preventDefault();
 			getFreedomList();
 		}
-	});
-	
+	});	
 };
 
 
@@ -81,9 +80,10 @@ const getFreedomList = function() {
 		$('.pagenation-area').html(result.pagingHTML);
 
 		pagingFunc();
+		viewFunc();
 	}).fail(function (xhr, status, error) {
 		alert("데이터를 가지고 오는데 실패하였습니다.");
-	});	
+	});
 };
 
 const pagingFunc = function() {
@@ -96,12 +96,22 @@ const pagingFunc = function() {
 	});
 };
 
+const viewFunc = function() {
+	$('.viewBtn').off('click').on('click', function (e) {
+		e.preventDefault();
+		const idx = $(this).attr('data-boardIdx');
+		$('input[name="boardIdx"]').val(idx);
+		$(location).attr('href', 'view?' + $('[name="searchForm"]').serialize());
+	});
+};
 
 </script>
 </th:block>
 <th:block layout:fragment="content">
 
 	<form name="searchForm">
+        <input type="hidden" name="boardType" value="2"/>
+        <input type="hidden" name="boardIdx" value=""/>
         <input type="hidden" name="pageNo" th:value="${boardDTO.pageNo}"/>
         <input type="hidden" name="pageBlock" th:value="${boardDTO.pageBlock}"/>		
 	</form>
@@ -157,7 +167,7 @@ const pagingFunc = function() {
             </div>                
         </div>
         <div class="data-btn-area mg-top2">
-        	<button type="button" class="btn-write mg-rg10">글쓰기</button>
+        	<button type="button" class="btn-write mg-rg7">글쓰기</button>
         </div>
         <div class="pagenation-area">
         	<ul class="numbers-of-page">
