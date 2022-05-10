@@ -5,6 +5,7 @@
 .f-left{float: left;}
 
 .w100{width: 100%;}
+.w90{width: 90%;}
 .w95{width: 95%;}
 .wd80{width: 80%;}
 .w10{width: 10%;}
@@ -33,6 +34,7 @@
 .bgcolor-gray{background-color: #efefefef;}
 .bgcolor-ccddbb{background-color: #ccddbb;}
 
+.flo-left{float: left;}
 
 .location-guide{float:left; width : 80%; margin-left : 13%; margin-right: 17%; margin-top : 3%; font-size : 14pt;}
 .lg-ul li{float: left; width: 10%; list-style: none; text-align: center;}
