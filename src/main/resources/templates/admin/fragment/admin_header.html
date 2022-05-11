@@ -6,11 +6,11 @@
     </div>
     <div class="profile">
 		<!-- 로그인 여부 -->   
-        <div class="prof-logut" th:unless="${#strings.isEmpty(admin)}">
-            <img class="prof-img" src="../image/profile.png" width="80">
+        <div class="prof-logut" th:unless="${session.ssAdminId eq null}">
+            <img class="prof-img" src="/image/profile.png" width="80">
             <a class="prof-link" th:href="@{/admin/logout}">로그아웃</a>                   
         </div>
-        <div class="prof-login" th:if="${#strings.isEmpty(admin)}">
+        <div class="prof-login" th:if="${session.ssAdminId eq null}">
             <a class="prof-link" th:href="@{/admin/loginPage}">로그인</a>
         </div>
         <!-- // 로그인 여부 -->
