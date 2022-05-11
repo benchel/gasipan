@@ -1,4 +1,4 @@
-package gasipan.confing;
+package gasipan.config;
 
 import javax.servlet.http.HttpSession;
 

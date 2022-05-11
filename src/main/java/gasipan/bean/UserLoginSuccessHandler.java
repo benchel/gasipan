@@ -16,7 +16,7 @@ import org.springframework.security.web.savedrequest.HttpSessionRequestCache;
 import org.springframework.security.web.savedrequest.RequestCache;
 import org.springframework.security.web.savedrequest.SavedRequest;
 
-import gasipan.confing.SessionManager;
+import gasipan.config.SessionManager;
 import gasipan.service.UserService;
 import gasipan.vo.UserVO;
 import lombok.extern.slf4j.Slf4j;

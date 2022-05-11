@@ -1,4 +1,4 @@
-package gasipan.confing;
+package gasipan.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -22,7 +22,7 @@ import gasipan.bean.UserLoginSuccessHandler;
 import gasipan.service.AdminService;
 
 @EnableWebSecurity
-public class WebSecurityConfing { 
+public class WebSecurityConfig { 
 
 	@Configuration
 	@Order(1)
