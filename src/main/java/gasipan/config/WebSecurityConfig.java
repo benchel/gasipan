@@ -77,7 +77,7 @@ public class WebSecurityConfig {
 					.permitAll()
 					.loginPage("/user/loginPage")
 					.usernameParameter("id")
-					.passwordParameter("pwd")				
+					.passwordParameter("pwd")
 					.loginProcessingUrl("/user/login")
 					.successHandler(userLoginSuccessHandler()) // 로그인 성공 이후의 동작 핸들링
 					.failureHandler(userFailureHandler())
