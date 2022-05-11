@@ -2,6 +2,7 @@ package gasipan.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import gasipan.interceptor.UserInterceptor;
@@ -25,4 +26,12 @@ public class WebMvcConfig implements WebMvcConfigurer {
 	public UserInterceptor userInterceptor() {
 		return new UserInterceptor();
 	}
+	
+	@Override
+	public void addInterceptors(InterceptorRegistry registry) {
+		registry.addInterceptor(userInterceptor())
+		.addPathPatterns("/*")
+		.excludePathPatterns(USER_INTERCEPTOR_EXCLUDE_PATTERN_ARR);
+	}
+	
 }
