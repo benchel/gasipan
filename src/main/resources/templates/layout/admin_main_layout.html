@@ -10,14 +10,15 @@
 	
 	<!-- script -->
 	<script type="text/javascript" src="../js/jquery.js"></script>
+	<script type="text/javascript" src="../js/admin-menu-control.js"></script>
 	
 	<title>게시판 [관리자]</title>
 </head>
 <body>
 	<div id="wrap">
-		<div th:replace="/fragment/admin_header"></div>
+		<div th:replace="/admin/fragment/admin_header"></div>
 		<section class="conts">
-			<div th:replace="/fragment/admin_menu"></div>
+			<div th:replace="/admin/fragment/admin_menu"></div>
             <th:block class="cont-body"></th:block>			
 		</section>
 	</div>
