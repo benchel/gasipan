@@ -131,11 +131,11 @@ public class WebSecurityConfig {
 			// http.authenticationProvider(null); 인증 성공, 인증 실패, 결정할 수 없음. 이 세 가지 시나리오에 대한 동작 설정
 			
 			http.requestMatchers()
-					.antMatchers("/admin/*")
+					.antMatchers("/admin", "/admin/**")
 					.and()
 				.authorizeRequests()
-					.antMatchers("/admin/*").authenticated()
-					.antMatchers("/admin/*").hasAuthority("ADMIN")
+					.antMatchers("/admin", "/admin/**").authenticated()
+					.antMatchers("/admin", "/admin/**").hasAuthority("ADMIN")
 					.and()
 				.exceptionHandling()
 					.accessDeniedHandler(new AdminAccessDeniedHandlerImp()) // 권한이 없는 사용자의 접근 핸들링

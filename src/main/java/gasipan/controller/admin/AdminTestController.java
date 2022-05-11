@@ -19,14 +19,13 @@ import lombok.extern.slf4j.Slf4j;
 
 @Controller
 @RequiredArgsConstructor
-@RequestMapping("/admin/*")
 @Slf4j
 public class AdminTestController {
 
 	private final HttpSession session;
 	private final AdminService adminService;
 	
-	@GetMapping("/")
+	@GetMapping("/admin")
 	public String view(ModelMap modelMap) {
 		
 		try {
@@ -41,7 +40,7 @@ public class AdminTestController {
 		return "admin/index";
 	}
 	
-	@GetMapping("/loginPage")
+	@GetMapping("/admin/loginPage")
 	public String loginView(@Param("error") String error, ModelMap modelMap) {
 		modelMap.addAttribute("error", error);
 		
