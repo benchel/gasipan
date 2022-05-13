@@ -3,7 +3,7 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
       
-<mapper namespace="gasipan.repository.AdminDao">
+<mapper namespace="gasipan.repository.AdminDAO">
 	
 	<select id="selectAdminById" parameterType="gasipan.dto.AdminDTO"
 	 resultType="gasipan.vo.AdminVO">

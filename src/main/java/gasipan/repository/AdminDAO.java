@@ -6,6 +6,6 @@ import gasipan.dto.AdminDTO;
 import gasipan.vo.AdminVO;
 
 @Mapper
-public interface AdminDao {
+public interface AdminDAO {
 	public AdminVO selectAdminById(AdminDTO adminDTO);
 }

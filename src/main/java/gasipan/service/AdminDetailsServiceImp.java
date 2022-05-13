@@ -7,7 +7,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import gasipan.dto.AdminDTO;
-import gasipan.repository.AdminDao;
+import gasipan.repository.AdminDAO;
 import gasipan.vo.AdminVO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -18,7 +18,7 @@ import lombok.extern.slf4j.Slf4j;
 public class AdminDetailsServiceImp implements UserDetailsService {
 
 	@Autowired
-	private final AdminDao adminDao;
+	private final AdminDAO adminDao;
 	
 	@Override
 	public AdminVO loadUserByUsername(String username) throws UsernameNotFoundException {

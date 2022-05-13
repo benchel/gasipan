@@ -6,7 +6,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import gasipan.bean.GasipanPasswordEncoder;
 import gasipan.dto.AdminDTO;
-import gasipan.repository.AdminDao;
+import gasipan.repository.AdminDAO;
 import gasipan.vo.AdminVO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -17,7 +17,7 @@ import lombok.extern.slf4j.Slf4j;
 public class AdminService {
 
 	@Autowired
-	private final AdminDao adminDao;
+	private final AdminDAO adminDao;
 	
 	@Transactional(readOnly = true)
 	public AdminVO selectAdminById(String adminId) throws Exception {
