@@ -11,7 +11,7 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.stereotype.Component;
 
-import gasipan.repository.UserDao;
+import gasipan.repository.UserDAO;
 import gasipan.service.UserDetailsServiceImp;
 import gasipan.service.UserService;
 import gasipan.vo.UserVO;

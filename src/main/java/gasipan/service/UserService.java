@@ -5,7 +5,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import gasipan.bean.GasipanPasswordEncoder;
 import gasipan.dto.UserDTO;
-import gasipan.repository.UserDao;
+import gasipan.repository.UserDAO;
 import gasipan.vo.UserVO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -17,7 +17,7 @@ import lombok.extern.slf4j.Slf4j;
 public class UserService {
 
 	private final GasipanPasswordEncoder sitePasswordEncoder;
-	private final UserDao userDao;
+	private final UserDAO userDao;
 	
 	/**
 	 * 회원가입

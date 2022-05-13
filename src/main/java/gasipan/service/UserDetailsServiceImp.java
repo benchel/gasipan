@@ -6,7 +6,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import gasipan.dto.UserDTO;
-import gasipan.repository.UserDao;
+import gasipan.repository.UserDAO;
 import gasipan.vo.UserVO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -18,7 +18,7 @@ import lombok.extern.slf4j.Slf4j;
 public class UserDetailsServiceImp implements UserDetailsService {
 	
 	@Autowired
-	private final UserDao userDao;
+	private final UserDAO userDao;
 	
 	/**
 	 * 회원 조회

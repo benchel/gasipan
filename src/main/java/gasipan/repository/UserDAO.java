@@ -6,7 +6,7 @@ import gasipan.dto.UserDTO;
 import gasipan.vo.UserVO;
 
 @Mapper
-public interface UserDao {
+public interface UserDAO {
 	public UserVO selectUserById(UserDTO dto);
 	public int insertUserInfor(UserDTO dto); 
 }
