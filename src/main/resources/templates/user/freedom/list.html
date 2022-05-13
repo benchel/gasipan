@@ -57,7 +57,7 @@ const getFreedomList = function() {
 		contentType : 'application/json',
 		beforeSend : function(xhr){
 			xhr.setRequestHeader(header, token);
-		}		
+		}
 	}).done(function (result, status, xhr) {
 		const totalCount = result.totalCount;
 		const totalPageNo = result.totalPageNo;

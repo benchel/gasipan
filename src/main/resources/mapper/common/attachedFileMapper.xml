@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+      
+<mapper namespace="gasipan.repository.AttachedFileDAO">
+	
+	<insert id="insertAttachedFile" parameterType="gasipan.dto.AttachedFileDTO">
+		INSERT INTO attached_file 
+		(file_key, file_name, mime_type, board_type, size) VALUES
+		(#{fileKey}, #{fileName}, #{mimeType}, #{boardType}, #{size})
+	</insert>
+	
+</mapper>

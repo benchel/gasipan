@@ -32,6 +32,9 @@ mybatis:
 # 로그 파일 경로
 log:
   path: D:\@\gasipan\log
+attached:
+  upload:
+    root: D:\@\gasipan\attached_file
 ...
 
 --- # dev

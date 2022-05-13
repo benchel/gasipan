@@ -13,5 +13,6 @@ public class GasipanConstructer {
 	
 	public static final int RESULT_SUCCESS = 1;
 	public static final int LOGIN_ERROR_CODE = 01;
+	public static final int ATTACHED_ERROR_CODE = 01;
 	
 }

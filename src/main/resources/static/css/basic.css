@@ -81,3 +81,23 @@ border: solid #ddeecc 3px; border-radius: 5px;}
 .page-num{float: left; width: 3%; height: 30px; text-align: center; color : #99aa88; 
 padding-top: 0.5%; padding-bottom: 0.5%; border-top: solid #99aa88 1px; border-bottom: solid #99aa88 1px; border-right: solid #99aa88 1px;}
 .page-num:hover {background-color: #99aa88; color: #ccddbb;}
+
+
+/* Modal */
+.file-upload-modal{
+	position:absolute; float:left; background-color: white; border: solid 1px #99aa88; z-index: 1000; width: 35%; height: 200px;
+	margin-left: 35%; margin-right: 35%; margin-top: 15%;
+}
+
+.modal-hd{float: left; width: 100%; text-align: center; margin-top: 5%; margin-bottom: 3%;}
+.modal-hd span{color: #657654; font-size: 18px;}
+.modal-cont{float: left; width: 100%; text-align: center; height: 40%;}
+
+#attachFileForm{width:100%;}
+
+.form-row{width:90%; margin-left:5%; margin-right:5%; color: #99aa88; border: solid 1px #99aa88; height: 40px; padding-top: 10px;}
+.uploadFilemName{width:90%; height: 120px;}
+
+.modal-footer{float: left; width: 100%;}
+.btn-upload{background-color: #99aa88; border: solid #99aa88 1px; color : #fff7e6; width: 15%; height: 30px; margin-left: 35%;}
+.btn-close{background-color: #99aa88; border: solid #99aa88 1px; color : #fff7e6; width: 15%; height: 30px;}
