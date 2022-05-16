@@ -27,7 +27,7 @@
 			, #{fileKey1}
 		</if>
 		<if test="fileKey2 != null and fileKey2 != ''">
-			, #{fileKey2},
+			, #{fileKey2}
 		</if>
 		<if test="fileKey3 != null and fileKey3 != ''">
 			, #{fileKey3}
@@ -69,6 +69,7 @@
 		resultType="gasipan.vo.BoardVO">
 		<include refid="basicTable"/>
 		<include refid="whereBoardList"/>
+		ORDER BY b.board_idx DESC
 		LIMIT #{pageSize} OFFSET #{pageOffset}
 	</select>
 	

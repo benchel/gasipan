@@ -41,7 +41,10 @@ const regist = function() {
 		title : $('input[name="title"]').val(),
 		content : $('textarea[name="content"]').val(),
 		boardType : boardType,
-		writer : $('td[class="ssUserId"]').text()
+		writer : $('td[class="ssUserId"]').text(),
+		fileKey1 : $('input[name="fileKey1"]').val(),
+		fileKey2 : $('input[name="fileKey2"]').val(),
+		fileKey3 : $('input[name="fileKey3"]').val()
 	};
 	
 	$.ajax({
@@ -111,11 +114,7 @@ const regist = function() {
 	                        	<th colspan="1" class="bgcolor-ccddbb">첨부파일</th>
 	                        	<td colspan="3">
 	                        		<div class="file-group">
- 	                        		<!--
-	 	                        		<span class="attached-file">
-		                        			<a href="#">파일1</a><button type="button">삭제</button>
-		                        		</span>
-	                        		-->
+	                        		
 	                        		</div>
 	                        		<button type="button" class="btn-addfile">추가</button>
 	                        	<td>

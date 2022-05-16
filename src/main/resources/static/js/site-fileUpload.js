@@ -8,12 +8,15 @@ const progressEvent = function() {
 	});
 	
 	$('.btn-close').click(function() {
-		$('.file-upload-modal').css('display', 'none');
+		modalClose();
 	});
 	
 	$('.btn-addfile').click(function() {
-		iniModal();
-		$('.file-upload-modal').css('display', 'block');
+		if(!fileCount()) { 
+			alert('파일첨부는 최대 3개까지 가능합니다.'); 
+			return false; 
+		}
+		modalOpen();
 	});
 };
 
@@ -21,12 +24,33 @@ const iniModal = function() {
 	document.getElementById('attachedFileForm').reset();
 };
 
+const modalOpen = function() {
+	iniModal();
+	$('.file-upload-modal').css('display', 'block');	
+};
+
+const modalClose = function() {
+	$('.file-upload-modal').css('display', 'none');	
+};
+
+const fileCount = function() {
+	let fileRank = $('.file-group').children('.attached-file').length;
+	
+	if(fileRank > 2) {
+		return false;
+	}
+	return true;
+};
+
+
 const setFileHTML = function(fileKey, fileName) {
 	let fileGroup = $('.file-group');
 	let fileHTML = '';
+	let fileRank = $('.file-group').children('.attached-file').length + 1;
 	
 	fileHTML += '<span class="attached-file">';
-	fileHTML += '	<a href="'+ fileKey +'">'+ fileName +'</a>';
+	fileHTML += '	<input type="hidden" name="fileKey'+ fileRank +'" value="'+ fileKey +'">';
+	fileHTML += '	<a href="'+ fileKey + '">'+ fileName +'</a>';
 	fileHTML += '	<button type="button">삭제</button>';
 	fileHTML += '</span>';
 	
