@@ -75,9 +75,24 @@
 	
 	<select id="selectBoardByIdx" parameterType="gasipan.dto.BoardDTO" 
 		resultType="gasipan.vo.BoardVO">
-		<include refid="basicTable"/>
+		SELECT 
+			b.board_idx,
+			b.title,
+			b.board_type,
+			b.content,
+			b.writer,
+			DATE_FORMAT(reg_date, '%y-%m-%d') AS reg_date,
+			b.file_key1,
+			(SELECT file_name FROM attached_file af WHERE af.file_key = b.file_key1) AS file_name1,
+			b.file_key2,
+			(SELECT file_name FROM attached_file af WHERE af.file_key = b.file_key2) AS file_name2,
+			b.file_key3,
+			(SELECT file_name FROM attached_file af WHERE af.file_key = b.file_key3) AS file_name3			
+		FROM board b
 		WHERE b.board_type = #{boardType} 
 		AND b.board_idx = #{boardIdx}
 	</select>
+	
+	
 	
 </mapper>

@@ -4,6 +4,10 @@ import lombok.Data;
 
 @Data
 public class BoardVO extends BasicVO {
+	private String fileName1;
+	private String fileName2;
+	private String fileName3;
+	
 	private long boardIdx;
 	private long boardType;
 	private String title;
