@@ -22,7 +22,7 @@
 		 	, file_key3
 		 </if>
 		 ) VALUES (
-		#{boardIdx}, #{boardType}, #{title}, #{content}, #{writer}, sysdate(), #{modifyDate}
+		#{boardIdx}, #{boardType}, #{title}, #{content}, #{writer}, sysdate(), sysdate()
 		<if test="fileKey1 != null and fileKey1 != ''">
 			, #{fileKey1}
 		</if>
@@ -55,7 +55,8 @@
 			title,
 			content,
 			writer,
-			DATE_FORMAT(reg_date, '%y-%m-%d') AS reg_date	
+			DATE_FORMAT(reg_date, '%y-%m-%d') AS reg_date,
+			DATE_FORMAT(modify_date, '%y-%m-%d') AS modify_date	
 		FROM board b
 	</sql>
 	
@@ -82,6 +83,7 @@
 			b.content,
 			b.writer,
 			DATE_FORMAT(reg_date, '%y-%m-%d') AS reg_date,
+			DATE_FORMAT(modify_date, '%y-%m-%d') AS modify_date,
 			b.file_key1,
 			(SELECT file_name FROM attached_file af WHERE af.file_key = b.file_key1) AS file_name1,
 			b.file_key2,
