@@ -16,6 +16,9 @@ $(document).ready(function() {
 	setDefault();
 });
 
+const boardType = 02;
+const boardTypeStr = 'freedom';
+
 const initPage = function() {
 
 };
@@ -75,14 +78,17 @@ const registEvent = function() {
 	                        	<td colspan="3">
 	                        		<div class="file-group">
 	                        			<span th:unless="${freedom.board.fileName1 eq null}" class="attached-file">
-	                        				<a href="#" th:text="${freedom.board.fileName1}"></a><button type="button">삭제</button>
+	                        				<span class="pointer" th:text="${freedom.board.fileName1}"></span>
+	                        				<input type="hidden" name="fileKey" th:value="${freedom.board.fileKey1}">
 	                        			</span>
 	                        			<span th:unless="${freedom.board.fileName2 eq null}" class="attached-file">
-	                        				<a href="#" th:text="${freedom.board.fileName2}">파일2</a><button type="button">삭제</button>
+	                        				<span class="pointer" th:text="${freedom.board.fileName2}"></span>
+	                        				<input type="hidden" name="fileKey" th:value="${freedom.board.fileKey2}">
 	                        			</span>
 	                        			<span th:unless="${freedom.board.fileName3 eq null}" class="attached-file">
-	                        				<a href="#" th:text="${freedom.board.fileName3}">파일3</a><button type="button">삭제</button></span>
-	                        			<button type="button" class="btn-addfile">추가</button>
+	                        				<span class="pointer" th:text="${freedom.board.fileName3}"></span>
+	                        				<input type="hidden" name="fileKey" th:value="${freedom.board.fileKey3}">
+	                        			</span>
 	                        		</div>
 	                        	<td>
 	                        </tr>
@@ -97,7 +103,7 @@ const registEvent = function() {
                 </div>
             </div>
             <div class="data-btn-area mg-top2">
-            	<button type="button" class="btn-list mg-rg7">목록</button>
+            	<button type="button" class="btn-list mg-rg7 pointer">목록</button>
             </div>
         </div>
 </th:block>

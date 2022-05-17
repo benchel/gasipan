@@ -1,7 +1,10 @@
 package gasipan.controller.user;
 
+import java.io.BufferedInputStream;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.HashMap;
@@ -9,6 +12,7 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.UUID;
 
+import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -24,10 +28,12 @@ import gasipan.constant.GasipanConstructer;
 import gasipan.dto.AttachedFileDTO;
 import gasipan.service.AttachedFileService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 @Controller
 @RequiredArgsConstructor
 @RequestMapping("/attached/*")
+@Slf4j
 public class UserAttachedController {
 
 	private final Environment environment;
@@ -121,8 +127,61 @@ public class UserAttachedController {
     }	
 	
 	@PostMapping("/file/download")
-	public void downloadFile() {
+	@ResponseBody
+	public void downloadFile(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		String fileKey = request.getParameter("fileKey");
+		String fileName = request.getParameter("fileName");
+		String boardType = request.getParameter("boardType");
+		String boardTypeStr = request.getParameter("boardTypeStr");
+		String filePath = environment.getProperty("attached.upload.root") + "\\" + boardTypeStr;
 		
+		log.info("------down--------fileKey--------"+fileKey);
+		log.info("------down--------fileName--------"+fileName);
+		log.info("------down--------boardType--------"+boardType);
+		log.info("------down--------downloadPath--------"+filePath);
+		
+		// 다운로드 대상을 파일객체로 생성
+		File downFile = this.getFile(fileKey, filePath);
+
+		// HTTP 응답 데이터형식 지정
+		response.setContentType("application/octet-stream");
+		// HTTP 응답 헤더 설정
+		response.setHeader("Content-disposition", "attachment;filename=\""+this.korean2ascii(fileName));
+		ServletOutputStream servletOutputStream = response.getOutputStream();
+		
+		try {
+			
+			byte readByte[] =  new byte[4096];
+			FileInputStream fileinputStream = new FileInputStream(downFile);
+			BufferedInputStream bufferedInputStream = new BufferedInputStream(fileinputStream);
+			
+			int i;
+			while((i = bufferedInputStream.read(readByte, 0, 4096)) != -1)
+				servletOutputStream.write(readByte, 0, i);
+			
+			bufferedInputStream.close();
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		servletOutputStream.flush();
+		servletOutputStream.close();
 	}
-	
+    
+	/**
+	 * 파일이름 인코딩
+	 * @param data
+	 * @return
+	 */
+    public String korean2ascii(String data) {
+        String rtn = null;
+        try {
+            rtn = (data == null) ? "" :
+                new String(data.getBytes("euc-kr"), "8859_1");
+        }
+        catch (java.io.UnsupportedEncodingException e) {}
+        return rtn;
+    }
+    
 }

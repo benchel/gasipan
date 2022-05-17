@@ -5,6 +5,16 @@
 	    <div class="copyright-area">
 	        <span>gasipan footer</span>
 	    </div>
+	    
+	    <!-- 파일다운로드 폼 -->
+		<form name="downform" action="/attached/file/download" method="post">
+			<input type="hidden" name="boardType"/>
+			<input type="hidden" name="boardTypeStr"/>
+			<input type="hidden" name="fileKey" />
+			<input type="hidden" name="fileName" />
+		</form>
+	    <!-- // 파일다운로드 폼 -->
+	    
 	</footer>
 </th:block>
 </html>
