@@ -28,8 +28,8 @@
 
 .mg-top10{margin-top: 10%;}
 
-.txt-center{text-align: center;}
-.txt-lf{text-align: left;}
+.txt-center{text-align:center;}
+.txt-lf{text-align:left;}
 
 .bgcolor-gray{background-color: #efefefef;}
 .bgcolor-ccddbb{background-color: #ccddbb;}
@@ -53,7 +53,7 @@ border: solid #ddeecc 3px; border-radius: 5px;}
 .btn-search{width: 5%; height: 15%; font-size: 12pt; background-color: #ccddbb; border: solid #bbccaa 1px; color: #aabb88;}
 .btn-down{width: 5%; height: 15%; font-size: 12pt; background-color: #ccddbb; border: solid #bbccaa 1px; color: #aabb88;}
 
-.data-tbl{float: left; width: 80%; margin-left: 13%; margin-right: 17%; text-align: center; border: solid 1px #aabb88;}
+.data-tbl{float: left; width: 80%; margin-left: 13%; margin-right: 17%; border: solid 1px #aabb88;}
 .data-tbl-body > tr{width: 100%; height: 40px;}
 
 .data-btn-area{float: left; width: 100%;}
@@ -102,3 +102,8 @@ padding-top: 0.5%; padding-bottom: 0.5%; border-top: solid #99aa88 1px; border-b
 .btn-upload{background-color: #99aa88; border: solid #99aa88 1px; color : #fff7e6; width: 15%; height: 30px; margin-left: 35%;}
 .btn-close{background-color: #99aa88; border: solid #99aa88 1px; color : #fff7e6; width: 15%; height: 30px;}
 .btn-delete{background-color: #b30000; color:#ffffff; border-radius: 5px; border: solid #b30000 1px;}
+
+.file-icon{float:left; width: 8%;}
+.attached-file{float:left; width: 30%;}
+.attached-file span{float:left; padding-top:3%;}
+.attached-file button{float: left; padding-top: 3%;}

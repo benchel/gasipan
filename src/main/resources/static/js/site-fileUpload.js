@@ -48,9 +48,10 @@ const setFileHTML = function(fileKey, fileName) {
 	let fileHTML = '';
 	let fileRank = $('.file-group').children('.attached-file').length + 1;
 	
-	fileHTML += '<span class="attached-file">';
+	fileHTML += '<span class="attached-file" onclick="downLoad(this);">';
+	fileHTML += '	<img class="file-icon"  src="/image/file_icon.png">'
 	fileHTML += '	<input type="hidden" name="fileKey'+ fileRank +'" value="'+ fileKey +'">';
-	fileHTML += '	<a href="'+ fileKey + '">'+ fileName +'</a>';
+	fileHTML += '	<span class="pointer">'+ fileName +'</span>';
 	fileHTML += '	<button type="button">삭제</button>';
 	fileHTML += '</span>';
 	
