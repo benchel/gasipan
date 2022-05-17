@@ -101,3 +101,4 @@ padding-top: 0.5%; padding-bottom: 0.5%; border-top: solid #99aa88 1px; border-b
 .modal-footer{float: left; width: 100%;}
 .btn-upload{background-color: #99aa88; border: solid #99aa88 1px; color : #fff7e6; width: 15%; height: 30px; margin-left: 35%;}
 .btn-close{background-color: #99aa88; border: solid #99aa88 1px; color : #fff7e6; width: 15%; height: 30px;}
+.btn-delete{background-color: #b30000; color:#ffffff; border-radius: 5px; border: solid #b30000 1px;}

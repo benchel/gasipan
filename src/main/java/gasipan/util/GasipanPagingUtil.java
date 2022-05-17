@@ -95,7 +95,7 @@ public class GasipanPagingUtil {
 			
 			rs.setLength(0);
 
-			rs.append("	<ul class=\"numbers-of-page\">	\n");
+			rs.append("	<ul class=\"numbers-of-page pointer\">	\n");
 
 			// 이전
 			rs.append(" <li class=\"page-num\" data-pageNo=\""+ beforePage +"\">◁</li> ");

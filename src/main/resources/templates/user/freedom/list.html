@@ -73,6 +73,7 @@ const getFreedomList = function() {
 			html += '	<td><span class="viewBtn pointer" data-boardIdx="' + (el.boardIdx) + '">' + (el.title) + '</span></td>';
 			html += '	<td>' + (el.writer) + '</td>';
 			html += '	<td>' + (el.regDate) + '</td>';
+			html += '	<td>' + (el.modifyDate) + '</td>';
 			html += '</tr>';
 		});
 
@@ -167,7 +168,7 @@ const viewFunc = function() {
             </div>                
         </div>
         <div class="data-btn-area mg-top2">
-        	<button type="button" class="btn-write mg-rg7">글쓰기</button>
+        	<button type="button" class="btn-write mg-rg7 pointer">글쓰기</button>
         </div>
         <div class="pagenation-area">
         	<ul class="numbers-of-page">
