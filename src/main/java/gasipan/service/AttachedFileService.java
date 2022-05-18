@@ -17,4 +17,9 @@ public class AttachedFileService {
 	public void registAttachedFile(AttachedFileDTO attachedFileDTO) throws Exception {
 		attachedFileDAO.insertAttachedFile(attachedFileDTO);
 	}
+	
+	@Transactional(readOnly = false, rollbackFor = Exception.class)
+	public void deleteAttachedFile(AttachedFileDTO attachedFileDTO) throws Exception {
+		attachedFileDAO.deleteAttachedFile(attachedFileDTO);
+	}
 }

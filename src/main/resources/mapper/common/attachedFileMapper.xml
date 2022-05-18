@@ -11,4 +11,9 @@
 		(#{fileKey}, #{fileName}, #{mimeType}, #{boardType}, #{size})
 	</insert>
 	
+	<delete id="deleteAttachedFile" parameterType="gasipan.dto.AttachedFileDTO">
+		DELETE FROM attached_file WHERE file_key = #{fileKey}
+	</delete>
+	
+	
 </mapper>

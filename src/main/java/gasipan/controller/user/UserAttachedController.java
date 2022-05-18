@@ -39,6 +39,12 @@ public class UserAttachedController {
 	private final Environment environment;
 	private final AttachedFileService attachedFileService;
 	
+	/**
+	 * 파일업로드
+	 * @param request
+	 * @param response
+	 * @return
+	 */
 	@PostMapping("/file/upload")
 	@ResponseBody
 	public Map<String, Object> attacheFile(HttpServletRequest request, HttpServletResponse response) {
@@ -126,6 +132,12 @@ public class UserAttachedController {
     	return file;
     }	
 	
+    /**
+     * 파일다운로드
+     * @param request
+     * @param response
+     * @throws Exception
+     */
 	@PostMapping("/file/download")
 	@ResponseBody
 	public void downloadFile(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -182,6 +194,43 @@ public class UserAttachedController {
         }
         catch (java.io.UnsupportedEncodingException e) {}
         return rtn;
+    }
+    
+    /**
+     * 파일 삭제
+     * @param request
+     * @param response
+     * @throws Exception
+     */
+    @PostMapping("/file/delete")
+    @ResponseBody
+    public Map<String, Object> deleteFile(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    	Map<String, Object> rs = new HashMap<>();
+    	
+    	Boolean result = false;
+    	AttachedFileDTO attachedFileDTO = new AttachedFileDTO();
+    	
+    	attachedFileDTO.setBoardType(request.getParameter("boardType"));
+    	attachedFileDTO.setFileKey(request.getParameter("fileKey"));
+    	attachedFileDTO.setFileName(request.getParameter("fileName"));
+		String boardTypeStr = request.getParameter("boardTypeStr");
+		String filePath = environment.getProperty("attached.upload.root") + "\\" + boardTypeStr;
+		
+		log.info("------delete--------fileKey--------"+attachedFileDTO.getFileKey());
+		log.info("------delete--------fileName--------"+attachedFileDTO.getFileName());
+		log.info("------delete--------boardType--------"+attachedFileDTO.getBoardType());
+		log.info("------delete--------downloadPath--------"+filePath);
+		
+		// 파일 객체 생성
+		File target = this.getFile(attachedFileDTO.getFileKey(), filePath);
+		
+		// DB에 저장되어있는 파일에 대한 정보 삭제
+		attachedFileService.deleteAttachedFile(attachedFileDTO);
+		// 파일 삭제
+		result = target.delete();
+		rs.put("code", result);
+		
+		return rs;
     }
     
 }

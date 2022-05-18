@@ -79,17 +79,17 @@ const registEvent = function() {
 	                        		<div class="file-group">
 	                        			<span th:unless="${freedom.board.fileName1 eq null}" class="attached-file">
 	                        				<img class="file-icon"  src="/image/file_icon.png">
-	                        				<span class="pointer" th:text="${freedom.board.fileName1}"></span>
+	                        				<span class="fileName pointer" th:text="${freedom.board.fileName1}"></span>
 	                        				<input type="hidden" name="fileKey" th:value="${freedom.board.fileKey1}">
 	                        			</span>
 	                        			<span th:unless="${freedom.board.fileName2 eq null}" class="attached-file">
 	                        				<img class="file-icon"  src="/image/file_icon.png">
-	                        				<span class="pointer" th:text="${freedom.board.fileName2}"></span>
+	                        				<span class="fileName pointer" th:text="${freedom.board.fileName2}"></span>
 	                        				<input type="hidden" name="fileKey" th:value="${freedom.board.fileKey2}">
 	                        			</span>
 	                        			<span th:unless="${freedom.board.fileName3 eq null}" class="attached-file">
 	                        				<img class="file-icon"  src="/image/file_icon.png">
-	                        				<span class="pointer" th:text="${freedom.board.fileName3}"></span>
+	                        				<span class="fileName pointer" th:text="${freedom.board.fileName3}"></span>
 	                        				<input type="hidden" name="fileKey" th:value="${freedom.board.fileKey3}">
 	                        			</span>
 	                        		</div>
