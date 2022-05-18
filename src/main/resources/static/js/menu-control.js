@@ -7,11 +7,13 @@ $(document).ready(function() {
 });
 
 const menuContrl = function() {
-    $('.top-menu').hover(function() {
+    $('.top-menu').mouseenter(function(e) {
+		e.preventDefault();
         // slide down 
         $('.sub-menu li').slideDown();
     });
-    $('.menu-area').mouseleave(function() {
+    $('.menu-area').mouseleave(function(e) {
+		e.preventDefault();
 		$('.sub-menu li').slideUp();
 	});
 };
