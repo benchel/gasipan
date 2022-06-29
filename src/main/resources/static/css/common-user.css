@@ -1,22 +1,8 @@
 @charset "UTF-8";
 
-*{
-	padding: 0%;
-	margin: 0%;
-}
-
-.contents {
-	float : left;
-	width: 100%;
-}
-
-.summary {
-	float: left;
-	width: 100%;
-	margin-bottom: 2%;
-	text-align: center;
-}
-
+*{padding: 0%; margin: 0%;}
+.contents {float : left; width: 100%;}
+.summary {float: left; width: 100%; margin-bottom: 2%; text-align: center;}
 .infromation-input {
 	float : left;
 	width: 80%;

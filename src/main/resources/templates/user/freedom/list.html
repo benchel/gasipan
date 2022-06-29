@@ -109,43 +109,28 @@ const viewFunc = function() {
 </script>
 </th:block>
 <th:block layout:fragment="content">
-
-	<form name="searchForm">
-        <input type="hidden" name="boardType" value="2"/>
-        <input type="hidden" name="boardIdx" value=""/>
-        <input type="hidden" name="pageNo" th:value="${boardDTO.pageNo}"/>
-        <input type="hidden" name="pageBlock" th:value="${boardDTO.pageBlock}"/>		
-	</form>
-
     <div class="conts">
-        <div class="location-guide">
-            <ul class="lg-ul">
-                <li>
-                    <span> HOME</span>
-                </li>              
-                <li>
-                    <span> 자유게시판 </span>
-                </li>
-                <li>
-                    <span> 목록 </span>
-                </li>
-            </ul>
-        </div>
+		<form name="searchForm">
+		       <input type="hidden" name="boardType" value="2"/>
+		       <input type="hidden" name="boardIdx" value=""/>
+		       <input type="hidden" name="pageNo" th:value="${boardDTO.pageNo}"/>
+		       <input type="hidden" name="pageBlock" th:value="${boardDTO.pageBlock}"/>		
+		</form>    	
         <div class="cont-body">
             <div class="sch-area">
             	<div class="sch-row">
-                 <label class="sch-lab mg-lf20">제목</label>
+                 <label class="sch-lab">제목</label>
                  <input type="text" class="sch-word" name="title" value="">
-                 <label class="sch-lab mg-lf10">작성자</label>
+                 <label class="sch-lab">작성자</label>
                  <input type="text" class="sch-word" name="writer" value="">
                 </div>
                 <div class="sch-btn-area">
-                	<button type="button" class="btn-search mg-lf50">검색</button>
+                	<button type="button" class="btn-search">검색</button>
                 	<button type="button" class="btn-down">Excel</button>
                 </div>
             </div>
             <div class="data-area txt-center">
-                <table class="data-tbl mg-top2">
+                <table class="data-tbl">
                     <colgroup>
                         <col style="width: 5%;">
                         <col style="width: 45%;">
@@ -167,7 +152,7 @@ const viewFunc = function() {
                 </table>
             </div>                
         </div>
-        <div class="data-btn-area mg-top2">
+        <div class="data-btn-area">
         	<button type="button" class="btn-write mg-rg7 pointer">글쓰기</button>
         </div>
         <div class="pagenation-area">
@@ -185,7 +170,7 @@ const viewFunc = function() {
         		<li class="page-num">10</li>
         		<li class="page-num">▷</li>
         	</ul>
-        </div>   
+        </div> 
     </div>
     
 </th:block>
