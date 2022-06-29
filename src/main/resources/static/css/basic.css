@@ -3,7 +3,7 @@
 .section{float:left; position: relative; top:-10%; width:100%; height:300px;}
 .img-section{float: left; width:100%; height:400px; background-image: url(/img/section1.png); background-size: 100%;}
 
-.conts{float: left;}
+.conts{position:relative; width: 80%; margin: 0 auto;}
 
 .f-left{float: left;}
 
@@ -74,12 +74,10 @@ border: solid #ddeecc 3px; border-radius: 5px;}
 .btn-addfile{float:left; width: 5%; height : 30px; font-size: 10pt;}
 
 /* paging */
-.pagenation-area{float: left; width: 100%; height: 100px;}
-.numbers-of-page{float: left; width: 80%; list-style: none; margin-left:36%;}
+.pagenation-area{float: left; width:100%; height:60px;}
+.numbers-of-page{position:relative; width:50%; height:60px; margin: 0 auto 0 auto; list-style: none; text-align: center;}
+.numbers-of-page li{display:inline-block; width:40px; height:35px; color:#99aa88; border:solid #99aa88 1px; padding-top: 1%;}
 
-.page-num:first-child{float: left; width: 3%; height: 30px; text-align: center; color : #99aa88; border-left: solid #99aa88 1px;}
-.page-num{float: left; width: 3%; height: 30px; text-align: center; color : #99aa88; 
-padding-top: 0.5%; padding-bottom: 0.5%; border-top: solid #99aa88 1px; border-bottom: solid #99aa88 1px; border-right: solid #99aa88 1px;}
 .page-num:hover {background-color: #99aa88; color: #ccddbb;}
 
 
