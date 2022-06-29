@@ -4,40 +4,23 @@
 <th:block th:fragment="header">
 	<section class="conts-header">
 	    <div class="logo">
-	        <span class="logo-text">logo</span>
+	        <a class="home-icon" href="/"></a>
 	    </div>
 	    <div class="menu-area">
-	        <div class="loginYn">
-	            <span class="loginYn-text">
-	            	<a th:if="${session.ssUserId eq null}" th:href="@{/user/loginPage}">로그인</a>
-	            	<a th:unless="${session.ssUserId eq null}" th:href="@{/user/logout}">로그아웃</a>
-	            </span>
-	            <span class="join-text">
-	            	<a th:if="${session.ssUserId eq null}" th:href="@{/joinView}">회원가입</a>
-	            </span>
-	        </div>
-	        <nav class="menus">
-	            <ul class="top-menu">
-	                <li><span class="top-menu-text">menu1</span>
-	                    <ul class="sub-menu">
-	                        <li><a href="/freedom/list">자유게시판</a></li>
-	                        <li>sub-menu2</li>
-	                        <li>sub-menu3</li>
-	                    </ul>
-	                </li>
-	                <li><span class="top-menu-text">menu2</span>
-	                    <ul class="sub-menu">
-	                        <li>sub-menu1</li>
-	                        <li>sub-menu2</li>
-	                        <li>sub-menu3</li>
-	                    </ul>
-	                </li>
-	                <li><span class="top-menu-text">menu3</span></li>
-	                <li><span class="top-menu-text">menu4</span></li>
-	                <li><span class="top-menu-text">menu5</span></li>
-	            </ul>
-	        </nav>
-	    </div>  
+    		<ul class="menu-group">
+    			<li><a href="">INTRODUCTION</a></li>
+    			<li><a href="/freedom/list">PHOTO ALBUM</a></li>
+    		</ul>
+    	</div>
+        <div class="loginYn">
+            <span class="loginYn-text">
+            	<a th:if="${session.ssUserId eq null}" th:href="@{/user/loginPage}">로그인</a>
+            	<a th:unless="${session.ssUserId eq null}" th:href="@{/user/logout}">로그아웃</a>
+            </span>
+            <span class="join-text">
+            	<a th:if="${session.ssUserId eq null}" th:href="@{/joinView}">회원가입</a>
+            </span>
+        </div>
 	</section>
 </th:block>
 </html>
