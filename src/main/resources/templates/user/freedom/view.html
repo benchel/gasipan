@@ -60,22 +60,12 @@ const registEvent = function() {
 	                        <tr>
 	                        	<th colspan="1" class="bgcolor-ccddbb">첨부파일</th>
 	                        	<td colspan="3">
-	                        		<div class="file-group">
-<!-- 	                        			<span th:unless="${freedom.board.fileName1 eq null}" class="attached-file">
-	                        				<img class="file-icon"  src="/image/file_icon.png">
-	                        				<span class="fileName pointer" th:text="${freedom.board.fileName1}"></span>
-	                        				<input type="hidden" name="fileKey" th:value="${freedom.board.fileKey1}">
+	                        		<div class="file-group" th:each="file : ${freedom.fileList}">
+ 	                        			<span class="attached-file">
+	                        				<img class="file-icon"  src="/img/file_icon.png">
+	                        				<span class="fileName pointer" th:text="${file.fileName}"></span>
+	                        				<input type="hidden" name="fileKey" th:value="${file.fileKey}">
 	                        			</span>
-	                        			<span th:unless="${freedom.board.fileName2 eq null}" class="attached-file">
-	                        				<img class="file-icon"  src="/image/file_icon.png">
-	                        				<span class="fileName pointer" th:text="${freedom.board.fileName2}"></span>
-	                        				<input type="hidden" name="fileKey" th:value="${freedom.board.fileKey2}">
-	                        			</span>
-	                        			<span th:unless="${freedom.board.fileName3 eq null}" class="attached-file">
-	                        				<img class="file-icon"  src="/image/file_icon.png">
-	                        				<span class="fileName pointer" th:text="${freedom.board.fileName3}"></span>
-	                        				<input type="hidden" name="fileKey" th:value="${freedom.board.fileKey3}">
-	                        			</span> -->
 	                        		</div>
 	                        	<td>
 	                        </tr>

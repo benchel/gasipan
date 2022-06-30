@@ -21,4 +21,17 @@
 		where file_key = #{fileKey}		
 	</update>
 	
+	<select id="selectAttachedFileByParentId" parameterType="gasipan.dto.AttachedFileDTO" 
+	resultType="gasipan.vo.AttachedFileVO">
+		SELECT
+			file_key,
+			file_name,
+			parent_id,
+			parent_type,
+			mime_type,
+			file_size 
+		FROM attached_file
+		WHERE parent_id = #{parentId} AND parent_type = #{parentType}
+	</select>
+	
 </mapper>

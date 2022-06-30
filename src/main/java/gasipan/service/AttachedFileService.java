@@ -22,4 +22,5 @@ public class AttachedFileService {
 	public void deleteAttachedFile(AttachedFileDTO attachedFileDTO) throws Exception {
 		attachedFileDAO.deleteAttachedFile(attachedFileDTO);
 	}
+	
 }

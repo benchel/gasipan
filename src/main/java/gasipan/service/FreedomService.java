@@ -96,7 +96,13 @@ public class FreedomService {
 	@Transactional(readOnly = true)
 	public Map<String, Object> selectBoardByIdx(BoardDTO boardDTO) throws Exception {
 		Map<String, Object> rs = new HashMap<>();
+		
+		AttachedFileDTO attachedFileDTO = new AttachedFileDTO();
+		attachedFileDTO.setParentId(boardDTO.getBoardIdx());
+		attachedFileDTO.setParentType(boardDTO.getBoardType());
+		rs.put("fileList", attachedFileDAO.selectAttachedFileByParentId(attachedFileDTO));
 		rs.put("board", boardDAO.selectBoardByIdx(boardDTO));
+
 		return rs;
 	}
 }
