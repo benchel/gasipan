@@ -9,19 +9,22 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import gasipan.constant.GasipanConstructer;
+import gasipan.dto.AttachedFileDTO;
 import gasipan.dto.BoardDTO;
+import gasipan.repository.AttachedFileDAO;
 import gasipan.repository.BoardDAO;
 import gasipan.util.GasipanPagingUtil;
 import gasipan.vo.BoardVO;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 @Service
 @RequiredArgsConstructor
-@RequestMapping("/freedom/*")
+@Slf4j
 public class FreedomService {
 
 	private final BoardDAO boardDAO;
-	
+	private final AttachedFileDAO attachedFileDAO;
 	
 	/**
 	 * 자유게시판 등록
@@ -34,6 +37,16 @@ public class FreedomService {
 		Map<String, Object> rs = new HashMap<>();
 		
 		boardDAO.insertBoard(boardDTO);
+		
+		if(!boardDTO.getFileKeyList().isEmpty()) {
+			AttachedFileDTO attachedFileDTO = new AttachedFileDTO();
+			
+			for(String fileKey : boardDTO.getFileKeyList()) {
+				attachedFileDTO.setFileKey(fileKey);
+				attachedFileDTO.setParentId(boardDTO.getBoardIdx());
+				attachedFileDAO.updateAttachedFile(attachedFileDTO);
+			}
+		}
 		rs.put("message", GasipanConstructer.RESULT_SUCCESS);
 		
 		return rs;

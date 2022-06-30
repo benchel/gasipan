@@ -1,5 +1,7 @@
 package gasipan.dto;
 
+import java.util.List;
+
 public class BasicDTO {
 	//페이징
 	private Long pageNo = 1L;//페이지 번호
@@ -10,6 +12,9 @@ public class BasicDTO {
 	//검색
 	private String searchField;//검색 필드
 	private String searchKwd;//검색 단어
+	
+	// 파일키
+	private List<String> fileKeyList;
 	
 	public BasicDTO() {
 		// TODO Auto-generated constructor stub
@@ -50,14 +55,25 @@ public class BasicDTO {
 	public String getSearchField() {
 		return searchField;
 	}
+	
 	public void setSearchField(String searchField) {
 		this.searchField = searchField;
+	
 	}
 	public String getSearchKwd() {
 		return searchKwd;
 	}
+	
 	public void setSearchKwd(String searchKwd) {
 		this.searchKwd = searchKwd;
+	}
+
+	public List<String> getFileKeyList() {
+		return fileKeyList;
+	}
+
+	public void setFileKeyList(List<String> fileKeyList) {
+		this.fileKeyList = fileKeyList;
 	}
 	
 	

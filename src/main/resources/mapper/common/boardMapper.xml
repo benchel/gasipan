@@ -5,35 +5,13 @@
       
 <mapper namespace="gasipan.repository.BoardDAO">
 
-	<!-- 게시글 등록 boradTyep(01, '공지사항', 02, '자유게시판') -->
-	<insert id="insertBoard" parameterType="gasipan.dto.BoardDTO">
+	<insert id="insertBoard" parameterType="gasipan.dto.BoardDTO" useGeneratedKeys="true" keyProperty="boardIdx" keyColumn="board_idx">
 		<selectKey keyProperty="boardIdx" order="BEFORE" resultType="Long">
 			SELECT count(board_idx)+1 AS board_idx FROM board 
-		</selectKey>	
-		INSERT INTO board (
-			board_idx, board_type, title, content, writer, reg_date, modify_date
-		<if test="fileKey1 != null and fileKey1 != ''">
-		 	, file_key1
-		 </if>
-		 <if test="fileKey2 != null and fileKey2 != ''">
-		 	, file_key2
-		 </if>
-		 <if test="fileKey3 != null and fileKey3 != ''">
-		 	, file_key3
-		 </if>
-		 ) VALUES (
-		#{boardIdx}, #{boardType}, #{title}, #{content}, #{writer}, sysdate(), sysdate()
-		<if test="fileKey1 != null and fileKey1 != ''">
-			, #{fileKey1}
-		</if>
-		<if test="fileKey2 != null and fileKey2 != ''">
-			, #{fileKey2}
-		</if>
-		<if test="fileKey3 != null and fileKey3 != ''">
-			, #{fileKey3}
-		</if>)
+		</selectKey>
+		INSERT INTO board (board_idx, board_type, title, content, writer, reg_date, modify_date) VALUES (
+		#{boardIdx}, #{boardType}, #{title}, #{content}, #{writer}, sysdate(), sysdate())
 	</insert>
-	
 	
 	<sql id="whereBoardList">
 		WHERE 1=1
@@ -83,13 +61,7 @@
 			b.content,
 			b.writer,
 			DATE_FORMAT(reg_date, '%y-%m-%d') AS reg_date,
-			DATE_FORMAT(modify_date, '%y-%m-%d') AS modify_date,
-			b.file_key1,
-			(SELECT file_name FROM attached_file af WHERE af.file_key = b.file_key1) AS file_name1,
-			b.file_key2,
-			(SELECT file_name FROM attached_file af WHERE af.file_key = b.file_key2) AS file_name2,
-			b.file_key3,
-			(SELECT file_name FROM attached_file af WHERE af.file_key = b.file_key3) AS file_name3			
+			DATE_FORMAT(modify_date, '%y-%m-%d') AS modify_date		
 		FROM board b
 		WHERE b.board_type = #{boardType} 
 		AND b.board_idx = #{boardIdx}

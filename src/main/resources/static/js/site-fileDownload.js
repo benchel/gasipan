@@ -5,12 +5,7 @@ $(document).ready(function() {
 const progrEvent = function() {
 	$('.fileName').click(function() {
 		downLoad($(this).parent()); 
-	});
-
-	$('.btn-rm').click(function() {
-		remove($(this).parent()); 
-	});
-	
+	});	
 };
 
 
@@ -25,8 +20,6 @@ const downLoad = function(terget) {
 	let formData = document.downform;
 	formData.fileName.value = fileName;
 	formData.fileKey.value = fileKey;
-	formData.boardType.value = boardType;
-	formData.boardTypeStr.value = boardTypeStr;
 	formData.submit();
 };
 
@@ -34,14 +27,13 @@ const remove = function(rmTarget) {
 	let file = rmTarget;
 	let fileName = $(file).children('span').text();
 	let fileKey = $(file).children('input').val();
-		
+	let parentType = $('input[name="parentType"]').val();
 	let formData = [];
-			
+
 	formData.push({ name : 'fileKey', value : fileKey });		
 	formData.push({ name : 'fileName', value : fileName });
-	formData.push({ name : 'boardType', value : boardType  });
-	formData.push({ name : 'boardTypeStr', value : boardTypeStr });	
-		
+	formData.push({ name : 'parentType', value : parentType });
+
 	let url = '/attached/file/delete';
 	$.ajax({
 		url : url,
@@ -51,9 +43,21 @@ const remove = function(rmTarget) {
 		data : formData
 	}).done(function (result, status, xhr) {
 		if(result.code) {
-			$('.file-group').children(file).remove();
+			$(file).remove();
 		}
 	});
 	
 };
+
+const getFileKeyList = function() {
+	let fileList = [];
+	
+	$('input[name="fileKey"]').each(function() {
+		fileList.push($(this).val());
+		console.log($(this).val());
+	});
+	
+	return fileList;
+};
+
 

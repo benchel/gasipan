@@ -49,9 +49,11 @@ public class UserAttachedController {
 	@ResponseBody
 	public Map<String, Object> attacheFile(HttpServletRequest request, HttpServletResponse response) {
 		
-		String boardType = request.getParameter("boardType");
-		String boardTypeStr = request.getParameter("boardTypeStr");
-		String savePath = environment.getProperty("attached.upload.root") + "\\" + boardTypeStr;
+		String parentType = request.getParameter("parentType");
+		String savePath = environment.getProperty("attached.upload.root") + "\\" + parentType;
+
+		log.info("------down--------parentType--------"+parentType);
+		log.info("------down--------downloadPath--------"+savePath);
 		
 		Map<String, Object> result = new HashMap<>();
 		AttachedFileDTO attachedFileDTO = new AttachedFileDTO();
@@ -73,9 +75,9 @@ public class UserAttachedController {
 					  
 					  attachedFileDTO.setFileKey(strFileKey);
 					  attachedFileDTO.setFileName(orgFileName);
-					  attachedFileDTO.setBoardType(boardType);
+					  attachedFileDTO.setParentType(parentType);
 					  attachedFileDTO.setMimeType(formFile.getContentType());
-					  attachedFileDTO.setSize(formFile.getSize());
+					  attachedFileDTO.setFileSize(formFile.getSize());
 
 					  InputStream stream = null;
 					  stream = formFile.getInputStream();
@@ -143,13 +145,12 @@ public class UserAttachedController {
 	public void downloadFile(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String fileKey = request.getParameter("fileKey");
 		String fileName = request.getParameter("fileName");
-		String boardType = request.getParameter("boardType");
-		String boardTypeStr = request.getParameter("boardTypeStr");
-		String filePath = environment.getProperty("attached.upload.root") + "\\" + boardTypeStr;
+		String parentType = request.getParameter("parentType");
+		String filePath = environment.getProperty("attached.upload.root") + "\\" + parentType;
 		
 		log.info("------down--------fileKey--------"+fileKey);
 		log.info("------down--------fileName--------"+fileName);
-		log.info("------down--------boardType--------"+boardType);
+		log.info("------down--------parentType--------"+parentType);
 		log.info("------down--------downloadPath--------"+filePath);
 		
 		// 다운로드 대상을 파일객체로 생성
@@ -210,15 +211,15 @@ public class UserAttachedController {
     	Boolean result = false;
     	AttachedFileDTO attachedFileDTO = new AttachedFileDTO();
     	
-    	attachedFileDTO.setBoardType(request.getParameter("boardType"));
+    	attachedFileDTO.setParentType(request.getParameter("parentType"));
     	attachedFileDTO.setFileKey(request.getParameter("fileKey"));
     	attachedFileDTO.setFileName(request.getParameter("fileName"));
-		String boardTypeStr = request.getParameter("boardTypeStr");
-		String filePath = environment.getProperty("attached.upload.root") + "\\" + boardTypeStr;
+		String parentType = request.getParameter("parentType");
+		String filePath = environment.getProperty("attached.upload.root") + "\\" + parentType;
 		
 		log.info("------delete--------fileKey--------"+attachedFileDTO.getFileKey());
 		log.info("------delete--------fileName--------"+attachedFileDTO.getFileName());
-		log.info("------delete--------boardType--------"+attachedFileDTO.getBoardType());
+		log.info("------delete--------parentType--------"+attachedFileDTO.getParentType());
 		log.info("------delete--------downloadPath--------"+filePath);
 		
 		// 파일 객체 생성

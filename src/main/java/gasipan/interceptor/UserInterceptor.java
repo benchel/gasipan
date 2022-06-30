@@ -5,6 +5,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
+
 import lombok.extern.slf4j.Slf4j;
 
 
@@ -25,7 +26,7 @@ public class UserInterceptor implements HandlerInterceptor {
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
-		log.info("preHandle() 실행");
+		//log.info("preHandle() 실행");
 		return true;
 	}
 	
@@ -36,7 +37,24 @@ public class UserInterceptor implements HandlerInterceptor {
 	@Override
 	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
 			ModelAndView modelAndView) throws Exception {
-		log.info("postHandle() 실행");
+		
+		String requestURI = request.getRequestURI();
+		
+		try {
+			if(modelAndView != null) {
+				
+				if(requestURI.indexOf("/freedom/") >= 0) {
+					modelAndView.addObject("parentType", "freedom");
+				} else {
+					modelAndView.addObject("parentType", "");
+				}
+				
+			} // if(modelAndView != null) {} end
+		} catch (Exception e) {
+			log.info(e.getMessage());
+		}
+		
+		
 	}
 	
 }

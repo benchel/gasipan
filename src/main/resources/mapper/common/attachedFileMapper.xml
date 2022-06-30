@@ -7,13 +7,18 @@
 	
 	<insert id="insertAttachedFile" parameterType="gasipan.dto.AttachedFileDTO">
 		INSERT INTO attached_file 
-		(file_key, file_name, mime_type, board_type, size) VALUES
-		(#{fileKey}, #{fileName}, #{mimeType}, #{boardType}, #{size})
+		(file_key, file_name, mime_type, parent_type, file_size) VALUES
+		(#{fileKey}, #{fileName}, #{mimeType}, #{parentType}, #{fileSize})
 	</insert>
 	
 	<delete id="deleteAttachedFile" parameterType="gasipan.dto.AttachedFileDTO">
 		DELETE FROM attached_file WHERE file_key = #{fileKey}
 	</delete>
 	
+	<update id="updateAttachedFile" parameterType="gasipan.dto.AttachedFileDTO">
+		update attached_file 
+		set parent_id  = #{parentId}
+		where file_key = #{fileKey}		
+	</update>
 	
 </mapper>

@@ -3,13 +3,9 @@ package gasipan.vo;
 import lombok.Data;
 
 @Data
-public class BoardVO extends BasicVO {
-	private String fileName1;
-	private String fileName2;
-	private String fileName3;
-	
+public class BoardVO extends BasicVO {	
 	private long boardIdx;
-	private long boardType;
+	private String boardType;
 	private String title;
 	private String content;
 	private String writer;

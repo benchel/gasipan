@@ -8,12 +8,32 @@
 	    
 	    <!-- 파일다운로드 폼 -->
 		<form name="downform" action="/attached/file/download" method="post">
-			<input type="hidden" name="boardType"/>
-			<input type="hidden" name="boardTypeStr"/>
+			<input type="hidden" name="parentType" th:value="${parentType}"/>
 			<input type="hidden" name="fileKey" />
 			<input type="hidden" name="fileName" />
 		</form>
 	    <!-- // 파일다운로드 폼 -->
+	    
+	    
+		<!-- 파일업로드 모달 -->
+		<div class="file-upload-modal" style="display: none;">
+			<div class="modal-hd">
+				<span>업로드할 파일을 선택하여 주십시오.</span>
+			</div>
+			<div class="modal-cont">
+				<form method="POST" enctype="multipart/form-data" id="attachedFileForm"> 
+					<div class="form-row">
+						<input type="file" name="uploadFileName" class="uploadFile">
+						<input type="hidden" name="parentType" th:value="${parentType}">
+					</div>
+				</form>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn-upload">업로드</button>
+				<button type="button" class="btn-close">닫기</button>
+			</div>
+		</div>
+		<!-- // 파일업로드 모달 -->	    
 	    
 	</footer>
 </th:block>

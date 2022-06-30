@@ -16,9 +16,6 @@ $(document).ready(function() {
 	setDefault();
 });
 
-const boardType = 02;
-const boardTypeStr = 'freedom';
-
 const initPage = function() {
 
 };
@@ -41,11 +38,9 @@ const regist = function() {
 	var formData = {
 		title : $('input[name="title"]').val(),
 		content : $('textarea[name="content"]').val(),
-		boardType : boardType,
+		boardType : $('input[name="parentType"]').val(),
 		writer : $('td[class="ssUserId"]').text(),
-		fileKey1 : $('input[name="fileKey1"]').val(),
-		fileKey2 : $('input[name="fileKey2"]').val(),
-		fileKey3 : $('input[name="fileKey3"]').val()
+		fileKeyList : getFileKeyList()
 	};
 	
 	$.ajax({
@@ -56,7 +51,7 @@ const regist = function() {
 		data : JSON.stringify(formData),
 		beforeSend : function(xhr){
 			xhr.setRequestHeader(header, token);
-		},		
+		},
 		success : function(res) {
 			if(res.message) {
 				alert('등록 성공');
@@ -74,19 +69,6 @@ const regist = function() {
 </th:block>
 <th:block layout:fragment="content">
         <div class="conts">
-            <div class="location-guide">
-	            <ul class="lg-ul">
-	                <li>
-	                    <span> HOME</span>
-	                </li>              
-	                <li>
-	                    <span> 자유게시판 </span>
-	                </li>
-	                <li>
-	                    <span> 등록 </span>
-	                </li>
-	            </ul>
-            </div>
             <div class="cont-body">
                 <div class="data-area">
                     <table class="data-tbl mg-top2">
@@ -117,7 +99,7 @@ const regist = function() {
 	                        		<div class="file-group">
 	                        		
 	                        		</div>
-	                        		<button type="button" class="btn-addfile">추가</button>
+	                        		<button type="button" class="btn-add-file">추가</button>
 	                        	<td>
 	                        </tr>
 	                        <tr>
@@ -136,26 +118,5 @@ const regist = function() {
             </div>              
         </div>
         
-        
-<!-- Modal -->
-<div class="file-upload-modal" style="display: none;">
-	<div class="modal-hd">
-		<span>업로드할 파일을 선택하여 주십시오.</span>
-	</div>
-	<div class="modal-cont">
-		<form method="POST" enctype="multipart/form-data" id="attachedFileForm"> 
-			<div class="form-row">
-				<input type="file" name="uploadFileName" class="uploadFile">
-				<input type="hidden" name="boardType" value="02">
-				<input type="hidden" name="boardTypeStr" value="freedom">
-			</div>
-		</form>
-	</div>
-	<div class="modal-footer">
-		<button type="button" class="btn-upload">업로드</button>
-		<button type="button" class="btn-close">닫기</button>
-	</div>
-</div>
-<!-- //Modal -->
 </th:block>
 </html>

@@ -45,7 +45,7 @@ const registEvent = function() {
 
 const getFreedomList = function() {
 	const formData = $('form[name="searchForm"]').serializeObject();
-	formData['boardType'] = 02;
+	formData['boardType'] = $('input[name="parentType"]').val();
 	formData['title'] = $('input[name="title"]').val();
 	formData['writer'] = $('input[name="writer"]').val();
 	
@@ -111,11 +111,11 @@ const viewFunc = function() {
 <th:block layout:fragment="content">
     <div class="conts">
 		<form name="searchForm">
-		       <input type="hidden" name="boardType" value="2"/>
+		       <input type="hidden" name="boardType" th:value="${parentType}"/>
 		       <input type="hidden" name="boardIdx" value=""/>
 		       <input type="hidden" name="pageNo" th:value="${boardDTO.pageNo}"/>
 		       <input type="hidden" name="pageBlock" th:value="${boardDTO.pageBlock}"/>		
-		</form>    	
+		</form>
         <div class="cont-body">
             <div class="sch-area">
             	<div class="sch-row">

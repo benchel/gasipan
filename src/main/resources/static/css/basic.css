@@ -71,7 +71,7 @@ border: solid #ddeecc 3px; border-radius: 5px;}
 .attached-file{float:left; padding-bottom : 0.5%; margin-right: 1%;}
 .attached-file > span {height : 30px;}
 .attached-file > button {padding : 5px; height : 30px; font-size: 10pt;}
-.btn-addfile{float:left; width: 5%; height : 30px; font-size: 10pt;}
+.btn-add-file{float:left; width: 5%; height : 30px; font-size: 10pt;}
 
 /* paging */
 .pagenation-area{float: left; width:100%; height:60px;}
@@ -83,9 +83,8 @@ border: solid #ddeecc 3px; border-radius: 5px;}
 
 /* Modal */
 .file-upload-modal{
-	position:absolute; float:left; background-color: white; border: solid 1px #99aa88; z-index: 1000; width: 35%; height: 200px;
-	margin-left: 35%; margin-right: 35%; margin-top: 15%;
-}
+	position:relative; margin: 0 33% 0 33%; top:-50vh;
+	background-color: white; border: solid 1px #99aa88; z-index: 1000; width: 35%; height: 200px;}
 
 .modal-hd{float: left; width: 100%; text-align: center; margin-top: 5%; margin-bottom: 3%;}
 .modal-hd span{color: #657654; font-size: 18px;}
