@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorate="~{./layout/basic_layout}">
+<head>
+
+
+
+
+</head>
+<th:block layout:fragment="script">
+<script type="text/javascript">
+$(document).ready(function() {	
+	initPage();
+	registEvent();
+	setDefault();
+});
+
+const initPage = function() {
+	
+};
+
+const setDefault = function() {
+	
+};
+
+const registEvent = function() {
+
+};
+</script>
+</th:block>
+<th:block layout:fragment="content">
+    <div class="conts">
+		<form name="searchForm">
+	       <input type="hidden" name="pageNo"/>
+	       <input type="hidden" name="pageBlock"/>		
+		</form>
+        <div class="cont-body">
+        	<table>
+        		<tbody>
+        			<tr>
+        				<td>
+        					<img src="/attached_file/freedom/F74C1FC1-569D-4586-AD78-416E8F1A3D28.jpg">
+        				</td>
+        				<td>
+        					<span>대충고양이는귀엽다</span>
+        					<span>작성자 : 김고양</span> 
+        					<span>등록일 : </span>
+        					<span>조회수 :</span>
+        				</td>
+        			</tr>
+        		</tbody>
+        	</table>
+        </div>
+        <div class="data-btn-area">
+        
+        </div>
+        <div class="pagenation-area">
+        	<div class="pagenation">
+	        	<ul class="numbers-of-page">
+	        		<li class="page-num">◁</li>
+	        		<li class="page-num">1</li>
+	        		<li class="page-num">2</li>
+	        		<li class="page-num">3</li>
+	        		<li class="page-num">4</li>
+	        		<li class="page-num">5</li>
+	        		<li class="page-num">6</li>
+	        		<li class="page-num">7</li>
+	        		<li class="page-num">8</li>
+	        		<li class="page-num">9</li>
+	        		<li class="page-num">10</li>
+	        		<li class="page-num">▷</li>
+	        	</ul>
+        	</div>
+        </div> 
+    </div>
+    
+</th:block>
+</html>

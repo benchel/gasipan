@@ -1,8 +1,10 @@
 package gasipan.config;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import gasipan.interceptor.UserInterceptor;
@@ -19,7 +21,7 @@ import gasipan.interceptor.UserInterceptor;
 public class WebMvcConfig implements WebMvcConfigurer {
 
 	public static final String[] USER_INTERCEPTOR_EXCLUDE_PATTERN_ARR = {
-			"/css", "/image", "/js", "/admin/*"
+			"/css", "/img", "/js", "/admin/*"
 	};
 	
 	@Bean
@@ -32,6 +34,20 @@ public class WebMvcConfig implements WebMvcConfigurer {
 		registry.addInterceptor(userInterceptor())
 		.addPathPatterns("/**")
 		.excludePathPatterns(USER_INTERCEPTOR_EXCLUDE_PATTERN_ARR);
+	}
+	
+	
+    // SpEL - Spring Expression Language
+    @Value("${attached.load.uri}")
+    private String resourceRealPath;
+    
+    @Value("${attached.load.root}")
+    private String resourcePath;
+    
+	@Override
+	public void addResourceHandlers(ResourceHandlerRegistry registry) {
+		registry.addResourceHandler(resourcePath)
+				.addResourceLocations(resourceRealPath);
 	}
 	
 }

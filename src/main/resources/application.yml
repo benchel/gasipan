@@ -35,6 +35,9 @@ log:
 attached:
   upload:
     root: D:\@\gasipan\attached_file
+  load:
+    root: /attached_file/**
+    uri: file:///D:/@/gasipan/attached_file/
 ...
 
 --- # dev

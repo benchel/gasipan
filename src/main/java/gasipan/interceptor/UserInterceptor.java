@@ -43,7 +43,9 @@ public class UserInterceptor implements HandlerInterceptor {
 		try {
 			if(modelAndView != null) {
 				
-				if(requestURI.indexOf("/freedom/") >= 0) {
+				if(requestURI.indexOf("/photo-album/") >= 0) {
+					modelAndView.addObject("parentType", "photo");
+				} else if(requestURI.indexOf("/freedom/") >= 0) {
 					modelAndView.addObject("parentType", "freedom");
 				} else {
 					modelAndView.addObject("parentType", "");

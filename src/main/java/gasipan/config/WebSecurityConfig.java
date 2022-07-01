@@ -24,13 +24,22 @@ import gasipan.service.AdminService;
 @EnableWebSecurity
 public class WebSecurityConfig { 
 
+	// spring security에서 제외할 web 리소스 path
+	public static final String[] SECURITY_EXCLUDE_PATTERN_ARR = {
+			"/"
+			, "/css/**"
+			, "/js/**"
+			, "/image/**"
+			, "/dext5editor/**"
+	};
+	
 	@Configuration
 	@Order(1)
 	public static class UserWebSecurityConfing extends WebSecurityConfigurerAdapter {
 		
 		@Override
 		public void configure(WebSecurity web) throws Exception {
-			web.ignoring().requestMatchers(new AntPathRequestMatcher("/static/**"));
+			web.ignoring().antMatchers(SECURITY_EXCLUDE_PATTERN_ARR);
 		}
 		
 		@Autowired
@@ -54,7 +63,7 @@ public class WebSecurityConfig {
 		@Bean
 		public GasipanPasswordEncoder sitePasswordEncoder() {
 			return new GasipanPasswordEncoder();
-		}
+		}		
 		
 		/**
 		 * 인증(authentication)이 필요한 url과 인증이 불필요한 url을 설정
@@ -64,7 +73,7 @@ public class WebSecurityConfig {
 		protected void configure(HttpSecurity http) throws Exception {
 			
 			http.requestMatchers()
-					.antMatchers("/user/*", "/freedom/*", "/myPage")
+					.antMatchers("/user/*", "/freedom/*", "/photo-album/*", "/myPage")
 					.and()
 				.authorizeRequests()
 					.antMatchers("/myPage").authenticated()
