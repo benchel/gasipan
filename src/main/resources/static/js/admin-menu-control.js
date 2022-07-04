@@ -6,12 +6,16 @@ $(document).ready(function() {
    adminMenuContrl();
 });
 
+var toggle = false;
+
 const adminMenuContrl = function() {
-    $('.menu-elemt').hover(function() {
-        // slide down 
-        $(this).find('.sub-menu-lst').slideDown();
-    });
-    $('.menu-group').mouseleave(function() {
-		$('.menu-list .sub-menu-lst').slideUp();
+	$('.menu-elemt').click(function() {
+		if(toggle) {
+			$(this).find('.sub-menu-lst').slideUp();
+			toggle = false;
+		} else {
+			$(this).find('.sub-menu-lst').slideDown();
+			toggle = true;
+		}      
 	});
 };

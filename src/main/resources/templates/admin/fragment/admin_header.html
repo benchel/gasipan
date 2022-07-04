@@ -2,12 +2,11 @@
 <th:block th:fragment="admin-header">
 <header class="admin-header">
     <div class="logo-area">
-        <span class="logo">logo</span>
+        <span class="logo"><a href="/admin/">logo</a></span>
     </div>
     <div class="profile">
 		<!-- 로그인 여부 -->   
         <div class="prof-logut" th:unless="${session.ssAdminId eq null}">
-            <img class="prof-img" src="/image/profile.png" width="80">
             <a class="prof-link" th:href="@{/admin/logout}">로그아웃</a>                   
         </div>
         <div class="prof-login" th:if="${session.ssAdminId eq null}">
