@@ -1,30 +1,32 @@
+*{margin:0 auto; padding:0;}
+#wrap{width:1920px; height:100vh;}
+
 a{text-decoration:none;}
-body{margin: 0; padding: 0;}
-#wrap{float: left; width:100vw; height: 100vh; overflow-x:hidden;}
+
+.main-full-page{background-image: url(/img/main-full-img.png); width: 100%; height: 100%;}
 
 /* mian */
-.conts-header{float: left; position:relative; width:100%; height:100px; z-index:10; border-bottom: solid 1px #ccc;}
+.conts-header{float: left; position:relative; z-index:10; width:100%; height:99px; border-bottom: solid 1px #ccc;}
 .conts-header a{color: white;}
 
 /* logo */
 .logo{float: left; width: 15%; height: 100%; text-align: center;}
 .home-icon{display:block; position:relative; width: 100%; height: 100%;
-background-image: url(/img/home-icon.png); background-repeat: no-repeat; background-position: center; }
+background-image: url(/img/home-icon.png); background-repeat: no-repeat; background-position: center;}
 
 /* menu */
-.menu-area{float: left; width: 60%; height: 100%;}
+.menu-area{float:left; width: 60%; height: 100%;}
 .menu-group{list-style: none; padding-top: 3%;}
 .menu-area ul li{float: left; width: 200px;}
 
 /* 로그인 회원가입 */
-.loginYn{float: left; width: 15%; height: 100%; text-align: right;}
+.loginYn{float: left; width: 15%; text-align: right;}
 .loginYn span{padding-top: 10%;}
 .loginYn-text{display:inline-block; width:45%; font-size: 1.3em;}
 .join-text{display:inline-block; width: 45%; font-size: 1.3em;}
 
-.main-content{position:relative; width:100%; height:100%;}
-.main-img{position:relative; width:100%; height:110.288%; top:-100px; background-image: url(/img/main-full-img.png); background-repeat: no-repeat;}
+.main-content{float:left; width:100%; height:800px;}
 
-.footer{float: left; display: block; width: 100%; height: 100px; background-color: #eee;}
+.footer{float: left; width: 100%; height:68px; background-color: #eee;}
 .copyright-area{float: left; width: 100%; text-align: center;}
 /* mian 끝 */

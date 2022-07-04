@@ -2,14 +2,14 @@
 <html xmlns:th="http://www.thymeleaf.org"
 	  xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <th:block th:fragment="header">
-	<section class="conts-header">
+	<div class="conts-header">
 	    <div class="logo">
 	        <a class="home-icon" href="/"></a>
 	    </div>
 	    <div class="menu-area">
     		<ul class="menu-group">
     			<li><a href="">INTRODUCTION</a></li>
-    			<li><a href="/">PHOTO ALBUM</a></li>
+    			<li><a href="/photo-album/list">PHOTO ALBUM</a></li>
     			<li><a href="/freedom/list">자유게시판</a></li>
     		</ul>
     	</div>
@@ -23,6 +23,6 @@
             	<a th:unless="${session.ssUserId eq null}" th:href="@{/myPage}">마이페이지</a>
             </span>
         </div>
-	</section>
+	</div>
 </th:block>
 </html>

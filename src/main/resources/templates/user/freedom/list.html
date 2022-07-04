@@ -111,22 +111,19 @@ const viewFunc = function() {
 <th:block layout:fragment="content">
     <div class="conts">
 		<form name="searchForm">
-		       <input type="hidden" name="boardType" th:value="${parentType}"/>
-		       <input type="hidden" name="boardIdx" value=""/>
-		       <input type="hidden" name="pageNo" th:value="${boardDTO.pageNo}"/>
-		       <input type="hidden" name="pageBlock" th:value="${boardDTO.pageBlock}"/>		
+	       <input type="hidden" name="boardType" th:value="${parentType}"/>
+	       <input type="hidden" name="boardIdx" value=""/>
+	       <input type="hidden" name="pageNo" th:value="${boardDTO.pageNo}"/>
+	       <input type="hidden" name="pageBlock" th:value="${boardDTO.pageBlock}"/>		
 		</form>
         <div class="cont-body">
             <div class="sch-area">
             	<div class="sch-row">
-                 <label class="sch-lab">제목</label>
-                 <input type="text" class="sch-word" name="title" value="">
-                 <label class="sch-lab">작성자</label>
-                 <input type="text" class="sch-word" name="writer" value="">
-                </div>
-                <div class="sch-btn-area">
-                	<button type="button" class="btn-search">검색</button>
-                	<button type="button" class="btn-down">Excel</button>
+	                 <label class="sch-lab">제목</label>
+	                 <input type="text" class="sch-word" name="title" value="">
+	                 <label class="sch-lab">작성자</label>
+	                 <input type="text" class="sch-word" name="writer" value="">
+	                 <button type="button" class="btn-search bgc-green">검색</button>
                 </div>
             </div>
             <div class="data-area txt-center">

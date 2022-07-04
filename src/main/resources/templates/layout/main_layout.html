@@ -18,8 +18,10 @@
 <th:block layout:fragment="script"></th:block>
 <body>
 	<div id="wrap">
-		<th:block th:replace="/fragment/header :: header"></th:block>
-        <th:block layout:fragment="content"></th:block>			
+		<div class="main-full-page">
+			<th:block th:replace="/fragment/header :: header"></th:block>
+	        <th:block layout:fragment="content"></th:block>		
+		</div>
 	</div>
 </body>
 </html>
