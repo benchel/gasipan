@@ -1,9 +1,9 @@
 @charset "UTF-8";
 
-.section{float:left; position: relative; top:-10%; width:100%; height:300px;}
-.img-section{float: left; width:100%; height:400px; background-image: url(/img/section1.png); background-size: 100%;}
 
-.conts{float:left; width: 100%;}
+.basic-top{float: left; width: 100%; height: 400px; background-image: url(/img/section1.png);}
+.section{float:left; width:100%; height:300px;}
+.basic-conts{float:left; width: 100%; height:50%;}
 
 .f-left{float: left;}
 
@@ -15,6 +15,8 @@
 
 .mg-lf10{margin-left: 10%;}
 .mg-rg10{margin-right: 10%;}
+.mg-rg15{margin-right: 15%;}
+.mg-rg20{margin-right: 20%;}
 
 .mg-rg8{margin-right: 8%;}
 .mg-rg7{margin-right: 7%;}
@@ -28,8 +30,9 @@
 
 .mg-top1{margin-top: 1%;}
 .mg-top2{margin-top: 2%;}
-
 .mg-top10{margin-top: 10%;}
+
+.mg-bottom2{margin-bottom: 2%;}
 
 .txt-center{text-align:center;}
 .txt-lf{text-align:left;}
@@ -42,9 +45,7 @@
 .cont-body{float:left; width: 100%;}
 
 .sch-area{position:relative; margin: 1% auto; width: 70%; height : 100px; border: solid #ddeecc 3px; border-radius: 5px;}
-
 .sch-row{float:left; width: 100%; height: 80px; margin-top: 20px; text-align: center;}
-
 .sch-lab{position:relative; display:inline-block; width: 60px; font-size: 1.0em; padding: 1%; color: #99aa88;}
 .sch-word{position:relative; display:inline-block; height:30px; border: solid 1px #99aa88;}
 
@@ -65,24 +66,17 @@
 .regist-input{height : 30px; padding-left: 2%; padding-right: 2%; border: solid #ccddbb 1px;}
 .regist-txtarea{width: 95%; height : 300px; padding-left: 2%; padding-right: 2%; border: solid #ccddbb 1px; resize: none;}
 
-.file-group{width: 95%;}
-.attached-file{float:left; padding-bottom : 0.5%; margin-right: 1%;}
-.attached-file > span {height : 30px;}
-.attached-file > button {padding : 5px; height : 30px; font-size: 10pt;}
-.btn-add-file{float:left; width: 5%; height : 30px; font-size: 10pt;}
-
 /* paging */
-.pagenation-area{float: left; width:100%; height:60px;}
+.pagenation-area{float: left; width:100%; height:60px; padding-bottom: 1%;}
 .numbers-of-page{position:relative; width:50%; height:60px; margin: 0 auto 0 auto; list-style: none; text-align: center;}
 .numbers-of-page li{display:inline-block; width:40px; height:35px; color:#99aa88; border:solid #99aa88 1px; padding-top: 1%;}
-
 .page-num:hover {background-color: #99aa88; color: #ccddbb;}
 
 
 /* Modal */
 .file-upload-modal{
-	position:relative; margin: 0 33% 0 33%; top:-50vh;
-	background-color: white; border: solid 1px #99aa88; z-index: 1000; width: 35%; height: 200px;}
+position:relative; margin: 0 33% 0 33%; top:-50vh;
+background-color: white; border: solid 1px #99aa88; z-index: 1000; width: 35%; height: 200px;}
 
 .modal-hd{float: left; width: 100%; text-align: center; margin-top: 5%; margin-bottom: 3%;}
 .modal-hd span{color: #657654; font-size: 18px;}
@@ -98,7 +92,25 @@
 .btn-close{background-color: #99aa88; border: solid #99aa88 1px; color : #fff7e6; width: 15%; height: 30px;}
 .btn-delete{background-color: #b30000; color:#ffffff; border-radius: 5px; border: solid #b30000 1px;}
 
+
+/* 첨부파일 */
+.file-group{width: 95%;}
+.attached-file{float:left; padding-bottom : 0.5%; margin-right: 1%;}
+.attached-file > span {height : 30px;}
+.attached-file > button {padding : 5px; height : 30px; font-size: 10pt;}
+.btn-add-file{float:left; width: 5%; height : 30px; font-size: 10pt;}
+
 .file-icon{float:left; width: 8%;}
 .attached-file{float:left; width: 30%;}
 .attached-file span{float:left; padding-top:3%;}
 .attached-file button{float: left; padding-top: 3%;}
+
+
+/* PHOTO ALBUM ======================================================== */
+
+.photo-list-tbl{position:relative; width:70%; margin: 0 auto;}
+.photo-frame{width: 20%;}
+.photo-img{position: relative; width: 90%; margin: 0 auto;}
+.photo-img > img{float: left; width: 100%;}
+.photo-description{float: left; width: 90%; padding: 5% 5% 5% 5%;}
+.photo-description span{float: left; width: 100%;}
