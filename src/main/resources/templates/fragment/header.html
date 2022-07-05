@@ -15,7 +15,7 @@
     	</div>
         <div class="loginYn">
             <span class="loginYn-text">
-            	<a th:if="${session.ssUserId eq null}" th:href="@{/user/loginPage}">로그인</a>
+            	<a th:if="${session.ssUserId eq null}" href="/user/loginPage">로그인</a>
             	<a th:unless="${session.ssUserId eq null}" th:href="@{/user/logout}">로그아웃</a>
             </span>
             <span class="join-text">

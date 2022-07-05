@@ -8,35 +8,37 @@
 
 </head>
 <th:block layout:fragment="content">
-	<div class="cont-body">
-		<div class="search-area">
-			<div class="sch-row">
-				<label>등록일</label>
-				<input type="text">			
+	<div class="fram">
+		<div class="shadow">
+			<div class="search-area">
+				<div class="sch-row">
+					<label>등록일</label>
+					<input type="text">			
+				</div>
+				<div class="sch-row">
+					<label>아이디</label>
+					<input type="text">
+					<label>이름</label>
+					<input type="text">							
+				</div>
+				<div class="sch-row">
+					<button type="button" class="sch-btn">검색</button>
+				</div>
 			</div>
-			<div class="sch-row">
-				<label>아이디</label>
-				<input type="text">
-				<label>이름</label>
-				<input type="text">							
+			<div class="letterpress">
+				<table>
+					<tbody>
+						<tr>
+							<td>번호</td>
+							<td>제목</td>
+							<td>작성자</td>
+							<td>등록일</td>
+							<td>수정일</td>
+							<td>수정버튼/삭제버튼</td>
+						</tr>
+					</tbody>
+				</table>
 			</div>
-			<div class="sch-row">
-				<button type="button" class="sch-btn">검색</button>
-			</div>
-		</div>
-		<div class="letterpress">
-			<table>
-				<tbody>
-					<tr>
-						<td>번호</td>
-						<td>제목</td>
-						<td>작성자</td>
-						<td>등록일</td>
-						<td>수정일</td>
-						<td>수정버튼/삭제버튼</td>
-					</tr>
-				</tbody>
-			</table>
 		</div>
 	</div>
 </th:block>

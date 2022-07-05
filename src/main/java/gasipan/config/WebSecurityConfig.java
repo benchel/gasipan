@@ -30,7 +30,6 @@ public class WebSecurityConfig {
 			, "/css/**"
 			, "/js/**"
 			, "/image/**"
-			, "/dext5editor/**"
 	};
 	
 	@Configuration

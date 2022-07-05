@@ -6,16 +6,19 @@ $(document).ready(function() {
    adminMenuContrl();
 });
 
-var toggle = false;
 
 const adminMenuContrl = function() {
+	let subMenu = '';
+	
 	$('.menu-elemt').click(function() {
-		if(toggle) {
-			$(this).find('.sub-menu-lst').slideUp();
-			toggle = false;
+		subMenu = $(this).find('.sub-menu-lst')[0];
+		
+		if(subMenu.slideYn == undefined) {
+			$(subMenu).slideDown();
+			subMenu.slideYn = true;			
 		} else {
-			$(this).find('.sub-menu-lst').slideDown();
-			toggle = true;
-		}      
+			$(subMenu).slideUp();
+			subMenu.slideYn = undefined;			
+		}
 	});
 };

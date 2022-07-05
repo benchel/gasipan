@@ -11,27 +11,27 @@ body{overflow-x: hidden;}
 .dn{display:none;}
 
 /* header */
-.admin-header{float: left; width: 100%; height: 10%;}
+.admin-header{float: left; width: 100%; height: 8%; border-bottom: solid 1px #ccc;}
 
 .logo-area{float:left; width: 10%; height: 100%;}
-.logo{display: block; font-size: 40pt; text-align: center;}
+.logo{display: block; width: 100%; height: 100%; padding: 5% 0 5% 0; font-size: 2.0em; text-align: center;}
+.logo a{vertical-align:middle;}
+.logo a:visited{color: black;}
 
 .profile{float: right; width: 6%; height: 100%; margin-top: 1%;}
 .prof-logut{float: left; width: 100%; height: 100%;}
 .prof-link{float: left; width: 70%; margin-top: 5%; margin-left: 2%; text-decoration: none; text-align: center; color: black;}
 .prof-login{float: left; width: 100%; height: 100%; display: none;}
 
-
-/* contents */
-.conts{float: left; width: 100%; height: 90%;}
-
 /* side menu */
 .menu-group{float: left; width: 10%; height: 100%; background-color: #efefefef;}
-.menu-list{float: left; width: 100%; font-size: 14pt; text-align: center;}
-.menu-list li {padding: 5px;}
+.menu-list{float: left; width: 90%; font-size: 1.15em; text-align: center; margin: 2% 5% 2% 5%; border-radius: 5px; background-color: white;}
+.menu-list li {padding: 5px; list-style-type: none;}
+.menu-list li a:visited{color: black;}
+.menu-elemt{border-bottom:solid 1px #ccc;}
+.sub-menu-lst{font-size: 12pt;}
 
-.sub-menu-lst{font-size: 12pt;background-color: #dddddddd;}
-
-.cont-body{float: left; width: 90%; height: 100%;}
-
-
+/* contents */
+.conts{float: left; width: 100%; height: 91.777%;}
+.fram{float: left; width: 89.888%; height: 100%;}
+.shadow{float:left; width: 97%; height: 95%; margin:1.5% 1.5% 1.5% 1.5%; border-radius:3px; box-shadow: 2px 2px 0.5em #ccc;}
