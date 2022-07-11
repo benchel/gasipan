@@ -11,4 +11,6 @@ public class BoardDTO extends BasicDTO {
 	private String writer;
 	private String regDate;
 	private String modifyDate;
+	private String deletion;
+	private String reason;
 }

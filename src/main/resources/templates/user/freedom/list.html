@@ -48,6 +48,7 @@ const getFreedomList = function() {
 	formData['boardType'] = $('input[name="parentType"]').val();
 	formData['title'] = $('input[name="title"]').val();
 	formData['writer'] = $('input[name="writer"]').val();
+	formData['deletion'] = 'N';
 	
 	$.ajax({
 		data : JSON.stringify(formData),

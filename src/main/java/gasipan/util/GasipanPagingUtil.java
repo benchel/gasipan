@@ -83,16 +83,6 @@ public class GasipanPagingUtil {
 				afterPage = totalPage;
 			}
 			
-			String prevActive = "";
-			if (beforePage == 1) {
-				prevActive = "disabled";
-			}
-
-			String nextActive = "";
-			if ((startPage + pageBlock) > totalPage) {
-				nextActive = "disabled";
-			}
-			
 			rs.setLength(0);
 
 			rs.append("	<ul class=\"numbers-of-page pointer\">	\n");
@@ -133,8 +123,77 @@ public class GasipanPagingUtil {
 	}
 	
 	
-	public static String getAdminPagingHTML() {
-		return "";
+	public static String getAdminPagingHTML(long totalCount, long pageNo, long pageSize, long pageBlock) {
+		StringBuffer rs = new StringBuffer();
+		
+		long totalPage = getTotalPageNo(totalCount, pageSize);
+
+		if (totalCount > 0) {
+			// 현재 페이지 계산
+			long startPage = 1;
+			if (pageNo > 0 && pageBlock > 0) {
+				if (pageNo % pageBlock > 0) {
+					startPage = pageNo - (pageNo % pageBlock) + 1;
+				} else {
+					startPage = pageNo - pageBlock + 1;
+				}
+			}
+
+			// 마지막 페이지 계산
+			long endPage = startPage + pageBlock - 1;
+			if (endPage > totalPage) {
+				endPage = totalPage; // 마지막 페이지가 총 페이지 수 보다 크면 총 페이지로 셋팅
+			}
+
+			// 맨처음, 이전 글
+			long beforePage = startPage - pageBlock;
+			if (beforePage < 1) {
+				beforePage = 1;
+			}
+
+			// 맨마지막, 다음 글
+			long afterPage = startPage + pageBlock;
+			if (afterPage > totalPage) {
+				afterPage = totalPage;
+			}
+			
+			rs.setLength(0);
+
+			rs.append("	<ul class=\"page-group\">	\n");
+
+			// 이전
+			rs.append(" <li class=\"page-num\" data-pageNo=\""+ beforePage +"\">◁</li> ");
+			// 이동 페이지
+			for (long i = startPage; i <= endPage; i++) {
+				if (pageNo == i) {
+					rs.append(" <li class=\"page-num active\"> " + i + " </li> ");
+				} else {
+					rs.append(" <li class=\"page-num\" data-pageNo=\""+ i +"\"> " + i + " </li>");
+				}
+			}
+
+			// 다음
+			rs.append(" <li class=\"page-num\">▷</li>");
+			rs.append("	</ul>");
+		}
+		
+		/**
+		<ul class="page-group">
+			<li class="page-num">◁</li>
+			<li class="page-num">1</li>
+			<li class="page-num">2</li>
+			<li class="page-num">3</li>
+			<li class="page-num">4</li>
+			<li class="page-num">5</li>
+			<li class="page-num">6</li>
+			<li class="page-num">7</li>
+			<li class="page-num">8</li>
+			<li class="page-num">9</li>
+			<li class="page-num">10</li>
+			<li class="page-num">▷</li>
+		</ul>*/
+		
+		return rs.toString();
 	}
 	
 }

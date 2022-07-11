@@ -7,37 +7,192 @@
 
 
 </head>
+<th:block layout:fragment="script">
+<script type="text/javascript">
+$(document).ready(function() {	
+	initPage();
+	registEvent();
+	setDefault();
+	getFreedomList();
+});
+
+const initPage = function() {
+	
+};
+
+const setDefault = function() {
+	
+};
+
+const registEvent = function() {
+	$('.btn-write').on('click', function(e) {
+		$(location).attr('href', 'regist');
+	});
+	
+	$('.btn-search').on('click', function(e) {
+		getFreedomList();
+	});
+	
+	$('input[class="sch-word"]').on('keydown', function(e) {
+		if (e.keyCode == 13) {
+			e.preventDefault();
+			getFreedomList();
+		}
+	});	
+};
+
+const getFreedomList = function() {
+	const formData = $('form[name="searchForm"]').serializeObject();
+	formData['boardType'] = $('input[name="parentType"]').val();
+	formData['title'] = $('input[name="title"]').val();
+	formData['writer'] = $('input[name="writer"]').val();
+	
+	$.ajax({
+		data : JSON.stringify(formData),
+		url : '/admin/freedom/list-paging',
+		type : 'post',
+		dataType : 'json',
+		contentType : 'application/json',
+		beforeSend : function(xhr){
+			xhr.setRequestHeader(header, token);
+		}
+	}).done(function (result, status, xhr) {
+		const totalCount = result.totalCount;
+		const totalPageNo = result.totalPageNo;
+		const list = result.list;
+		
+		let html = '';
+		
+		if (totalCount == 0) {
+			html += '<tr><td class="text-center h-200px align-middle" colspan="8">등록된 내용이 없습니다.</td></tr>';
+		}
+		
+		$.each(list, function(idx, el) {
+			html += '<tr>';
+			html += '	<td>' + (el.boardIdx) + '</td>';
+			html += '	<td><span class="viewBtn pointer" data-boardIdx="' + (el.boardIdx) + '">' + (el.title) + '</span></td>';
+			html += '	<td>' + (el.writer) + '</td>';
+			html += '	<td>' + (el.regDate) + '</td>';
+			html += '	<td>' + (el.modifyDate) + '</td>';
+			html += ' 	<td>';
+			html += '		<button type="button" class="bttn-modify">수정</button>';
+			html += '		<button type="button" class="bttn-del">삭제</button>';
+			html += '	</td>';
+			html += '</tr>';
+		});
+
+		$('.data-tbl tbody').html(html);
+		$('.pagenation').html(result.pagingHTML);
+
+		pagingFunc();
+		viewFunc();
+	}).fail(function (xhr, status, error) {
+		alert("데이터를 가지고 오는데 실패하였습니다.");
+	});
+};
+
+const pagingFunc = function() {
+	$('.page-group .page-num').off('click').on('click', function (e) {
+		e.preventDefault();
+		if ($(this).hasClass('active') == false) {
+			$('input[name="pageNo"]').val($(this).attr('data-pageNo'));
+			getFreedomList();
+		}
+	});
+};
+
+const viewFunc = function() {
+	$('.viewBtn').off('click').on('click', function (e) {
+		e.preventDefault();
+		const idx = $(this).attr('data-boardIdx');
+		$('input[name="boardIdx"]').val(idx);
+		$(location).attr('href', 'view?' + $('[name="searchForm"]').serialize());
+	});
+};
+
+</script>
+</th:block>
 <th:block layout:fragment="content">
 	<div class="fram">
-		<div class="shadow">
-			<div class="search-area">
-				<div class="sch-row">
-					<label>등록일</label>
-					<input type="text">			
+		<div class="location">
+			<span>게시판관리</span>
+			<span>></span>
+			<span>자유게시판</span>
+		</div>
+		<form name="searchForm">
+	       <input type="hidden" name="boardType" th:value="${parentType}"/>
+	       <input type="hidden" name="boardIdx" value=""/>
+	       <input type="hidden" name="pageNo" th:value="${boardDTO.pageNo}"/>
+	       <input type="hidden" name="pageBlock" th:value="${boardDTO.pageBlock}"/>		
+		</form>		
+		<div class="search-area">
+			<div class="sch-row">
+				<label>아이디</label>
+				<input type="text">
+				<label>이름</label>
+				<input type="text">
+				<label>등록일</label>
+				<div class="dt-div">
+					<input class="date-input" type="text">
+					<span class="data-tilde">~</span>
 				</div>
-				<div class="sch-row">
-					<label>아이디</label>
-					<input type="text">
-					<label>이름</label>
-					<input type="text">							
+				<div class="dt-div">
+					<input class="date-input" type="text">
 				</div>
-				<div class="sch-row">
-					<button type="button" class="sch-btn">검색</button>
-				</div>
-			</div>
-			<div class="letterpress">
-				<table>
-					<tbody>
-						<tr>
-							<td>번호</td>
-							<td>제목</td>
-							<td>작성자</td>
-							<td>등록일</td>
-							<td>수정일</td>
-							<td>수정버튼/삭제버튼</td>
-						</tr>
-					</tbody>
-				</table>
+			</div>		
+			<div class="sch-row">
+				<button type="button" class="sch-btn">검색</button>
+			</div>		
+		</div>
+		<div class="letterpress">
+			<table class="data-tbl">
+				<colgroup>
+					<col width="8%">
+					<col width="40%">
+					<col>
+					<col>
+					<col>
+					<col>
+				</colgroup>
+				<thead>
+					<tr>
+						<th>번호</th>
+						<th>제목</th>
+						<th>작성자</th>
+						<th>등록일</th>
+						<th>수정일</th>
+						<th>수정 및 삭제</th>
+					</tr>			
+				</thead>
+				<tbody>
+					<tr>
+						<td>1</td>
+						<td>자유게시판 제목</td>
+						<td>작성자</td>
+						<td>등록일</td>
+						<td>수정일</td>
+						<td>
+							<button type="button" class="bttn-modify">수정</button>
+							<button type="button" class="bttn-del">삭제</button>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			<div class="pagenation">
+				<ul class="page-group">
+					<li class="page-num">◁</li>
+					<li class="page-num">1</li>
+					<li class="page-num">2</li>
+					<li class="page-num">3</li>
+					<li class="page-num">4</li>
+					<li class="page-num">5</li>
+					<li class="page-num">6</li>
+					<li class="page-num">7</li>
+					<li class="page-num">8</li>
+					<li class="page-num">9</li>
+					<li class="page-num">10</li>
+					<li class="page-num">▷</li>
+				</ul>
 			</div>
 		</div>
 	</div>

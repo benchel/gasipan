@@ -15,6 +15,9 @@
 	
 	<sql id="whereBoardList">
 		WHERE 1=1
+		<if test="deletion != null and deletion != ''">
+			AND deletion = #{deletion}
+		</if>
 		<if test="boardType != null and boardType != ''">
 			AND b.board_type = #{boardType}
 		</if>
@@ -65,7 +68,10 @@
 		FROM board b
 		WHERE b.board_type = #{boardType} 
 		AND b.board_idx = #{boardIdx}
-	</select>
+	</select>	
+	
+	
+	<!-- ADMIN -->
 	
 	
 	

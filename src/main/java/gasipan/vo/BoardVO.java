@@ -11,7 +11,6 @@ public class BoardVO extends BasicVO {
 	private String writer;
 	private String regDate;
 	private String modifyDate;
-	private String fileKey1;
-	private String fileKey2;
-	private String fileKey3;
+	private String deletion;
+	private String reason;
 }

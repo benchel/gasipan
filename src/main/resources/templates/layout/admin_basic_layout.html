@@ -4,16 +4,26 @@
 <head>
 	<!-- meta -->
 	<meta charset="UTF-8">
+	<meta th:if="${_csrf}" name="_csrf" th:content="${_csrf.token}"/>
+	<meta th:unless="${_csrf}" name="_csrf" content=""/>
+	<meta th:if="${_csrf}" name="_csrf_header" th:content="${_csrf.headerName}"/>
+	<meta th:unless="${_csrf}" name="_csrf_header" content=""/>
 	
 	<!-- css -->
 	<link href="/css/admin.css" rel="stylesheet">
 	
 	<!-- script -->
 	<script type="text/javascript" src="/js/jquery.js"></script>
+	<script type="text/javascript" th:src="@{/js/jquery.serialize-object.min.js}"></script>	
 	<script type="text/javascript" src="/js/admin-menu-control.js"></script>
 	
 	<title>게시판 [관리자]</title>
 </head>
+<script type="text/javascript">
+var token = $("meta[name='_csrf']").attr("content");
+var header = $("meta[name='_csrf_header']").attr("content");
+</script>
+<th:block layout:fragment="script"></th:block>
 <body>
 	<div id="wrap">
 		<div th:replace="/admin/fragment/admin_header"></div>

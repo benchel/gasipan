@@ -105,4 +105,46 @@ public class FreedomService {
 
 		return rs;
 	}
+	
+	/**
+	 * 자유게시판 목록
+	 * @param boardDTO
+	 * @return
+	 * @throws Exception
+	 */
+	@Transactional(readOnly = true)
+	public Map<String, Object> selectAdminBoardListWithPaging(BoardDTO boardDTO) throws Exception {
+		Map<String, Object> rs = new HashMap<>();
+		
+		long pageNo = boardDTO.getPageNo() == null ? 1 : boardDTO.getPageNo();
+		long pageSize = boardDTO.getPageSize() == null ? 1 : boardDTO.getPageSize();
+		long pageBlock = boardDTO.getPageBlock() == null ? 1 : boardDTO.getPageBlock();
+		
+		boardDTO.setPageNo(pageNo);
+		boardDTO.setPageSize(pageSize);
+		boardDTO.setPageBlock(pageBlock);
+		boardDTO.setPageOffset(GasipanPagingUtil.getPageStartNo(pageNo, pageSize));
+		
+		List<BoardVO> list = boardDAO.selectBoardList(boardDTO);
+		
+		if(pageNo != 1 && list.size() == 0) {
+			pageNo = 1;
+			boardDTO.setPageNo(pageNo);
+			boardDTO.setPageOffset(GasipanPagingUtil.getPageStartNo(pageNo, pageSize));
+			list = boardDAO.selectBoardList(boardDTO);
+		}
+		
+		long totalCount = boardDAO.selectBoardCnt(boardDTO);
+		long totalPageNo = GasipanPagingUtil.getTotalPageNo(totalCount, pageSize);
+		String pagingHTML = GasipanPagingUtil.getAdminPagingHTML(totalCount, pageNo, pageSize, pageBlock);
+		
+		rs.put("boardDTO", boardDTO);
+		rs.put("list", list);
+		rs.put("totalCount", totalCount);
+		rs.put("totalPageNo", totalPageNo);
+		rs.put("pagingHTML", pagingHTML);
+		
+		return rs;
+	}
+	
 }
